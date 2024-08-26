@@ -1,0 +1,18 @@
+name: terraform-plan
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "terraform/aws/**"
+
+jobs:
+  terraform-plan:
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+    uses: yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-plan.yaml@main
+    with:
+      working-dir: "terraform/aws"
