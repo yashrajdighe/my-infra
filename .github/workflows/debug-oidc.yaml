@@ -12,7 +12,7 @@ jobs:
     name: A test of the oidc debugger
     steps:
       - name: Checkout actions-oidc-debugger
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: github/actions-oidc-debugger
           ref: main
