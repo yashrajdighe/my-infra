@@ -6,12 +6,5 @@ on:
       - main
 
 jobs:
-  checkout:
-    runs-on: ubuntu-latest
-    steps:
-        - uses: actions/checkout@v4
-        - run: |
-            ls
   terraform-plan:
-    needs: checkout
     uses: yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-plan.yaml@CLOUD-2-add-tf-plan-reusable-action
