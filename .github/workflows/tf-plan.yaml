@@ -12,6 +12,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      pull-requests: write
     uses: yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-plan.yaml@CLOUD-2-add-tf-plan-reusable-action
     with:
       working-dir: "terraform/aws"
