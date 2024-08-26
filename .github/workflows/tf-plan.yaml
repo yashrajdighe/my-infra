@@ -11,4 +11,5 @@ jobs:
     steps:
         - uses: actions/checkout@v4
   terraform-plan:
+    needs: checkout
     uses: yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-plan.yaml@CLOUD-2-add-tf-plan-reusable-action
