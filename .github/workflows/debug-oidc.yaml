@@ -4,6 +4,7 @@ on: [pull_request]
 
 jobs:
   oidc_debug_test:
+    if: false
     permissions:
       contents: read
       id-token: write

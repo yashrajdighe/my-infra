@@ -4,6 +4,7 @@ on: [pull_request]
 
 jobs:
     configure_aws:
+        if: false
         permissions:
             contents: read
             id-token: write
