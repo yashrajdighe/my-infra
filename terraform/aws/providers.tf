@@ -6,3 +6,14 @@ terraform {
     }
   }
 }
+
+terraform { 
+  cloud { 
+    
+    organization = "yashrajdighe-githubaction" 
+
+    workspaces { 
+      name = "yashrajdighe-githubactions" 
+    } 
+  } 
+}
