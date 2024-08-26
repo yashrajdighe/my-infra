@@ -1,4 +1,4 @@
-name: Call a reusable workflow
+name: terraform plan
 
 on:
   pull_request:
@@ -6,5 +6,5 @@ on:
       - main
 
 jobs:
-  call-workflow:
+  terraform-plan:
     uses: yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-plan.yaml@CLOUD-2-add-tf-plan-reusable-action
