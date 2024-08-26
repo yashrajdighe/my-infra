@@ -7,13 +7,13 @@ terraform {
   }
 }
 
-terraform { 
-  cloud { 
-    
-    organization = "yashrajdighe-githubaction" 
+terraform {
+  cloud {
 
-    workspaces { 
-      name = "yashrajdighe-githubactions" 
-    } 
-  } 
+    organization = "yashrajdighe-githubaction"
+
+    workspaces {
+      name = "yashrajdighe-githubactions"
+    }
+  }
 }
