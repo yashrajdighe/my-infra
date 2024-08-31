@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - "terraform/aws/**"
+      - ".github/workflows/tf-plan.yaml"
+      - ".github/workflows/tf-apply.yaml"
 
 jobs:
   terraform-apply:
