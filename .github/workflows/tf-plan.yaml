@@ -18,3 +18,4 @@ jobs:
     uses: yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-plan.yaml@main
     with:
       working-dir: "terraform/aws"
+      enable-oidc-debugger: true
