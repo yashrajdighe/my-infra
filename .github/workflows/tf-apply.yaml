@@ -18,7 +18,8 @@ jobs:
       contents: read
       id-token: write
       pull-requests: write
-    uses: yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-apply.yaml@main
+    uses:
+      yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-apply.yaml@main
     with:
       working-dir: "terraform/aws"
       enable-oidc-debugger: true
