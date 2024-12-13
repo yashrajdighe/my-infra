@@ -18,7 +18,7 @@ jobs:
       contents: read
       id-token: write
       pull-requests: write
-    uses: 
+    uses:
       yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-plan.yaml@main
     with:
       working-dir: "terraform/aws"
