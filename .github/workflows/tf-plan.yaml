@@ -9,12 +9,16 @@ on:
       - ".github/workflows/tf-plan.yaml"
       - ".github/workflows/tf-apply.yaml"
 
+concurrency:
+  group: terraform
+
 jobs:
   terraform-plan:
     permissions:
       contents: read
       id-token: write
       pull-requests: write
-    uses: yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-plan.yaml@main
+    uses:
+      yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-plan.yaml@main
     with:
       working-dir: "terraform/aws"

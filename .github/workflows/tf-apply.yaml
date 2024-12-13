@@ -9,13 +9,17 @@ on:
       - ".github/workflows/tf-plan.yaml"
       - ".github/workflows/tf-apply.yaml"
 
+concurrency:
+  group: terraform
+
 jobs:
   terraform-apply:
     permissions:
       contents: read
       id-token: write
       pull-requests: write
-    uses: yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-apply.yaml@main
+    uses:
+      yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-apply.yaml@main
     with:
       working-dir: "terraform/aws"
       enable-oidc-debugger: true
