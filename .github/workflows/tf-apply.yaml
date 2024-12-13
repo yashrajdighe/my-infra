@@ -9,6 +9,9 @@ on:
       - ".github/workflows/tf-plan.yaml"
       - ".github/workflows/tf-apply.yaml"
 
+concurrency:
+  group: terraform
+
 jobs:
   terraform-apply:
     permissions:
