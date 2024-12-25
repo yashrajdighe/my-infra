@@ -29,7 +29,7 @@ module "eks" {
     }
 
     policy_associations = {
-      example = {
+      root_user = {
         policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
         access_scope = {
           type = "cluster"
