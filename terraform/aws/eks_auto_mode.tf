@@ -26,6 +26,15 @@ module "eks" {
   access_entries = {
     root_user = {
       principal_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
+
+      policy_associations = {
+        root_user = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            type = "cluster"
+          }
+        }
+      }
     }
   }
 
