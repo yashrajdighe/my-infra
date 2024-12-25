@@ -23,4 +23,10 @@ module "eks" {
   control_plane_subnet_ids = module.vpc.public_subnets
   subnet_ids               = module.vpc.private_subnets
 
+  access_entries = {
+    root_user = {
+      principal_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
+    }
+  }
+
 }
