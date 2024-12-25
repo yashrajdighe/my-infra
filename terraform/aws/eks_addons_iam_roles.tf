@@ -1,4 +1,4 @@
-module "aws_ebs_csi_driver" {
+module "aws_ebs_csi_driver_role" {
   source = "terraform-aws-modules/iam/aws//modules/iam-eks-role"
 
   role_name = var.aws_ebs_csi_driver_role_name
