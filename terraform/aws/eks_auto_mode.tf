@@ -19,9 +19,8 @@ module "eks" {
     node_pools = ["general-purpose"]
   }
 
-  vpc_id                   = module.vpc.vpc_id
-  control_plane_subnet_ids = module.vpc.public_subnets
-  subnet_ids               = module.vpc.private_subnets
+  vpc_id     = module.vpc.vpc_id
+  subnet_ids = module.vpc.private_subnets
 
   access_entries = {
     root_user = {
