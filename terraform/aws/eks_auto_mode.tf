@@ -38,4 +38,8 @@ module "eks" {
     }
   }
 
+  cluster_addons = {
+    aws-ebs-csi-driver = {}
+  }
+
 }
