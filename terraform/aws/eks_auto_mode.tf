@@ -38,7 +38,12 @@ module "eks" {
   }
 
   cluster_addons = {
-    aws-ebs-csi-driver = {}
+    aws-ebs-csi-driver = {
+      pod_identity_association = {
+        role_arn        = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+        service_account = "ebs-csi-controller-sa"
+      }
+    }
   }
 
 }
