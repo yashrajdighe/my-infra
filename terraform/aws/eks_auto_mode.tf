@@ -41,8 +41,8 @@ module "eks" {
     aws-ebs-csi-driver = {
       pod_identity_association = [
         {
-          role_arn        = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-          service_account = "ebs-csi-controller-sa"
+          role_arn        = module.aws_ebs_csi_driver_role.iam_role_arn
+          service_account = var.aws_ebs_csi_driver_service_account_name
         }
       ]
     }
