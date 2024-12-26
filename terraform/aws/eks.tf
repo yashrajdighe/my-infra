@@ -7,7 +7,7 @@ module "eks" {
 
   bootstrap_self_managed_addons = false
   cluster_addons = {
-    coredns                = {}
+    coredns                = {} # this plugin should be installed once nodes are provisioned
     eks-pod-identity-agent = {}
     kube-proxy             = {}
     vpc-cni                = {}
@@ -59,16 +59,16 @@ module "eks" {
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
-  # eks_managed_node_groups = {
-  #   default = {
-  #     # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
-  #     ami_type       = "AL2023_x86_64_STANDARD"
-  #     instance_types = ["t2.medium"]
+  eks_managed_node_groups = {
+    default = {
+      # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
+      ami_type       = "AL2023_x86_64_STANDARD"
+      instance_types = ["t2.medium"]
 
-  #     min_size     = 2
-  #     max_size     = 4
-  #     desired_size = 2
-  #   }
-  # }
+      min_size     = 2
+      max_size     = 4
+      desired_size = 2
+    }
+  }
 
 }
