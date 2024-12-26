@@ -24,7 +24,7 @@ module "eks" {
   # Optional
   cluster_endpoint_public_access = true
   cluster_endpoint_public_access_cidrs = [
-    "103.101.111.206/32"
+    "0.0.0.0/0"
   ]
 
   enable_cluster_creator_admin_permissions = false
