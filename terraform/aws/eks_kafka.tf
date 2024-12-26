@@ -10,7 +10,7 @@ resource "kubernetes_manifest" "kafka_debezium_cluster" {
     "kind"       = "Kafka"
     "metadata" = {
       "name"      = "kafka"
-      "namespace" = kubernetes_namespace.kafka_debezium_cluster.metadata.name
+      "namespace" = kubernetes_namespace.kafka_debezium_cluster.metadata[0].name
     }
     "spec" = {
       "entityOperator" = {
