@@ -1,7 +1,7 @@
 name: terraform-state-unlock
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       lock-id:
         required: true
