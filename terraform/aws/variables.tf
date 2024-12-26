@@ -22,3 +22,8 @@ variable "metrics_server_manifest_url" {
   default = "https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml"
   type    = string
 }
+
+variable "kafka_namespace" {
+  default = "kafka"
+  type    = string
+}
