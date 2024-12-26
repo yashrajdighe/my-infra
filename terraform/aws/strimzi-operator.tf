@@ -1,5 +1,5 @@
 resource "helm_release" "strimzi-kafka-operator" {
-  name       = "my-redis-release"
+  name       = "strimzi-operator"
   repository = "oci://quay.io/strimzi-helm/"
   chart      = "strimzi-kafka-operator"
   version    = "0.45.0"
