@@ -22,4 +22,4 @@ jobs:
       yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-apply.yaml@main
     with:
       working-dir: "terraform/aws"
-      enable-oidc-debugger: true
+      enable-oidc-debugger: false
