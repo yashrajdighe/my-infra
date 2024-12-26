@@ -41,12 +41,26 @@ module "eks" {
         }
       }
     }
+
     github_action_ci = {
       principal_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/IaC"
 
       policy_associations = {
         github_action_ci = {
           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            type = "cluster"
+          }
+        }
+      }
+    }
+
+    github_action_ci_read_only = {
+      principal_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/IaC-ReadOnly"
+
+      policy_associations = {
+        github_action_ci_read_only = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminViewPolicy"
           access_scope = {
             type = "cluster"
           }
