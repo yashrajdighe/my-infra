@@ -1,4 +1,4 @@
-resource "helm_release" "strimzi-kafka-operator" {
+resource "helm_release" "strimzi_kafka_operator" {
   name       = "strimzi-operator"
   repository = "oci://quay.io/strimzi-helm/"
   chart      = "strimzi-kafka-operator"
