@@ -17,3 +17,8 @@ variable "cluster_name" {
   default = "common-eks"
   type    = string
 }
+
+variable "metrics_server_manifest_url" {
+  default = "https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml"
+  type    = string
+}
