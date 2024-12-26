@@ -1,0 +1,24 @@
+name: terraform-state-unlock
+
+on:
+  workflow_call:
+    inputs:
+      lock-id:
+        required: true
+        type: string
+
+concurrency:
+  group: terraform
+
+jobs:
+  terraform-state-unlock:
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+    uses:
+      yashrajdighe/github-actions-reusable-workflows/.github/workflows/tf-state-unlock.yaml@main
+    with:
+      working-dir: "terraform/aws"
+      enable-oidc-debugger: false
+      lock-id: ${{ inputs.lock-id }}
