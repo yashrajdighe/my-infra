@@ -1,4 +1,7 @@
 resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafka_strimzi_io" {
+  depends_on = [
+    kubernetes_namespace.kafka_debezium_cluster
+  ]
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
     "kind"       = "CustomResourceDefinition"
