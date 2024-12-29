@@ -32,3 +32,8 @@ variable "strimzi_kafka_operator_namespace" {
   default = "strimzi-operator"
   type    = string
 }
+
+variable "metrics_server_namespace" {
+  default = "kube-system"
+  type    = string
+}
