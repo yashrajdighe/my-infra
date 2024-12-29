@@ -5,6 +5,11 @@
 # }
 
 # resource "kubernetes_manifest" "kafka_debezium_cluster" {
+#   depends_on = [
+#     kubernetes_namespace.kafka_debezium_cluster,
+#     kubernetes_manifest.customresourcedefinition_kafkamirrormaker2s_kafka_strimzi_io
+#   ]
+
 #   manifest = {
 #     "apiVersion" = "kafka.strimzi.io/v1beta2"
 #     "kind"       = "Kafka"
