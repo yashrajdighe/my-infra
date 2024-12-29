@@ -1,10 +1,10 @@
 resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafka_strimzi_io" {
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "labels" = {
-        "app" = "strimzi"
+        "app"                    = "strimzi"
         "strimzi.io/crd-install" = "true"
       }
       "name" = "kafkamirrormaker2s.kafka.strimzi.io"
@@ -18,9 +18,9 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
         "categories" = [
           "strimzi",
         ]
-        "kind" = "KafkaMirrorMaker2"
+        "kind"     = "KafkaMirrorMaker2"
         "listKind" = "KafkaMirrorMaker2List"
-        "plural" = "kafkamirrormaker2s"
+        "plural"   = "kafkamirrormaker2s"
         "shortNames" = [
           "kmm2",
         ]
@@ -32,15 +32,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
           "additionalPrinterColumns" = [
             {
               "description" = "The desired number of Kafka MirrorMaker 2 replicas"
-              "jsonPath" = ".spec.replicas"
-              "name" = "Desired replicas"
-              "type" = "integer"
+              "jsonPath"    = ".spec.replicas"
+              "name"        = "Desired replicas"
+              "type"        = "integer"
             },
             {
               "description" = "The state of the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Ready\")].status"
-              "name" = "Ready"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Ready\")].status"
+              "name"        = "Ready"
+              "type"        = "string"
             },
           ]
           "name" = "v1beta2"
@@ -49,11 +49,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -63,7 +63,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                   "properties" = {
                     "clientRackInitImage" = {
                       "description" = "The image of the init container used for initializing the `client.rack`."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "clusters" = {
                       "description" = "Kafka clusters for mirroring."
@@ -71,8 +71,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                         "properties" = {
                           "alias" = {
                             "description" = "Alias used to reference the Kafka cluster."
-                            "pattern" = "^[a-zA-Z0-9\\._\\-]{1,100}$"
-                            "type" = "string"
+                            "pattern"     = "^[a-zA-Z0-9\\._\\-]{1,100}$"
+                            "type"        = "string"
                           }
                           "authentication" = {
                             "description" = "Authentication configuration for connecting to the cluster."
@@ -82,11 +82,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                 "properties" = {
                                   "key" = {
                                     "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "secretName" = {
                                     "description" = "The name of the Kubernetes Secret containing the secret value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -97,30 +97,30 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "accessTokenIsJwt" = {
                                 "description" = "Configure whether access token should be treated as JWT. This should be set to `false` if the authorization server returns opaque tokens. Defaults to `true`."
-                                "type" = "boolean"
+                                "type"        = "boolean"
                               }
                               "accessTokenLocation" = {
                                 "description" = "Path to the token file containing an access token to be used for authentication."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "audience" = {
                                 "description" = "OAuth audience to use when authenticating against the authorization server. Some authorization servers require the audience to be explicitly set. The possible values depend on how the authorization server is configured. By default, `audience` is not specified when performing the token endpoint request."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "certificateAndKey" = {
                                 "description" = "Reference to the `Secret` which holds the certificate and private key pair."
                                 "properties" = {
                                   "certificate" = {
                                     "description" = "The name of the file certificate in the Secret."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "key" = {
                                     "description" = "The name of the private key in the Secret."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "secretName" = {
                                     "description" = "The name of the Secret containing the certificate."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -135,11 +135,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                 "properties" = {
                                   "key" = {
                                     "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "secretName" = {
                                     "description" = "The name of the Kubernetes Secret containing the secret value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -150,26 +150,26 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "clientAssertionLocation" = {
                                 "description" = "Path to the file containing the client assertion to be used for authentication."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "clientAssertionType" = {
                                 "description" = "The client assertion type. If not set, and either `clientAssertion` or `clientAssertionLocation` is configured, this value defaults to `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "clientId" = {
                                 "description" = "OAuth Client ID which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "clientSecret" = {
                                 "description" = "Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI."
                                 "properties" = {
                                   "key" = {
                                     "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "secretName" = {
                                     "description" = "The name of the Kubernetes Secret containing the secret value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -180,42 +180,42 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "connectTimeoutSeconds" = {
                                 "description" = "The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds."
-                                "type" = "integer"
+                                "type"        = "integer"
                               }
                               "disableTlsHostnameVerification" = {
                                 "description" = "Enable or disable TLS hostname verification. Default value is `false`."
-                                "type" = "boolean"
+                                "type"        = "boolean"
                               }
                               "enableMetrics" = {
                                 "description" = "Enable or disable OAuth metrics. Default value is `false`."
-                                "type" = "boolean"
+                                "type"        = "boolean"
                               }
                               "httpRetries" = {
                                 "description" = "The maximum number of retries to attempt if an initial HTTP request fails. If not set, the default is to not attempt any retries."
-                                "type" = "integer"
+                                "type"        = "integer"
                               }
                               "httpRetryPauseMs" = {
                                 "description" = "The pause to take before retrying a failed HTTP request. If not set, the default is to not pause at all but to immediately repeat a request."
-                                "type" = "integer"
+                                "type"        = "integer"
                               }
                               "includeAcceptHeader" = {
                                 "description" = "Whether the Accept header should be set in requests to the authorization servers. The default value is `true`."
-                                "type" = "boolean"
+                                "type"        = "boolean"
                               }
                               "maxTokenExpirySeconds" = {
                                 "description" = "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens."
-                                "type" = "integer"
+                                "type"        = "integer"
                               }
                               "passwordSecret" = {
                                 "description" = "Reference to the `Secret` which holds the password."
                                 "properties" = {
                                   "password" = {
                                     "description" = "The name of the key in the Secret under which the password is stored."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "secretName" = {
                                     "description" = "The name of the Secret containing the password."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -226,18 +226,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "readTimeoutSeconds" = {
                                 "description" = "The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds."
-                                "type" = "integer"
+                                "type"        = "integer"
                               }
                               "refreshToken" = {
                                 "description" = "Link to Kubernetes Secret containing the refresh token which can be used to obtain access token from the authorization server."
                                 "properties" = {
                                   "key" = {
                                     "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "secretName" = {
                                     "description" = "The name of the Kubernetes Secret containing the secret value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -251,11 +251,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                   "type" = "string"
                                 }
                                 "description" = "SASL extensions parameters."
-                                "type" = "object"
+                                "type"        = "object"
                               }
                               "scope" = {
                                 "description" = "OAuth scope to use when authenticating against the authorization server. Some authorization servers require this to be set. The possible values depend on how authorization server is configured. By default `scope` is not specified when doing the token endpoint request."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "tlsTrustedCertificates" = {
                                 "description" = "Trusted certificates for TLS connection to the OAuth server."
@@ -281,15 +281,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                   "properties" = {
                                     "certificate" = {
                                       "description" = "The name of the file certificate in the secret."
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                     "pattern" = {
                                       "description" = "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used."
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                     "secretName" = {
                                       "description" = "The name of the Secret containing the certificate."
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                   }
                                   "required" = [
@@ -301,7 +301,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "tokenEndpointUri" = {
                                 "description" = "Authorization server token endpoint URI."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "type" = {
                                 "description" = "Authentication type. Currently the supported types are `tls`, `scram-sha-256`, `scram-sha-512`, `plain`, and 'oauth'. `scram-sha-256` and `scram-sha-512` types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. `plain` type uses SASL PLAIN Authentication. `oauth` type uses SASL OAUTHBEARER Authentication. The `tls` type uses TLS Client Authentication. The `tls` type is supported only over TLS connections."
@@ -316,7 +316,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "username" = {
                                 "description" = "Username used for the authentication."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                             }
                             "required" = [
@@ -326,11 +326,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                           }
                           "bootstrapServers" = {
                             "description" = "A comma-separated list of `host:port` pairs for establishing the connection to the Kafka cluster."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "config" = {
-                            "description" = "The MirrorMaker 2 cluster config. Properties with the following prefixes cannot be set: ssl., sasl., security., listeners, plugin.path, rest., bootstrap.servers, consumer.interceptor.classes, producer.interceptor.classes (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
-                            "type" = "object"
+                            "description"                          = "The MirrorMaker 2 cluster config. Properties with the following prefixes cannot be set: ssl., sasl., security., listeners, plugin.path, rest., bootstrap.servers, consumer.interceptor.classes, producer.interceptor.classes (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
+                            "type"                                 = "object"
                             "x-kubernetes-preserve-unknown-fields" = true
                           }
                           "tls" = {
@@ -360,15 +360,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                   "properties" = {
                                     "certificate" = {
                                       "description" = "The name of the file certificate in the secret."
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                     "pattern" = {
                                       "description" = "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used."
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                     "secretName" = {
                                       "description" = "The name of the Secret containing the certificate."
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                   }
                                   "required" = [
@@ -392,7 +392,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                     }
                     "connectCluster" = {
                       "description" = "The cluster alias used for Kafka Connect. The value must match the alias of the *target* Kafka cluster as specified in the `spec.clusters` configuration. The target Kafka cluster is used by the underlying Kafka Connect framework for its internal topics."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "externalConfiguration" = {
                       "description" = "Pass data from Secrets or ConfigMaps to the Kafka Connect pods and use them to configure connectors."
@@ -403,7 +403,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                             "properties" = {
                               "name" = {
                                 "description" = "Name of the environment variable which will be passed to the Kafka Connect pods. The name of the environment variable cannot start with `KAFKA_` or `STRIMZI_`."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "valueFrom" = {
                                 "description" = "Value of the environment variable which will be passed to the Kafka Connect pods. It can be passed either as a reference to Secret or ConfigMap field. The field has to specify exactly one Secret or ConfigMap."
@@ -524,7 +524,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "name" = {
                                 "description" = "Name of the volume which will be added to the Kafka Connect pods."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "secret" = {
                                 "description" = "Reference to a key in a Secret. Exactly one Secret or ConfigMap has to be specified."
@@ -571,7 +571,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                     }
                     "image" = {
                       "description" = "The container image used for Kafka Connect pods. If no image name is explicitly specified, it is determined based on the `spec.version` configuration. The image names are specifically mapped to corresponding versions in the Cluster Operator configuration."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "jmxOptions" = {
                       "description" = "JMX Options."
@@ -603,21 +603,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                             "type" = "string"
                           }
                           "description" = "A map of -XX options to the JVM."
-                          "type" = "object"
+                          "type"        = "object"
                         }
                         "-Xms" = {
                           "description" = "-Xms option to to the JVM."
-                          "pattern" = "^[0-9]+[mMgG]?$"
-                          "type" = "string"
+                          "pattern"     = "^[0-9]+[mMgG]?$"
+                          "type"        = "string"
                         }
                         "-Xmx" = {
                           "description" = "-Xmx option to to the JVM."
-                          "pattern" = "^[0-9]+[mMgG]?$"
-                          "type" = "string"
+                          "pattern"     = "^[0-9]+[mMgG]?$"
+                          "type"        = "string"
                         }
                         "gcLoggingEnabled" = {
                           "description" = "Specifies whether the Garbage Collection logging is enabled. The default is false."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "javaSystemProperties" = {
                           "description" = "A map of additional system properties which will be passed using the `-D` option to the JVM."
@@ -625,11 +625,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                             "properties" = {
                               "name" = {
                                 "description" = "The system property name."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "value" = {
                                 "description" = "The system property value."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                             }
                             "type" = "object"
@@ -644,28 +644,28 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                       "properties" = {
                         "failureThreshold" = {
                           "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "initialDelaySeconds" = {
                           "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "periodSeconds" = {
                           "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "successThreshold" = {
                           "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "timeoutSeconds" = {
                           "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
@@ -678,7 +678,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                             "type" = "string"
                           }
                           "description" = "A Map from logger name to logger level."
-                          "type" = "object"
+                          "type"        = "object"
                         }
                         "type" = {
                           "description" = "Logging type, must be either 'inline' or 'external'."
@@ -783,18 +783,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                 "properties" = {
                                   "enabled" = {
                                     "description" = "Whether automatic restart for failed connectors and tasks should be enabled or disabled."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "maxRestarts" = {
                                     "description" = "The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts."
-                                    "type" = "integer"
+                                    "type"        = "integer"
                                   }
                                 }
                                 "type" = "object"
                               }
                               "config" = {
-                                "description" = "The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max."
-                                "type" = "object"
+                                "description"                          = "The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max."
+                                "type"                                 = "object"
                                 "x-kubernetes-preserve-unknown-fields" = true
                               }
                               "listOffsets" = {
@@ -817,7 +817,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "pause" = {
                                 "description" = "Whether the connector should be paused. Defaults to false."
-                                "type" = "boolean"
+                                "type"        = "boolean"
                               }
                               "state" = {
                                 "description" = "The state the connector should be in. Defaults to running."
@@ -830,23 +830,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "tasksMax" = {
                                 "description" = "The maximum number of tasks for the Kafka Connector."
-                                "minimum" = 1
-                                "type" = "integer"
+                                "minimum"     = 1
+                                "type"        = "integer"
                               }
                             }
                             "type" = "object"
                           }
                           "groupsBlacklistPattern" = {
                             "description" = "A regular expression matching the consumer groups to exclude from mirroring. Comma-separated lists are also supported."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "groupsExcludePattern" = {
                             "description" = "A regular expression matching the consumer groups to exclude from mirroring. Comma-separated lists are also supported."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "groupsPattern" = {
                             "description" = "A regular expression matching the consumer groups to be mirrored. Comma-separated lists are also supported."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "heartbeatConnector" = {
                             "description" = "The specification of the Kafka MirrorMaker 2 heartbeat connector."
@@ -874,18 +874,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                 "properties" = {
                                   "enabled" = {
                                     "description" = "Whether automatic restart for failed connectors and tasks should be enabled or disabled."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "maxRestarts" = {
                                     "description" = "The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts."
-                                    "type" = "integer"
+                                    "type"        = "integer"
                                   }
                                 }
                                 "type" = "object"
                               }
                               "config" = {
-                                "description" = "The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max."
-                                "type" = "object"
+                                "description"                          = "The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max."
+                                "type"                                 = "object"
                                 "x-kubernetes-preserve-unknown-fields" = true
                               }
                               "listOffsets" = {
@@ -908,7 +908,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "pause" = {
                                 "description" = "Whether the connector should be paused. Defaults to false."
-                                "type" = "boolean"
+                                "type"        = "boolean"
                               }
                               "state" = {
                                 "description" = "The state the connector should be in. Defaults to running."
@@ -921,15 +921,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "tasksMax" = {
                                 "description" = "The maximum number of tasks for the Kafka Connector."
-                                "minimum" = 1
-                                "type" = "integer"
+                                "minimum"     = 1
+                                "type"        = "integer"
                               }
                             }
                             "type" = "object"
                           }
                           "sourceCluster" = {
                             "description" = "The alias of the source cluster used by the Kafka MirrorMaker 2 connectors. The alias must match a cluster in the list at `spec.clusters`."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "sourceConnector" = {
                             "description" = "The specification of the Kafka MirrorMaker 2 source connector."
@@ -957,18 +957,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                 "properties" = {
                                   "enabled" = {
                                     "description" = "Whether automatic restart for failed connectors and tasks should be enabled or disabled."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "maxRestarts" = {
                                     "description" = "The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts."
-                                    "type" = "integer"
+                                    "type"        = "integer"
                                   }
                                 }
                                 "type" = "object"
                               }
                               "config" = {
-                                "description" = "The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max."
-                                "type" = "object"
+                                "description"                          = "The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max."
+                                "type"                                 = "object"
                                 "x-kubernetes-preserve-unknown-fields" = true
                               }
                               "listOffsets" = {
@@ -991,7 +991,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "pause" = {
                                 "description" = "Whether the connector should be paused. Defaults to false."
-                                "type" = "boolean"
+                                "type"        = "boolean"
                               }
                               "state" = {
                                 "description" = "The state the connector should be in. Defaults to running."
@@ -1004,27 +1004,27 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                               }
                               "tasksMax" = {
                                 "description" = "The maximum number of tasks for the Kafka Connector."
-                                "minimum" = 1
-                                "type" = "integer"
+                                "minimum"     = 1
+                                "type"        = "integer"
                               }
                             }
                             "type" = "object"
                           }
                           "targetCluster" = {
                             "description" = "The alias of the target cluster used by the Kafka MirrorMaker 2 connectors. The alias must match a cluster in the list at `spec.clusters`."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "topicsBlacklistPattern" = {
                             "description" = "A regular expression matching the topics to exclude from mirroring. Comma-separated lists are also supported."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "topicsExcludePattern" = {
                             "description" = "A regular expression matching the topics to exclude from mirroring. Comma-separated lists are also supported."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "topicsPattern" = {
                             "description" = "A regular expression matching the topics to be mirrored, for example, \"topic1\\|topic2\\|topic3\". Comma-separated lists are also supported."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "required" = [
@@ -1040,8 +1040,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                       "properties" = {
                         "topologyKey" = {
                           "description" = "A key that matches labels assigned to the Kubernetes cluster nodes. The value of the label is used to set a broker's `broker.rack` config, and the `client.rack` config for Kafka Connect or MirrorMaker 2."
-                          "example" = "topology.kubernetes.io/zone"
-                          "type" = "string"
+                          "example"     = "topology.kubernetes.io/zone"
+                          "type"        = "string"
                         }
                       }
                       "required" = [
@@ -1054,35 +1054,35 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                       "properties" = {
                         "failureThreshold" = {
                           "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "initialDelaySeconds" = {
                           "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "periodSeconds" = {
                           "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "successThreshold" = {
                           "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "timeoutSeconds" = {
                           "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
                     }
                     "replicas" = {
                       "description" = "The number of pods in the Kafka Connect group. Defaults to `3`."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "resources" = {
                       "description" = "The maximum limits for CPU and memory resources and the requested initial resources."
@@ -1108,7 +1108,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                 "type" = "string"
                               },
                             ]
-                            "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                            "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                             "x-kubernetes-int-or-string" = true
                           }
                           "type" = "object"
@@ -1123,7 +1123,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                 "type" = "string"
                               },
                             ]
-                            "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                            "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                             "x-kubernetes-int-or-string" = true
                           }
                           "type" = "object"
@@ -1165,14 +1165,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -1191,21 +1191,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
                             }
                             "pullSecret" = {
                               "description" = "Container Registry Secret with the credentials for pulling the base image."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "type" = "object"
@@ -1237,11 +1237,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                 "properties" = {
                                   "name" = {
                                     "description" = "The environment variable key."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The environment variable value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "valueFrom" = {
                                     "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -1950,7 +1950,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                             }
                             "enableServiceLinks" = {
                               "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "hostAliases" = {
                               "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -1990,25 +1990,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
                             }
                             "priorityClassName" = {
                               "description" = "The name of the priority class used to assign priority to the pods. "
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "schedulerName" = {
                               "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "securityContext" = {
                               "description" = "Configures pod-level security attributes and common container settings."
@@ -2109,13 +2109,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                             }
                             "terminationGracePeriodSeconds" = {
                               "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "tmpDirSizeLimit" = {
                               "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                              "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                              "type" = "string"
+                              "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                              "type"        = "string"
                             }
                             "tolerations" = {
                               "description" = "The pod's tolerations."
@@ -2211,11 +2211,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                 "oneOf" = [
                                   {
                                     "properties" = {
-                                      "configMap" = {}
-                                      "csi" = {}
-                                      "emptyDir" = {}
+                                      "configMap"             = {}
+                                      "csi"                   = {}
+                                      "emptyDir"              = {}
                                       "persistentVolumeClaim" = {}
-                                      "secret" = {}
+                                      "secret"                = {}
                                     }
                                   },
                                 ]
@@ -2303,7 +2303,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                   }
                                   "name" = {
                                     "description" = "Name to use for the volume. Required."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "persistentVolumeClaim" = {
                                     "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -2368,14 +2368,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -2394,14 +2394,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -2436,11 +2436,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                 "properties" = {
                                   "name" = {
                                     "description" = "The environment variable key."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The environment variable value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "valueFrom" = {
                                     "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -2653,14 +2653,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -2699,14 +2699,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -2741,11 +2741,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                 "properties" = {
                                   "name" = {
                                     "description" = "The environment variable key."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The environment variable value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "valueFrom" = {
                                     "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -2950,14 +2950,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -3480,7 +3480,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                             }
                             "enableServiceLinks" = {
                               "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "hostAliases" = {
                               "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -3520,25 +3520,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
                             }
                             "priorityClassName" = {
                               "description" = "The name of the priority class used to assign priority to the pods. "
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "schedulerName" = {
                               "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "securityContext" = {
                               "description" = "Configures pod-level security attributes and common container settings."
@@ -3639,13 +3639,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                             }
                             "terminationGracePeriodSeconds" = {
                               "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "tmpDirSizeLimit" = {
                               "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                              "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                              "type" = "string"
+                              "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                              "type"        = "string"
                             }
                             "tolerations" = {
                               "description" = "The pod's tolerations."
@@ -3741,11 +3741,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                 "oneOf" = [
                                   {
                                     "properties" = {
-                                      "configMap" = {}
-                                      "csi" = {}
-                                      "emptyDir" = {}
+                                      "configMap"             = {}
+                                      "csi"                   = {}
+                                      "emptyDir"              = {}
                                       "persistentVolumeClaim" = {}
-                                      "secret" = {}
+                                      "secret"                = {}
                                     }
                                   },
                                 ]
@@ -3833,7 +3833,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                   }
                                   "name" = {
                                     "description" = "Name to use for the volume. Required."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "persistentVolumeClaim" = {
                                     "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -3892,8 +3892,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                           "properties" = {
                             "maxUnavailable" = {
                               "description" = "Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the `maxUnavailable` number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "metadata" = {
                               "description" = "Metadata to apply to the `PodDisruptionBudgetTemplate` resource."
@@ -3903,14 +3903,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -3929,14 +3929,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -3955,14 +3955,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -3992,7 +3992,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                     }
                     "version" = {
                       "description" = "The Kafka Connect version. Defaults to the latest version. Consult the user documentation to understand the process required to upgrade or downgrade the version."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "required" = [
@@ -4009,15 +4009,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                         "properties" = {
                           "connectorName" = {
                             "description" = "The name of the connector being restarted."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "count" = {
                             "description" = "The number of times the connector or task is restarted."
-                            "type" = "integer"
+                            "type"        = "integer"
                           }
                           "lastRestartTimestamp" = {
                             "description" = "The last time the automatic restart was attempted. The required format is 'yyyy-MM-ddTHH:mm:ssZ' in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -4030,23 +4030,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -4059,15 +4059,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                         "properties" = {
                           "class" = {
                             "description" = "The class of the connector plugin."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The type of the connector plugin. The available types are `sink` and `source`."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "version" = {
                             "description" = "The version of the connector plugin."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -4077,26 +4077,26 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
                     "connectors" = {
                       "description" = "List of MirrorMaker 2 connector statuses, as reported by the Kafka Connect REST API."
                       "items" = {
-                        "type" = "object"
+                        "type"                                 = "object"
                         "x-kubernetes-preserve-unknown-fields" = true
                       }
                       "type" = "array"
                     }
                     "labelSelector" = {
                       "description" = "Label selector for pods providing this resource."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "replicas" = {
                       "description" = "The current number of pods being used to provide this resource."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "url" = {
                       "description" = "The URL of the REST API endpoint for managing and monitoring Kafka Connect connectors."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -4105,12 +4105,12 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = true
           "subresources" = {
             "scale" = {
-              "labelSelectorPath" = ".status.labelSelector"
-              "specReplicasPath" = ".spec.replicas"
+              "labelSelectorPath"  = ".status.labelSelector"
+              "specReplicasPath"   = ".spec.replicas"
               "statusReplicasPath" = ".status.replicas"
             }
             "status" = {}
@@ -4124,10 +4124,10 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormaker2s_kafk
 resource "kubernetes_manifest" "customresourcedefinition_strimzipodsets_core_strimzi_io" {
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "labels" = {
-        "app" = "strimzi"
+        "app"                    = "strimzi"
         "strimzi.io/crd-install" = "true"
       }
       "name" = "strimzipodsets.core.strimzi.io"
@@ -4141,9 +4141,9 @@ resource "kubernetes_manifest" "customresourcedefinition_strimzipodsets_core_str
         "categories" = [
           "strimzi",
         ]
-        "kind" = "StrimziPodSet"
+        "kind"     = "StrimziPodSet"
         "listKind" = "StrimziPodSetList"
-        "plural" = "strimzipodsets"
+        "plural"   = "strimzipodsets"
         "shortNames" = [
           "sps",
         ]
@@ -4155,27 +4155,27 @@ resource "kubernetes_manifest" "customresourcedefinition_strimzipodsets_core_str
           "additionalPrinterColumns" = [
             {
               "description" = "Number of pods managed by the StrimziPodSet"
-              "jsonPath" = ".status.pods"
-              "name" = "Pods"
-              "type" = "integer"
+              "jsonPath"    = ".status.pods"
+              "name"        = "Pods"
+              "type"        = "integer"
             },
             {
               "description" = "Number of ready pods managed by the StrimziPodSet"
-              "jsonPath" = ".status.readyPods"
-              "name" = "Ready Pods"
-              "type" = "integer"
+              "jsonPath"    = ".status.readyPods"
+              "name"        = "Ready Pods"
+              "type"        = "integer"
             },
             {
               "description" = "Number of up-to-date pods managed by the StrimziPodSet"
-              "jsonPath" = ".status.currentPods"
-              "name" = "Current Pods"
-              "type" = "integer"
+              "jsonPath"    = ".status.currentPods"
+              "name"        = "Current Pods"
+              "type"        = "integer"
             },
             {
               "description" = "Age of the StrimziPodSet"
-              "jsonPath" = ".metadata.creationTimestamp"
-              "name" = "Age"
-              "type" = "date"
+              "jsonPath"    = ".metadata.creationTimestamp"
+              "name"        = "Age"
+              "type"        = "date"
             },
           ]
           "name" = "v1beta2"
@@ -4184,11 +4184,11 @@ resource "kubernetes_manifest" "customresourcedefinition_strimzipodsets_core_str
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -4199,7 +4199,7 @@ resource "kubernetes_manifest" "customresourcedefinition_strimzipodsets_core_str
                     "pods" = {
                       "description" = "The Pods managed by this StrimziPodSet."
                       "items" = {
-                        "type" = "object"
+                        "type"                                 = "object"
                         "x-kubernetes-preserve-unknown-fields" = true
                       }
                       "type" = "array"
@@ -4252,23 +4252,23 @@ resource "kubernetes_manifest" "customresourcedefinition_strimzipodsets_core_str
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -4277,19 +4277,19 @@ resource "kubernetes_manifest" "customresourcedefinition_strimzipodsets_core_str
                     }
                     "currentPods" = {
                       "description" = "Number of pods managed by this `StrimziPodSet` resource that have the current revision."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "pods" = {
                       "description" = "Number of pods managed by this `StrimziPodSet` resource."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "readyPods" = {
                       "description" = "Number of pods managed by this `StrimziPodSet` resource that are ready."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                   }
                   "type" = "object"
@@ -4298,7 +4298,7 @@ resource "kubernetes_manifest" "customresourcedefinition_strimzipodsets_core_str
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = true
           "subresources" = {
             "status" = {}
@@ -4312,10 +4312,10 @@ resource "kubernetes_manifest" "customresourcedefinition_strimzipodsets_core_str
 resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_strimzi_io" {
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "labels" = {
-        "app" = "strimzi"
+        "app"                    = "strimzi"
         "strimzi.io/crd-install" = "true"
       }
       "name" = "kafkanodepools.kafka.strimzi.io"
@@ -4329,9 +4329,9 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
         "categories" = [
           "strimzi",
         ]
-        "kind" = "KafkaNodePool"
+        "kind"     = "KafkaNodePool"
         "listKind" = "KafkaNodePoolList"
-        "plural" = "kafkanodepools"
+        "plural"   = "kafkanodepools"
         "shortNames" = [
           "knp",
         ]
@@ -4343,21 +4343,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
           "additionalPrinterColumns" = [
             {
               "description" = "The desired number of replicas"
-              "jsonPath" = ".spec.replicas"
-              "name" = "Desired replicas"
-              "type" = "integer"
+              "jsonPath"    = ".spec.replicas"
+              "name"        = "Desired replicas"
+              "type"        = "integer"
             },
             {
               "description" = "Roles of the nodes in the pool"
-              "jsonPath" = ".status.roles"
-              "name" = "Roles"
-              "type" = "string"
+              "jsonPath"    = ".status.roles"
+              "name"        = "Roles"
+              "type"        = "string"
             },
             {
               "description" = "Node IDs used by Kafka nodes in this pool"
-              "jsonPath" = ".status.nodeIds"
-              "name" = "NodeIds"
-              "type" = "string"
+              "jsonPath"    = ".status.nodeIds"
+              "name"        = "NodeIds"
+              "type"        = "string"
             },
           ]
           "name" = "v1beta2"
@@ -4366,11 +4366,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -4386,21 +4386,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                             "type" = "string"
                           }
                           "description" = "A map of -XX options to the JVM."
-                          "type" = "object"
+                          "type"        = "object"
                         }
                         "-Xms" = {
                           "description" = "-Xms option to to the JVM."
-                          "pattern" = "^[0-9]+[mMgG]?$"
-                          "type" = "string"
+                          "pattern"     = "^[0-9]+[mMgG]?$"
+                          "type"        = "string"
                         }
                         "-Xmx" = {
                           "description" = "-Xmx option to to the JVM."
-                          "pattern" = "^[0-9]+[mMgG]?$"
-                          "type" = "string"
+                          "pattern"     = "^[0-9]+[mMgG]?$"
+                          "type"        = "string"
                         }
                         "gcLoggingEnabled" = {
                           "description" = "Specifies whether the Garbage Collection logging is enabled. The default is false."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "javaSystemProperties" = {
                           "description" = "A map of additional system properties which will be passed using the `-D` option to the JVM."
@@ -4408,11 +4408,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                             "properties" = {
                               "name" = {
                                 "description" = "The system property name."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "value" = {
                                 "description" = "The system property value."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                             }
                             "type" = "object"
@@ -4424,8 +4424,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                     }
                     "replicas" = {
                       "description" = "The number of pods in the pool."
-                      "minimum" = 0
-                      "type" = "integer"
+                      "minimum"     = 0
+                      "type"        = "integer"
                     }
                     "resources" = {
                       "description" = "CPU and memory resources to reserve."
@@ -4451,7 +4451,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                 "type" = "string"
                               },
                             ]
-                            "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                            "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                             "x-kubernetes-int-or-string" = true
                           }
                           "type" = "object"
@@ -4466,7 +4466,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                 "type" = "string"
                               },
                             ]
-                            "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                            "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                             "x-kubernetes-int-or-string" = true
                           }
                           "type" = "object"
@@ -4490,16 +4490,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                       "properties" = {
                         "class" = {
                           "description" = "The storage class to use for dynamic volume allocation."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "deleteClaim" = {
                           "description" = "Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "id" = {
                           "description" = "Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "kraftMetadata" = {
                           "description" = "Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is `shared`. At most one volume can have this property set."
@@ -4514,11 +4514,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                             "properties" = {
                               "broker" = {
                                 "description" = "Id of the kafka broker (broker identifier)."
-                                "type" = "integer"
+                                "type"        = "integer"
                               }
                               "class" = {
                                 "description" = "The storage class to use for dynamic volume allocation for this broker."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                             }
                             "type" = "object"
@@ -4530,16 +4530,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                             "type" = "string"
                           }
                           "description" = "Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume."
-                          "type" = "object"
+                          "type"        = "object"
                         }
                         "size" = {
                           "description" = "When `type=persistent-claim`, defines the size of the persistent volume claim, such as 100Gi. Mandatory when `type=persistent-claim`."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "sizeLimit" = {
                           "description" = "When type=ephemeral, defines the total amount of local storage required for this EmptyDir volume (for example 1Gi)."
-                          "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                          "type" = "string"
+                          "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                          "type"        = "string"
                         }
                         "type" = {
                           "description" = "Storage type, must be either 'ephemeral', 'persistent-claim', or 'jbod'."
@@ -4556,16 +4556,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                             "properties" = {
                               "class" = {
                                 "description" = "The storage class to use for dynamic volume allocation."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "deleteClaim" = {
                                 "description" = "Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed."
-                                "type" = "boolean"
+                                "type"        = "boolean"
                               }
                               "id" = {
                                 "description" = "Storage identification number. Mandatory for storage volumes defined with a `jbod` storage type configuration."
-                                "minimum" = 0
-                                "type" = "integer"
+                                "minimum"     = 0
+                                "type"        = "integer"
                               }
                               "kraftMetadata" = {
                                 "description" = "Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is `shared`. At most one volume can have this property set."
@@ -4580,11 +4580,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                   "properties" = {
                                     "broker" = {
                                       "description" = "Id of the kafka broker (broker identifier)."
-                                      "type" = "integer"
+                                      "type"        = "integer"
                                     }
                                     "class" = {
                                       "description" = "The storage class to use for dynamic volume allocation for this broker."
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                   }
                                   "type" = "object"
@@ -4596,16 +4596,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                   "type" = "string"
                                 }
                                 "description" = "Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume."
-                                "type" = "object"
+                                "type"        = "object"
                               }
                               "size" = {
                                 "description" = "When `type=persistent-claim`, defines the size of the persistent volume claim, such as 100Gi. Mandatory when `type=persistent-claim`."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "sizeLimit" = {
                                 "description" = "When type=ephemeral, defines the total amount of local storage required for this EmptyDir volume (for example 1Gi)."
-                                "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                                "type" = "string"
+                                "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                                "type"        = "string"
                               }
                               "type" = {
                                 "description" = "Storage type, must be either 'ephemeral' or 'persistent-claim'."
@@ -4659,11 +4659,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                 "properties" = {
                                   "name" = {
                                     "description" = "The environment variable key."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The environment variable value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "valueFrom" = {
                                     "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -4884,11 +4884,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                 "properties" = {
                                   "name" = {
                                     "description" = "The environment variable key."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The environment variable value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "valueFrom" = {
                                     "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -5093,14 +5093,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -5119,14 +5119,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -5145,14 +5145,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -5171,14 +5171,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -5701,7 +5701,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                             }
                             "enableServiceLinks" = {
                               "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "hostAliases" = {
                               "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -5741,25 +5741,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
                             }
                             "priorityClassName" = {
                               "description" = "The name of the priority class used to assign priority to the pods. "
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "schedulerName" = {
                               "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "securityContext" = {
                               "description" = "Configures pod-level security attributes and common container settings."
@@ -5860,13 +5860,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                             }
                             "terminationGracePeriodSeconds" = {
                               "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "tmpDirSizeLimit" = {
                               "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                              "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                              "type" = "string"
+                              "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                              "type"        = "string"
                             }
                             "tolerations" = {
                               "description" = "The pod's tolerations."
@@ -5962,11 +5962,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                 "oneOf" = [
                                   {
                                     "properties" = {
-                                      "configMap" = {}
-                                      "csi" = {}
-                                      "emptyDir" = {}
+                                      "configMap"             = {}
+                                      "csi"                   = {}
+                                      "emptyDir"              = {}
                                       "persistentVolumeClaim" = {}
-                                      "secret" = {}
+                                      "secret"                = {}
                                     }
                                   },
                                 ]
@@ -6054,7 +6054,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                   }
                                   "name" = {
                                     "description" = "Name to use for the volume. Required."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "persistentVolumeClaim" = {
                                     "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -6119,14 +6119,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -6150,7 +6150,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                   "properties" = {
                     "clusterId" = {
                       "description" = "Kafka cluster ID."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "conditions" = {
                       "description" = "List of status conditions."
@@ -6158,23 +6158,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -6183,7 +6183,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                     }
                     "labelSelector" = {
                       "description" = "Label selector for pods providing this resource."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "nodeIds" = {
                       "description" = "Node IDs used by Kafka nodes in this pool."
@@ -6194,11 +6194,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "replicas" = {
                       "description" = "The current number of pods being used to provide this resource."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "roles" = {
                       "description" = "The roles currently assigned to this pool."
@@ -6218,12 +6218,12 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = true
           "subresources" = {
             "scale" = {
-              "labelSelectorPath" = ".status.labelSelector"
-              "specReplicasPath" = ".spec.replicas"
+              "labelSelectorPath"  = ".status.labelSelector"
+              "specReplicasPath"   = ".spec.replicas"
               "statusReplicasPath" = ".status.replicas"
             }
             "status" = {}
@@ -6237,10 +6237,10 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkanodepools_kafka_st
 resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka_strimzi_io" {
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "labels" = {
-        "app" = "strimzi"
+        "app"                    = "strimzi"
         "strimzi.io/crd-install" = "true"
       }
       "name" = "kafkamirrormakers.kafka.strimzi.io"
@@ -6254,9 +6254,9 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
         "categories" = [
           "strimzi",
         ]
-        "kind" = "KafkaMirrorMaker"
+        "kind"     = "KafkaMirrorMaker"
         "listKind" = "KafkaMirrorMakerList"
-        "plural" = "kafkamirrormakers"
+        "plural"   = "kafkamirrormakers"
         "shortNames" = [
           "kmm",
         ]
@@ -6268,29 +6268,29 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
           "additionalPrinterColumns" = [
             {
               "description" = "The desired number of Kafka MirrorMaker replicas"
-              "jsonPath" = ".spec.replicas"
-              "name" = "Desired replicas"
-              "type" = "integer"
+              "jsonPath"    = ".spec.replicas"
+              "name"        = "Desired replicas"
+              "type"        = "integer"
             },
             {
               "description" = "The boostrap servers for the consumer"
-              "jsonPath" = ".spec.consumer.bootstrapServers"
-              "name" = "Consumer Bootstrap Servers"
-              "priority" = 1
-              "type" = "string"
+              "jsonPath"    = ".spec.consumer.bootstrapServers"
+              "name"        = "Consumer Bootstrap Servers"
+              "priority"    = 1
+              "type"        = "string"
             },
             {
               "description" = "The boostrap servers for the producer"
-              "jsonPath" = ".spec.producer.bootstrapServers"
-              "name" = "Producer Bootstrap Servers"
-              "priority" = 1
-              "type" = "string"
+              "jsonPath"    = ".spec.producer.bootstrapServers"
+              "name"        = "Producer Bootstrap Servers"
+              "priority"    = 1
+              "type"        = "string"
             },
             {
               "description" = "The state of the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Ready\")].status"
-              "name" = "Ready"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Ready\")].status"
+              "name"        = "Ready"
+              "type"        = "string"
             },
           ]
           "name" = "v1beta2"
@@ -6299,11 +6299,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -6340,11 +6340,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                               "properties" = {
                                 "key" = {
                                   "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "secretName" = {
                                   "description" = "The name of the Kubernetes Secret containing the secret value."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                               }
                               "required" = [
@@ -6355,30 +6355,30 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "accessTokenIsJwt" = {
                               "description" = "Configure whether access token should be treated as JWT. This should be set to `false` if the authorization server returns opaque tokens. Defaults to `true`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "accessTokenLocation" = {
                               "description" = "Path to the token file containing an access token to be used for authentication."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "audience" = {
                               "description" = "OAuth audience to use when authenticating against the authorization server. Some authorization servers require the audience to be explicitly set. The possible values depend on how the authorization server is configured. By default, `audience` is not specified when performing the token endpoint request."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "certificateAndKey" = {
                               "description" = "Reference to the `Secret` which holds the certificate and private key pair."
                               "properties" = {
                                 "certificate" = {
                                   "description" = "The name of the file certificate in the Secret."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "key" = {
                                   "description" = "The name of the private key in the Secret."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "secretName" = {
                                   "description" = "The name of the Secret containing the certificate."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                               }
                               "required" = [
@@ -6393,11 +6393,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                               "properties" = {
                                 "key" = {
                                   "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "secretName" = {
                                   "description" = "The name of the Kubernetes Secret containing the secret value."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                               }
                               "required" = [
@@ -6408,26 +6408,26 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "clientAssertionLocation" = {
                               "description" = "Path to the file containing the client assertion to be used for authentication."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "clientAssertionType" = {
                               "description" = "The client assertion type. If not set, and either `clientAssertion` or `clientAssertionLocation` is configured, this value defaults to `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "clientId" = {
                               "description" = "OAuth Client ID which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "clientSecret" = {
                               "description" = "Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI."
                               "properties" = {
                                 "key" = {
                                   "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "secretName" = {
                                   "description" = "The name of the Kubernetes Secret containing the secret value."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                               }
                               "required" = [
@@ -6438,42 +6438,42 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "connectTimeoutSeconds" = {
                               "description" = "The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "disableTlsHostnameVerification" = {
                               "description" = "Enable or disable TLS hostname verification. Default value is `false`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "enableMetrics" = {
                               "description" = "Enable or disable OAuth metrics. Default value is `false`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "httpRetries" = {
                               "description" = "The maximum number of retries to attempt if an initial HTTP request fails. If not set, the default is to not attempt any retries."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "httpRetryPauseMs" = {
                               "description" = "The pause to take before retrying a failed HTTP request. If not set, the default is to not pause at all but to immediately repeat a request."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "includeAcceptHeader" = {
                               "description" = "Whether the Accept header should be set in requests to the authorization servers. The default value is `true`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "maxTokenExpirySeconds" = {
                               "description" = "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "passwordSecret" = {
                               "description" = "Reference to the `Secret` which holds the password."
                               "properties" = {
                                 "password" = {
                                   "description" = "The name of the key in the Secret under which the password is stored."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "secretName" = {
                                   "description" = "The name of the Secret containing the password."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                               }
                               "required" = [
@@ -6484,18 +6484,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "readTimeoutSeconds" = {
                               "description" = "The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "refreshToken" = {
                               "description" = "Link to Kubernetes Secret containing the refresh token which can be used to obtain access token from the authorization server."
                               "properties" = {
                                 "key" = {
                                   "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "secretName" = {
                                   "description" = "The name of the Kubernetes Secret containing the secret value."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                               }
                               "required" = [
@@ -6509,11 +6509,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                 "type" = "string"
                               }
                               "description" = "SASL extensions parameters."
-                              "type" = "object"
+                              "type"        = "object"
                             }
                             "scope" = {
                               "description" = "OAuth scope to use when authenticating against the authorization server. Some authorization servers require this to be set. The possible values depend on how authorization server is configured. By default `scope` is not specified when doing the token endpoint request."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "tlsTrustedCertificates" = {
                               "description" = "Trusted certificates for TLS connection to the OAuth server."
@@ -6539,15 +6539,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                 "properties" = {
                                   "certificate" = {
                                     "description" = "The name of the file certificate in the secret."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "pattern" = {
                                     "description" = "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "secretName" = {
                                     "description" = "The name of the Secret containing the certificate."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -6559,7 +6559,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "tokenEndpointUri" = {
                               "description" = "Authorization server token endpoint URI."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "type" = {
                               "description" = "Authentication type. Currently the supported types are `tls`, `scram-sha-256`, `scram-sha-512`, `plain`, and 'oauth'. `scram-sha-256` and `scram-sha-512` types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. `plain` type uses SASL PLAIN Authentication. `oauth` type uses SASL OAUTHBEARER Authentication. The `tls` type uses TLS Client Authentication. The `tls` type is supported only over TLS connections."
@@ -6574,7 +6574,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "username" = {
                               "description" = "Username used for the authentication."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -6584,25 +6584,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                         }
                         "bootstrapServers" = {
                           "description" = "A list of host:port pairs for establishing the initial connection to the Kafka cluster."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "config" = {
-                          "description" = "The MirrorMaker consumer config. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, group.id, sasl., security., interceptor.classes (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
-                          "type" = "object"
+                          "description"                          = "The MirrorMaker consumer config. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, group.id, sasl., security., interceptor.classes (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
+                          "type"                                 = "object"
                           "x-kubernetes-preserve-unknown-fields" = true
                         }
                         "groupId" = {
                           "description" = "A unique string that identifies the consumer group this consumer belongs to."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "numStreams" = {
                           "description" = "Specifies the number of consumer stream threads to create."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "offsetCommitInterval" = {
                           "description" = "Specifies the offset auto-commit interval in ms. Default value is 60000."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                         "tls" = {
                           "description" = "TLS configuration for connecting MirrorMaker to the cluster."
@@ -6631,15 +6631,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                 "properties" = {
                                   "certificate" = {
                                     "description" = "The name of the file certificate in the secret."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "pattern" = {
                                     "description" = "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "secretName" = {
                                     "description" = "The name of the Secret containing the certificate."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -6661,11 +6661,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                     }
                     "image" = {
                       "description" = "The container image used for Kafka MirrorMaker pods. If no image name is explicitly specified, it is determined based on the `spec.version` configuration. The image names are specifically mapped to corresponding versions in the Cluster Operator configuration."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "include" = {
                       "description" = "List of topics which are included for mirroring. This option allows any regular expression using Java-style regular expressions. Mirroring two topics named A and B is achieved by using the expression `A\\|B`. Or, as a special case, you can mirror all topics using the regular expression `*`. You can also specify multiple regular expressions separated by commas."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "jvmOptions" = {
                       "description" = "JVM Options for pods."
@@ -6675,21 +6675,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             "type" = "string"
                           }
                           "description" = "A map of -XX options to the JVM."
-                          "type" = "object"
+                          "type"        = "object"
                         }
                         "-Xms" = {
                           "description" = "-Xms option to to the JVM."
-                          "pattern" = "^[0-9]+[mMgG]?$"
-                          "type" = "string"
+                          "pattern"     = "^[0-9]+[mMgG]?$"
+                          "type"        = "string"
                         }
                         "-Xmx" = {
                           "description" = "-Xmx option to to the JVM."
-                          "pattern" = "^[0-9]+[mMgG]?$"
-                          "type" = "string"
+                          "pattern"     = "^[0-9]+[mMgG]?$"
+                          "type"        = "string"
                         }
                         "gcLoggingEnabled" = {
                           "description" = "Specifies whether the Garbage Collection logging is enabled. The default is false."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "javaSystemProperties" = {
                           "description" = "A map of additional system properties which will be passed using the `-D` option to the JVM."
@@ -6697,11 +6697,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             "properties" = {
                               "name" = {
                                 "description" = "The system property name."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "value" = {
                                 "description" = "The system property value."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                             }
                             "type" = "object"
@@ -6716,28 +6716,28 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                       "properties" = {
                         "failureThreshold" = {
                           "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "initialDelaySeconds" = {
                           "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "periodSeconds" = {
                           "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "successThreshold" = {
                           "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "timeoutSeconds" = {
                           "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
@@ -6750,7 +6750,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             "type" = "string"
                           }
                           "description" = "A Map from logger name to logger level."
-                          "type" = "object"
+                          "type"        = "object"
                         }
                         "type" = {
                           "description" = "Logging type, must be either 'inline' or 'external'."
@@ -6830,7 +6830,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                       "properties" = {
                         "abortOnSendFailure" = {
                           "description" = "Flag to set the MirrorMaker to exit on a failed send. Default value is `true`."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "authentication" = {
                           "description" = "Authentication configuration for connecting to the cluster."
@@ -6840,11 +6840,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                               "properties" = {
                                 "key" = {
                                   "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "secretName" = {
                                   "description" = "The name of the Kubernetes Secret containing the secret value."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                               }
                               "required" = [
@@ -6855,30 +6855,30 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "accessTokenIsJwt" = {
                               "description" = "Configure whether access token should be treated as JWT. This should be set to `false` if the authorization server returns opaque tokens. Defaults to `true`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "accessTokenLocation" = {
                               "description" = "Path to the token file containing an access token to be used for authentication."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "audience" = {
                               "description" = "OAuth audience to use when authenticating against the authorization server. Some authorization servers require the audience to be explicitly set. The possible values depend on how the authorization server is configured. By default, `audience` is not specified when performing the token endpoint request."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "certificateAndKey" = {
                               "description" = "Reference to the `Secret` which holds the certificate and private key pair."
                               "properties" = {
                                 "certificate" = {
                                   "description" = "The name of the file certificate in the Secret."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "key" = {
                                   "description" = "The name of the private key in the Secret."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "secretName" = {
                                   "description" = "The name of the Secret containing the certificate."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                               }
                               "required" = [
@@ -6893,11 +6893,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                               "properties" = {
                                 "key" = {
                                   "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "secretName" = {
                                   "description" = "The name of the Kubernetes Secret containing the secret value."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                               }
                               "required" = [
@@ -6908,26 +6908,26 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "clientAssertionLocation" = {
                               "description" = "Path to the file containing the client assertion to be used for authentication."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "clientAssertionType" = {
                               "description" = "The client assertion type. If not set, and either `clientAssertion` or `clientAssertionLocation` is configured, this value defaults to `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "clientId" = {
                               "description" = "OAuth Client ID which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "clientSecret" = {
                               "description" = "Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI."
                               "properties" = {
                                 "key" = {
                                   "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "secretName" = {
                                   "description" = "The name of the Kubernetes Secret containing the secret value."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                               }
                               "required" = [
@@ -6938,42 +6938,42 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "connectTimeoutSeconds" = {
                               "description" = "The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "disableTlsHostnameVerification" = {
                               "description" = "Enable or disable TLS hostname verification. Default value is `false`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "enableMetrics" = {
                               "description" = "Enable or disable OAuth metrics. Default value is `false`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "httpRetries" = {
                               "description" = "The maximum number of retries to attempt if an initial HTTP request fails. If not set, the default is to not attempt any retries."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "httpRetryPauseMs" = {
                               "description" = "The pause to take before retrying a failed HTTP request. If not set, the default is to not pause at all but to immediately repeat a request."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "includeAcceptHeader" = {
                               "description" = "Whether the Accept header should be set in requests to the authorization servers. The default value is `true`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "maxTokenExpirySeconds" = {
                               "description" = "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "passwordSecret" = {
                               "description" = "Reference to the `Secret` which holds the password."
                               "properties" = {
                                 "password" = {
                                   "description" = "The name of the key in the Secret under which the password is stored."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "secretName" = {
                                   "description" = "The name of the Secret containing the password."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                               }
                               "required" = [
@@ -6984,18 +6984,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "readTimeoutSeconds" = {
                               "description" = "The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "refreshToken" = {
                               "description" = "Link to Kubernetes Secret containing the refresh token which can be used to obtain access token from the authorization server."
                               "properties" = {
                                 "key" = {
                                   "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "secretName" = {
                                   "description" = "The name of the Kubernetes Secret containing the secret value."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                               }
                               "required" = [
@@ -7009,11 +7009,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                 "type" = "string"
                               }
                               "description" = "SASL extensions parameters."
-                              "type" = "object"
+                              "type"        = "object"
                             }
                             "scope" = {
                               "description" = "OAuth scope to use when authenticating against the authorization server. Some authorization servers require this to be set. The possible values depend on how authorization server is configured. By default `scope` is not specified when doing the token endpoint request."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "tlsTrustedCertificates" = {
                               "description" = "Trusted certificates for TLS connection to the OAuth server."
@@ -7039,15 +7039,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                 "properties" = {
                                   "certificate" = {
                                     "description" = "The name of the file certificate in the secret."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "pattern" = {
                                     "description" = "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "secretName" = {
                                     "description" = "The name of the Secret containing the certificate."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -7059,7 +7059,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "tokenEndpointUri" = {
                               "description" = "Authorization server token endpoint URI."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "type" = {
                               "description" = "Authentication type. Currently the supported types are `tls`, `scram-sha-256`, `scram-sha-512`, `plain`, and 'oauth'. `scram-sha-256` and `scram-sha-512` types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. `plain` type uses SASL PLAIN Authentication. `oauth` type uses SASL OAUTHBEARER Authentication. The `tls` type uses TLS Client Authentication. The `tls` type is supported only over TLS connections."
@@ -7074,7 +7074,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "username" = {
                               "description" = "Username used for the authentication."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -7084,11 +7084,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                         }
                         "bootstrapServers" = {
                           "description" = "A list of host:port pairs for establishing the initial connection to the Kafka cluster."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "config" = {
-                          "description" = "The MirrorMaker producer config. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, sasl., security., interceptor.classes (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
-                          "type" = "object"
+                          "description"                          = "The MirrorMaker producer config. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, sasl., security., interceptor.classes (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
+                          "type"                                 = "object"
                           "x-kubernetes-preserve-unknown-fields" = true
                         }
                         "tls" = {
@@ -7118,15 +7118,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                 "properties" = {
                                   "certificate" = {
                                     "description" = "The name of the file certificate in the secret."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "pattern" = {
                                     "description" = "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "secretName" = {
                                     "description" = "The name of the Secret containing the certificate."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -7150,36 +7150,36 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                       "properties" = {
                         "failureThreshold" = {
                           "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "initialDelaySeconds" = {
                           "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "periodSeconds" = {
                           "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "successThreshold" = {
                           "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "timeoutSeconds" = {
                           "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
                     }
                     "replicas" = {
                       "description" = "The number of pods in the `Deployment`."
-                      "minimum" = 0
-                      "type" = "integer"
+                      "minimum"     = 0
+                      "type"        = "integer"
                     }
                     "resources" = {
                       "description" = "CPU and memory resources to reserve."
@@ -7205,7 +7205,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                 "type" = "string"
                               },
                             ]
-                            "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                            "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                             "x-kubernetes-int-or-string" = true
                           }
                           "type" = "object"
@@ -7220,7 +7220,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                 "type" = "string"
                               },
                             ]
-                            "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                            "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                             "x-kubernetes-int-or-string" = true
                           }
                           "type" = "object"
@@ -7250,14 +7250,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -7292,11 +7292,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                 "properties" = {
                                   "name" = {
                                     "description" = "The environment variable key."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The environment variable value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "valueFrom" = {
                                     "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -8005,7 +8005,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "enableServiceLinks" = {
                               "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "hostAliases" = {
                               "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -8045,25 +8045,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
                             }
                             "priorityClassName" = {
                               "description" = "The name of the priority class used to assign priority to the pods. "
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "schedulerName" = {
                               "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "securityContext" = {
                               "description" = "Configures pod-level security attributes and common container settings."
@@ -8164,13 +8164,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                             }
                             "terminationGracePeriodSeconds" = {
                               "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "tmpDirSizeLimit" = {
                               "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                              "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                              "type" = "string"
+                              "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                              "type"        = "string"
                             }
                             "tolerations" = {
                               "description" = "The pod's tolerations."
@@ -8266,11 +8266,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                 "oneOf" = [
                                   {
                                     "properties" = {
-                                      "configMap" = {}
-                                      "csi" = {}
-                                      "emptyDir" = {}
+                                      "configMap"             = {}
+                                      "csi"                   = {}
+                                      "emptyDir"              = {}
                                       "persistentVolumeClaim" = {}
-                                      "secret" = {}
+                                      "secret"                = {}
                                     }
                                   },
                                 ]
@@ -8358,7 +8358,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                   }
                                   "name" = {
                                     "description" = "Name to use for the volume. Required."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "persistentVolumeClaim" = {
                                     "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -8417,8 +8417,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                           "properties" = {
                             "maxUnavailable" = {
                               "description" = "Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the `maxUnavailable` number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "metadata" = {
                               "description" = "Metadata to apply to the `PodDisruptionBudgetTemplate` resource."
@@ -8428,14 +8428,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -8454,14 +8454,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -8491,11 +8491,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                     }
                     "version" = {
                       "description" = "The Kafka MirrorMaker version. Defaults to the latest version. Consult the documentation to understand the process required to upgrade or downgrade the version."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "whitelist" = {
                       "description" = "List of topics which are included for mirroring. This option allows any regular expression using Java-style regular expressions. Mirroring two topics named A and B is achieved by using the expression `A\\|B`. Or, as a special case, you can mirror all topics using the regular expression `*`. You can also specify multiple regular expressions separated by commas."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "required" = [
@@ -8514,23 +8514,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -8539,15 +8539,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
                     }
                     "labelSelector" = {
                       "description" = "Label selector for pods providing this resource."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "replicas" = {
                       "description" = "The current number of pods being used to provide this resource."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                   }
                   "type" = "object"
@@ -8556,12 +8556,12 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = true
           "subresources" = {
             "scale" = {
-              "labelSelectorPath" = ".status.labelSelector"
-              "specReplicasPath" = ".spec.replicas"
+              "labelSelectorPath"  = ".status.labelSelector"
+              "specReplicasPath"   = ".spec.replicas"
               "statusReplicasPath" = ".status.replicas"
             }
             "status" = {}
@@ -8575,10 +8575,10 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkamirrormakers_kafka
 resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io" {
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "labels" = {
-        "app" = "strimzi"
+        "app"                    = "strimzi"
         "strimzi.io/crd-install" = "true"
       }
       "name" = "kafkas.kafka.strimzi.io"
@@ -8592,9 +8592,9 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
         "categories" = [
           "strimzi",
         ]
-        "kind" = "Kafka"
+        "kind"     = "Kafka"
         "listKind" = "KafkaList"
-        "plural" = "kafkas"
+        "plural"   = "kafkas"
         "shortNames" = [
           "k",
         ]
@@ -8606,33 +8606,33 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
           "additionalPrinterColumns" = [
             {
               "description" = "The desired number of Kafka replicas in the cluster"
-              "jsonPath" = ".spec.kafka.replicas"
-              "name" = "Desired Kafka replicas"
-              "type" = "integer"
+              "jsonPath"    = ".spec.kafka.replicas"
+              "name"        = "Desired Kafka replicas"
+              "type"        = "integer"
             },
             {
               "description" = "The desired number of ZooKeeper replicas in the cluster"
-              "jsonPath" = ".spec.zookeeper.replicas"
-              "name" = "Desired ZK replicas"
-              "type" = "integer"
+              "jsonPath"    = ".spec.zookeeper.replicas"
+              "name"        = "Desired ZK replicas"
+              "type"        = "integer"
             },
             {
               "description" = "The state of the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Ready\")].status"
-              "name" = "Ready"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Ready\")].status"
+              "name"        = "Ready"
+              "type"        = "string"
             },
             {
               "description" = "The state of the cluster metadata"
-              "jsonPath" = ".status.kafkaMetadataState"
-              "name" = "Metadata State"
-              "type" = "string"
+              "jsonPath"    = ".status.kafkaMetadataState"
+              "name"        = "Metadata State"
+              "type"        = "string"
             },
             {
               "description" = "Warnings related to the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Warning\")].status"
-              "name" = "Warnings"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Warning\")].status"
+              "name"        = "Warnings"
+              "type"        = "string"
             },
           ]
           "name" = "v1beta2"
@@ -8641,11 +8641,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -8666,21 +8666,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                         }
                         "generateCertificateAuthority" = {
                           "description" = "If true then Certificate Authority certificates will be generated automatically. Otherwise the user will need to provide a Secret with the CA certificate. Default is true."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "generateSecretOwnerReference" = {
                           "description" = "If `true`, the Cluster and Client CA Secrets are configured with the `ownerReference` set to the `Kafka` resource. If the `Kafka` resource is deleted when `true`, the CA Secrets are also deleted. If `false`, the `ownerReference` is disabled. If the `Kafka` resource is deleted when `false`, the CA Secrets are retained and available for reuse. Default is `true`."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "renewalDays" = {
                           "description" = "The number of days in the certificate renewal period. This is the number of days before the a certificate expires during which renewal actions may be performed. When `generateCertificateAuthority` is true, this will cause the generation of a new certificate. When `generateCertificateAuthority` is true, this will cause extra logging at WARN level about the pending certificate expiry. Default is 30."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "validityDays" = {
                           "description" = "The number of days generated certificates should be valid for. The default is 365."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
@@ -8698,21 +8698,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                         }
                         "generateCertificateAuthority" = {
                           "description" = "If true then Certificate Authority certificates will be generated automatically. Otherwise the user will need to provide a Secret with the CA certificate. Default is true."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "generateSecretOwnerReference" = {
                           "description" = "If `true`, the Cluster and Client CA Secrets are configured with the `ownerReference` set to the `Kafka` resource. If the `Kafka` resource is deleted when `true`, the CA Secrets are also deleted. If `false`, the `ownerReference` is disabled. If the `Kafka` resource is deleted when `false`, the CA Secrets are retained and available for reuse. Default is `true`."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "renewalDays" = {
                           "description" = "The number of days in the certificate renewal period. This is the number of days before the a certificate expires during which renewal actions may be performed. When `generateCertificateAuthority` is true, this will cause the generation of a new certificate. When `generateCertificateAuthority` is true, this will cause extra logging at WARN level about the pending certificate expiry. Default is 30."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "validityDays" = {
                           "description" = "The number of days generated certificates should be valid for. The default is 365."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
@@ -8789,36 +8789,36 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                             "type" = "object"
                           }
                           "minItems" = 1
-                          "type" = "array"
+                          "type"     = "array"
                         }
                         "brokerCapacity" = {
                           "description" = "The Cruise Control `brokerCapacity` configuration."
                           "properties" = {
                             "cpu" = {
                               "description" = "Broker capacity for CPU resource in cores or millicores. For example, 1, 1.500, 1500m. For more information on valid CPU resource units see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu."
-                              "pattern" = "^[0-9]+([.][0-9]{0,3}|[m]?)$"
-                              "type" = "string"
+                              "pattern"     = "^[0-9]+([.][0-9]{0,3}|[m]?)$"
+                              "type"        = "string"
                             }
                             "cpuUtilization" = {
                               "description" = "Broker capacity for CPU resource utilization as a percentage (0 - 100)."
-                              "maximum" = 100
-                              "minimum" = 0
-                              "type" = "integer"
+                              "maximum"     = 100
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "disk" = {
                               "description" = "Broker capacity for disk in bytes. Use a number value with either standard Kubernetes byte units (K, M, G, or T), their bibyte (power of two) equivalents (Ki, Mi, Gi, or Ti), or a byte value with or without E notation. For example, 100000M, 100000Mi, 104857600000, or 1e+11."
-                              "pattern" = "^[0-9]+([.][0-9]*)?([KMGTPE]i?|e[0-9]+)?$"
-                              "type" = "string"
+                              "pattern"     = "^[0-9]+([.][0-9]*)?([KMGTPE]i?|e[0-9]+)?$"
+                              "type"        = "string"
                             }
                             "inboundNetwork" = {
                               "description" = "Broker capacity for inbound network throughput in bytes per second. Use an integer value with standard Kubernetes byte units (K, M, G) or their bibyte (power of two) equivalents (Ki, Mi, Gi) per second. For example, 10000KiB/s."
-                              "pattern" = "^[0-9]+([KMG]i?)?B/s$"
-                              "type" = "string"
+                              "pattern"     = "^[0-9]+([KMG]i?)?B/s$"
+                              "type"        = "string"
                             }
                             "outboundNetwork" = {
                               "description" = "Broker capacity for outbound network throughput in bytes per second. Use an integer value with standard Kubernetes byte units (K, M, G) or their bibyte (power of two) equivalents (Ki, Mi, Gi) per second. For example, 10000KiB/s."
-                              "pattern" = "^[0-9]+([KMG]i?)?B/s$"
-                              "type" = "string"
+                              "pattern"     = "^[0-9]+([KMG]i?)?B/s$"
+                              "type"        = "string"
                             }
                             "overrides" = {
                               "description" = "Overrides for individual brokers. The `overrides` property lets you specify a different capacity configuration for different brokers."
@@ -8833,18 +8833,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                   }
                                   "cpu" = {
                                     "description" = "Broker capacity for CPU resource in cores or millicores. For example, 1, 1.500, 1500m. For more information on valid CPU resource units see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu."
-                                    "pattern" = "^[0-9]+([.][0-9]{0,3}|[m]?)$"
-                                    "type" = "string"
+                                    "pattern"     = "^[0-9]+([.][0-9]{0,3}|[m]?)$"
+                                    "type"        = "string"
                                   }
                                   "inboundNetwork" = {
                                     "description" = "Broker capacity for inbound network throughput in bytes per second. Use an integer value with standard Kubernetes byte units (K, M, G) or their bibyte (power of two) equivalents (Ki, Mi, Gi) per second. For example, 10000KiB/s."
-                                    "pattern" = "^[0-9]+([KMG]i?)?B/s$"
-                                    "type" = "string"
+                                    "pattern"     = "^[0-9]+([KMG]i?)?B/s$"
+                                    "type"        = "string"
                                   }
                                   "outboundNetwork" = {
                                     "description" = "Broker capacity for outbound network throughput in bytes per second. Use an integer value with standard Kubernetes byte units (K, M, G) or their bibyte (power of two) equivalents (Ki, Mi, Gi) per second. For example, 10000KiB/s."
-                                    "pattern" = "^[0-9]+([KMG]i?)?B/s$"
-                                    "type" = "string"
+                                    "pattern"     = "^[0-9]+([KMG]i?)?B/s$"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -8858,13 +8858,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "type" = "object"
                         }
                         "config" = {
-                          "description" = "The Cruise Control configuration. For a full list of configuration options refer to https://github.com/linkedin/cruise-control/wiki/Configurations. Note that properties with the following prefixes cannot be set: bootstrap.servers, client.id, zookeeper., network., security., failed.brokers.zk.path,webserver.http., webserver.api.urlprefix, webserver.session.path, webserver.accesslog., two.step., request.reason.required,metric.reporter.sampler.bootstrap.servers, capacity.config.file, self.healing., ssl., kafka.broker.failure.detection.enable, topic.config.provider.class (with the exception of: ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, webserver.http.cors.enabled, webserver.http.cors.origin, webserver.http.cors.exposeheaders, webserver.security.enable, webserver.ssl.enable)."
-                          "type" = "object"
+                          "description"                          = "The Cruise Control configuration. For a full list of configuration options refer to https://github.com/linkedin/cruise-control/wiki/Configurations. Note that properties with the following prefixes cannot be set: bootstrap.servers, client.id, zookeeper., network., security., failed.brokers.zk.path,webserver.http., webserver.api.urlprefix, webserver.session.path, webserver.accesslog., two.step., request.reason.required,metric.reporter.sampler.bootstrap.servers, capacity.config.file, self.healing., ssl., kafka.broker.failure.detection.enable, topic.config.provider.class (with the exception of: ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, webserver.http.cors.enabled, webserver.http.cors.origin, webserver.http.cors.exposeheaders, webserver.security.enable, webserver.ssl.enable)."
+                          "type"                                 = "object"
                           "x-kubernetes-preserve-unknown-fields" = true
                         }
                         "image" = {
                           "description" = "The container image used for Cruise Control pods. If no image name is explicitly specified, the image name corresponds to the name specified in the Cluster Operator configuration. If an image name is not defined in the Cluster Operator configuration, a default value is used."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "jvmOptions" = {
                           "description" = "JVM Options for the Cruise Control container."
@@ -8874,21 +8874,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "type" = "string"
                               }
                               "description" = "A map of -XX options to the JVM."
-                              "type" = "object"
+                              "type"        = "object"
                             }
                             "-Xms" = {
                               "description" = "-Xms option to to the JVM."
-                              "pattern" = "^[0-9]+[mMgG]?$"
-                              "type" = "string"
+                              "pattern"     = "^[0-9]+[mMgG]?$"
+                              "type"        = "string"
                             }
                             "-Xmx" = {
                               "description" = "-Xmx option to to the JVM."
-                              "pattern" = "^[0-9]+[mMgG]?$"
-                              "type" = "string"
+                              "pattern"     = "^[0-9]+[mMgG]?$"
+                              "type"        = "string"
                             }
                             "gcLoggingEnabled" = {
                               "description" = "Specifies whether the Garbage Collection logging is enabled. The default is false."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "javaSystemProperties" = {
                               "description" = "A map of additional system properties which will be passed using the `-D` option to the JVM."
@@ -8896,11 +8896,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "properties" = {
                                   "name" = {
                                     "description" = "The system property name."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The system property value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "type" = "object"
@@ -8915,28 +8915,28 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "failureThreshold" = {
                               "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "initialDelaySeconds" = {
                               "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "periodSeconds" = {
                               "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "successThreshold" = {
                               "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "timeoutSeconds" = {
                               "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                           }
                           "type" = "object"
@@ -8949,7 +8949,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "type" = "string"
                               }
                               "description" = "A Map from logger name to logger level."
-                              "type" = "object"
+                              "type"        = "object"
                             }
                             "type" = {
                               "description" = "Logging type, must be either 'inline' or 'external'."
@@ -9029,28 +9029,28 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "failureThreshold" = {
                               "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "initialDelaySeconds" = {
                               "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "periodSeconds" = {
                               "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "successThreshold" = {
                               "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "timeoutSeconds" = {
                               "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                           }
                           "type" = "object"
@@ -9079,7 +9079,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   },
                                 ]
-                                "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                 "x-kubernetes-int-or-string" = true
                               }
                               "type" = "object"
@@ -9094,7 +9094,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   },
                                 ]
-                                "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                 "x-kubernetes-int-or-string" = true
                               }
                               "type" = "object"
@@ -9136,14 +9136,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -9178,11 +9178,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "name" = {
                                         "description" = "The environment variable key."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "value" = {
                                         "description" = "The environment variable value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "valueFrom" = {
                                         "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -9395,14 +9395,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -9925,7 +9925,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 }
                                 "enableServiceLinks" = {
                                   "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                                  "type" = "boolean"
+                                  "type"        = "boolean"
                                 }
                                 "hostAliases" = {
                                   "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -9965,25 +9965,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
                                 }
                                 "priorityClassName" = {
                                   "description" = "The name of the priority class used to assign priority to the pods. "
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "schedulerName" = {
                                   "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "securityContext" = {
                                   "description" = "Configures pod-level security attributes and common container settings."
@@ -10084,13 +10084,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 }
                                 "terminationGracePeriodSeconds" = {
                                   "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "tmpDirSizeLimit" = {
                                   "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                                  "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                                  "type" = "string"
+                                  "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                                  "type"        = "string"
                                 }
                                 "tolerations" = {
                                   "description" = "The pod's tolerations."
@@ -10186,11 +10186,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "oneOf" = [
                                       {
                                         "properties" = {
-                                          "configMap" = {}
-                                          "csi" = {}
-                                          "emptyDir" = {}
+                                          "configMap"             = {}
+                                          "csi"                   = {}
+                                          "emptyDir"              = {}
                                           "persistentVolumeClaim" = {}
-                                          "secret" = {}
+                                          "secret"                = {}
                                         }
                                       },
                                     ]
@@ -10278,7 +10278,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                       }
                                       "name" = {
                                         "description" = "Name to use for the volume. Required."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "persistentVolumeClaim" = {
                                         "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -10337,8 +10337,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               "properties" = {
                                 "maxUnavailable" = {
                                   "description" = "Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the `maxUnavailable` number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "metadata" = {
                                   "description" = "Metadata to apply to the `PodDisruptionBudgetTemplate` resource."
@@ -10348,14 +10348,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -10374,14 +10374,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -10416,11 +10416,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "name" = {
                                         "description" = "The environment variable key."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "value" = {
                                         "description" = "The environment variable value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "valueFrom" = {
                                         "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -10622,35 +10622,35 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "image" = {
                               "description" = "The docker image for the container."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "livenessProbe" = {
                               "description" = "Pod liveness checking."
                               "properties" = {
                                 "failureThreshold" = {
                                   "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "initialDelaySeconds" = {
                                   "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "periodSeconds" = {
                                   "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "successThreshold" = {
                                   "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "timeoutSeconds" = {
                                   "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                               }
                               "type" = "object"
@@ -10674,28 +10674,28 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               "properties" = {
                                 "failureThreshold" = {
                                   "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "initialDelaySeconds" = {
                                   "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "periodSeconds" = {
                                   "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "successThreshold" = {
                                   "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "timeoutSeconds" = {
                                   "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                               }
                               "type" = "object"
@@ -10724,7 +10724,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       },
                                     ]
-                                    "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                    "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                     "x-kubernetes-int-or-string" = true
                                   }
                                   "type" = "object"
@@ -10739,7 +10739,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       },
                                     ]
-                                    "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                    "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                     "x-kubernetes-int-or-string" = true
                                   }
                                   "type" = "object"
@@ -10778,14 +10778,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -10804,14 +10804,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -11334,7 +11334,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 }
                                 "enableServiceLinks" = {
                                   "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                                  "type" = "boolean"
+                                  "type"        = "boolean"
                                 }
                                 "hostAliases" = {
                                   "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -11374,25 +11374,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
                                 }
                                 "priorityClassName" = {
                                   "description" = "The name of the priority class used to assign priority to the pods. "
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "schedulerName" = {
                                   "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "securityContext" = {
                                   "description" = "Configures pod-level security attributes and common container settings."
@@ -11493,13 +11493,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 }
                                 "terminationGracePeriodSeconds" = {
                                   "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "tmpDirSizeLimit" = {
                                   "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                                  "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                                  "type" = "string"
+                                  "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                                  "type"        = "string"
                                 }
                                 "tolerations" = {
                                   "description" = "The pod's tolerations."
@@ -11595,11 +11595,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "oneOf" = [
                                       {
                                         "properties" = {
-                                          "configMap" = {}
-                                          "csi" = {}
-                                          "emptyDir" = {}
+                                          "configMap"             = {}
+                                          "csi"                   = {}
+                                          "emptyDir"              = {}
                                           "persistentVolumeClaim" = {}
-                                          "secret" = {}
+                                          "secret"                = {}
                                         }
                                       },
                                     ]
@@ -11687,7 +11687,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                       }
                                       "name" = {
                                         "description" = "Name to use for the volume. Required."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "persistentVolumeClaim" = {
                                         "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -11752,14 +11752,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -11794,11 +11794,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "name" = {
                                         "description" = "The environment variable key."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "value" = {
                                         "description" = "The environment variable value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "valueFrom" = {
                                         "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -12019,11 +12019,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "name" = {
                                         "description" = "The environment variable key."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "value" = {
                                         "description" = "The environment variable value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "valueFrom" = {
                                         "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -12228,14 +12228,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -12270,11 +12270,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "name" = {
                                         "description" = "The environment variable key."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "value" = {
                                         "description" = "The environment variable value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "valueFrom" = {
                                         "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -12479,14 +12479,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -12502,35 +12502,35 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "image" = {
                               "description" = "The docker image for the container."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "livenessProbe" = {
                               "description" = "Pod liveness checking."
                               "properties" = {
                                 "failureThreshold" = {
                                   "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "initialDelaySeconds" = {
                                   "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "periodSeconds" = {
                                   "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "successThreshold" = {
                                   "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "timeoutSeconds" = {
                                   "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                               }
                               "type" = "object"
@@ -12554,28 +12554,28 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               "properties" = {
                                 "failureThreshold" = {
                                   "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "initialDelaySeconds" = {
                                   "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "periodSeconds" = {
                                   "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "successThreshold" = {
                                   "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "timeoutSeconds" = {
                                   "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                               }
                               "type" = "object"
@@ -12604,7 +12604,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       },
                                     ]
-                                    "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                    "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                     "x-kubernetes-int-or-string" = true
                                   }
                                   "type" = "object"
@@ -12619,7 +12619,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       },
                                     ]
-                                    "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                    "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                     "x-kubernetes-int-or-string" = true
                                   }
                                   "type" = "object"
@@ -12635,7 +12635,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "image" = {
                               "description" = "The image to use for the Topic Operator."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "jvmOptions" = {
                               "description" = "JVM Options for pods."
@@ -12645,21 +12645,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   }
                                   "description" = "A map of -XX options to the JVM."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "-Xms" = {
                                   "description" = "-Xms option to to the JVM."
-                                  "pattern" = "^[0-9]+[mMgG]?$"
-                                  "type" = "string"
+                                  "pattern"     = "^[0-9]+[mMgG]?$"
+                                  "type"        = "string"
                                 }
                                 "-Xmx" = {
                                   "description" = "-Xmx option to to the JVM."
-                                  "pattern" = "^[0-9]+[mMgG]?$"
-                                  "type" = "string"
+                                  "pattern"     = "^[0-9]+[mMgG]?$"
+                                  "type"        = "string"
                                 }
                                 "gcLoggingEnabled" = {
                                   "description" = "Specifies whether the Garbage Collection logging is enabled. The default is false."
-                                  "type" = "boolean"
+                                  "type"        = "boolean"
                                 }
                                 "javaSystemProperties" = {
                                   "description" = "A map of additional system properties which will be passed using the `-D` option to the JVM."
@@ -12667,11 +12667,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "name" = {
                                         "description" = "The system property name."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "value" = {
                                         "description" = "The system property value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                     }
                                     "type" = "object"
@@ -12686,28 +12686,28 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               "properties" = {
                                 "failureThreshold" = {
                                   "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "initialDelaySeconds" = {
                                   "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "periodSeconds" = {
                                   "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "successThreshold" = {
                                   "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "timeoutSeconds" = {
                                   "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                               }
                               "type" = "object"
@@ -12720,7 +12720,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   }
                                   "description" = "A Map from logger name to logger level."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "type" = {
                                   "description" = "Logging type, must be either 'inline' or 'external'."
@@ -12762,41 +12762,41 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               "properties" = {
                                 "failureThreshold" = {
                                   "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "initialDelaySeconds" = {
                                   "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "periodSeconds" = {
                                   "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "successThreshold" = {
                                   "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "timeoutSeconds" = {
                                   "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                               }
                               "type" = "object"
                             }
                             "reconciliationIntervalMs" = {
                               "description" = "Interval between periodic reconciliations in milliseconds."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "reconciliationIntervalSeconds" = {
                               "description" = "Interval between periodic reconciliations in seconds. Ignored if reconciliationIntervalMs is set."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "resources" = {
                               "description" = "CPU and memory resources to reserve."
@@ -12822,7 +12822,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       },
                                     ]
-                                    "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                    "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                     "x-kubernetes-int-or-string" = true
                                   }
                                   "type" = "object"
@@ -12837,7 +12837,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       },
                                     ]
-                                    "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                    "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                     "x-kubernetes-int-or-string" = true
                                   }
                                   "type" = "object"
@@ -12850,45 +12850,45 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               "properties" = {
                                 "failureThreshold" = {
                                   "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "initialDelaySeconds" = {
                                   "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "periodSeconds" = {
                                   "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "successThreshold" = {
                                   "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "timeoutSeconds" = {
                                   "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                               }
                               "type" = "object"
                             }
                             "topicMetadataMaxAttempts" = {
                               "description" = "The number of attempts at getting topic metadata."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "watchedNamespace" = {
                               "description" = "The namespace the Topic Operator should watch."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "zookeeperSessionTimeoutSeconds" = {
                               "description" = "Timeout for the ZooKeeper session."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                           }
                           "type" = "object"
@@ -12898,7 +12898,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "image" = {
                               "description" = "The image to use for the User Operator."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "jvmOptions" = {
                               "description" = "JVM Options for pods."
@@ -12908,21 +12908,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   }
                                   "description" = "A map of -XX options to the JVM."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "-Xms" = {
                                   "description" = "-Xms option to to the JVM."
-                                  "pattern" = "^[0-9]+[mMgG]?$"
-                                  "type" = "string"
+                                  "pattern"     = "^[0-9]+[mMgG]?$"
+                                  "type"        = "string"
                                 }
                                 "-Xmx" = {
                                   "description" = "-Xmx option to to the JVM."
-                                  "pattern" = "^[0-9]+[mMgG]?$"
-                                  "type" = "string"
+                                  "pattern"     = "^[0-9]+[mMgG]?$"
+                                  "type"        = "string"
                                 }
                                 "gcLoggingEnabled" = {
                                   "description" = "Specifies whether the Garbage Collection logging is enabled. The default is false."
-                                  "type" = "boolean"
+                                  "type"        = "boolean"
                                 }
                                 "javaSystemProperties" = {
                                   "description" = "A map of additional system properties which will be passed using the `-D` option to the JVM."
@@ -12930,11 +12930,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "name" = {
                                         "description" = "The system property name."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "value" = {
                                         "description" = "The system property value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                     }
                                     "type" = "object"
@@ -12949,28 +12949,28 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               "properties" = {
                                 "failureThreshold" = {
                                   "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "initialDelaySeconds" = {
                                   "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "periodSeconds" = {
                                   "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "successThreshold" = {
                                   "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "timeoutSeconds" = {
                                   "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                               }
                               "type" = "object"
@@ -12983,7 +12983,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   }
                                   "description" = "A Map from logger name to logger level."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "type" = {
                                   "description" = "Logging type, must be either 'inline' or 'external'."
@@ -13025,41 +13025,41 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               "properties" = {
                                 "failureThreshold" = {
                                   "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "initialDelaySeconds" = {
                                   "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "periodSeconds" = {
                                   "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "successThreshold" = {
                                   "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                                 "timeoutSeconds" = {
                                   "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                                  "minimum" = 1
-                                  "type" = "integer"
+                                  "minimum"     = 1
+                                  "type"        = "integer"
                                 }
                               }
                               "type" = "object"
                             }
                             "reconciliationIntervalMs" = {
                               "description" = "Interval between periodic reconciliations in milliseconds."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "reconciliationIntervalSeconds" = {
                               "description" = "Interval between periodic reconciliations in seconds. Ignored if reconciliationIntervalMs is set."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "resources" = {
                               "description" = "CPU and memory resources to reserve."
@@ -13085,7 +13085,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       },
                                     ]
-                                    "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                    "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                     "x-kubernetes-int-or-string" = true
                                   }
                                   "type" = "object"
@@ -13100,7 +13100,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       },
                                     ]
-                                    "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                    "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                     "x-kubernetes-int-or-string" = true
                                   }
                                   "type" = "object"
@@ -13110,16 +13110,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                             }
                             "secretPrefix" = {
                               "description" = "The prefix that will be added to the KafkaUser name to be used as the Secret name."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "watchedNamespace" = {
                               "description" = "The namespace the User Operator should watch."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "zookeeperSessionTimeoutSeconds" = {
                               "description" = "Timeout for the ZooKeeper session."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                           }
                           "type" = "object"
@@ -13132,7 +13132,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                       "properties" = {
                         "image" = {
                           "description" = "The image to use for the JmxTrans."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "kafkaQueries" = {
                           "description" = "Queries to send to the Kafka brokers to define what data should be read from each broker. For more information on these properties see, xref:type-JmxTransQueryTemplate-reference[`JmxTransQueryTemplate` schema reference]."
@@ -13154,7 +13154,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               }
                               "targetMBean" = {
                                 "description" = "If using wildcards instead of a specific MBean then the data is gathered from multiple MBeans. Otherwise if specifying an MBean then data is gathered from that specified MBean."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                             }
                             "required" = [
@@ -13168,7 +13168,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                         }
                         "logLevel" = {
                           "description" = "Sets the logging level of the JmxTrans deployment.For more information see, https://github.com/jmxtrans/jmxtrans-agent/wiki/Troubleshooting[JmxTrans Logging Level]."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "outputDefinitions" = {
                           "description" = "Defines the output hosts that will be referenced later on. For more information on these properties see, xref:type-JmxTransOutputDefinitionTemplate-reference[`JmxTransOutputDefinitionTemplate` schema reference]."
@@ -13176,23 +13176,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                             "properties" = {
                               "flushDelayInSeconds" = {
                                 "description" = "How many seconds the JmxTrans waits before pushing a new set of data out."
-                                "type" = "integer"
+                                "type"        = "integer"
                               }
                               "host" = {
                                 "description" = "The DNS/hostname of the remote host that the data is pushed to."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "name" = {
                                 "description" = "Template for setting the name of the output definition. This is used to identify where to send the results of queries should be sent."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "outputType" = {
                                 "description" = "Template for setting the format of the data that will be pushed.For more information see https://github.com/jmxtrans/jmxtrans/wiki/OutputWriters[JmxTrans OutputWriters]."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "port" = {
                                 "description" = "The port of the remote host that the data is pushed to."
-                                "type" = "integer"
+                                "type"        = "integer"
                               }
                               "typeNames" = {
                                 "description" = "Template for filtering data to be included in response to a wildcard query. For more information see https://github.com/jmxtrans/jmxtrans/wiki/Queries[JmxTrans queries]."
@@ -13234,7 +13234,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   },
                                 ]
-                                "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                 "x-kubernetes-int-or-string" = true
                               }
                               "type" = "object"
@@ -13249,7 +13249,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   },
                                 ]
-                                "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                 "x-kubernetes-int-or-string" = true
                               }
                               "type" = "object"
@@ -13287,11 +13287,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "name" = {
                                         "description" = "The environment variable key."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "value" = {
                                         "description" = "The environment variable value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "valueFrom" = {
                                         "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -13504,14 +13504,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -14034,7 +14034,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 }
                                 "enableServiceLinks" = {
                                   "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                                  "type" = "boolean"
+                                  "type"        = "boolean"
                                 }
                                 "hostAliases" = {
                                   "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -14074,25 +14074,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
                                 }
                                 "priorityClassName" = {
                                   "description" = "The name of the priority class used to assign priority to the pods. "
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "schedulerName" = {
                                   "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "securityContext" = {
                                   "description" = "Configures pod-level security attributes and common container settings."
@@ -14193,13 +14193,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 }
                                 "terminationGracePeriodSeconds" = {
                                   "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "tmpDirSizeLimit" = {
                                   "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                                  "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                                  "type" = "string"
+                                  "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                                  "type"        = "string"
                                 }
                                 "tolerations" = {
                                   "description" = "The pod's tolerations."
@@ -14295,11 +14295,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "oneOf" = [
                                       {
                                         "properties" = {
-                                          "configMap" = {}
-                                          "csi" = {}
-                                          "emptyDir" = {}
+                                          "configMap"             = {}
+                                          "csi"                   = {}
+                                          "emptyDir"              = {}
                                           "persistentVolumeClaim" = {}
-                                          "secret" = {}
+                                          "secret"                = {}
                                         }
                                       },
                                     ]
@@ -14387,7 +14387,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                       }
                                       "name" = {
                                         "description" = "Name to use for the volume. Required."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "persistentVolumeClaim" = {
                                         "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -14452,14 +14452,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -14485,82 +14485,82 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "allowOnError" = {
                               "description" = "Defines whether a Kafka client should be allowed or denied by default when the authorizer fails to query the Open Policy Agent, for example, when it is temporarily unavailable). Defaults to `false` - all actions will be denied."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "authorizerClass" = {
                               "description" = "Authorization implementation class, which must be available in classpath."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "clientId" = {
                               "description" = "OAuth Client ID which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "connectTimeoutSeconds" = {
                               "description" = "The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "delegateToKafkaAcls" = {
                               "description" = "Whether authorization decision should be delegated to the 'Simple' authorizer if DENIED by Keycloak Authorization Services policies. Default value is `false`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "disableTlsHostnameVerification" = {
                               "description" = "Enable or disable TLS hostname verification. Default value is `false`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "enableMetrics" = {
                               "description" = "Enable or disable OAuth metrics. The default value is `false`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "expireAfterMs" = {
                               "description" = "The expiration of the records kept in the local cache to avoid querying the Open Policy Agent for every request. Defines how often the cached authorization decisions are reloaded from the Open Policy Agent server. In milliseconds. Defaults to `3600000`."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "grantsAlwaysLatest" = {
                               "description" = "Controls whether the latest grants are fetched for a new session. When enabled, grants are retrieved from Keycloak and cached for the user. The default value is `false`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "grantsGcPeriodSeconds" = {
                               "description" = "The time, in seconds, between consecutive runs of a job that cleans stale grants from the cache. The default value is 300."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "grantsMaxIdleTimeSeconds" = {
                               "description" = "The time, in seconds, after which an idle grant can be evicted from the cache. The default value is 300."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "grantsRefreshPeriodSeconds" = {
                               "description" = "The time between two consecutive grants refresh runs in seconds. The default value is 60."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "grantsRefreshPoolSize" = {
                               "description" = "The number of threads to use to refresh grants for active sessions. The more threads, the more parallelism, so the sooner the job completes. However, using more threads places a heavier load on the authorization server. The default value is 5."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "httpRetries" = {
                               "description" = "The maximum number of retries to attempt if an initial HTTP request fails. If not set, the default is to not attempt any retries."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "includeAcceptHeader" = {
                               "description" = "Whether the Accept header should be set in requests to the authorization servers. The default value is `true`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "initialCacheCapacity" = {
                               "description" = "Initial capacity of the local cache used by the authorizer to avoid querying the Open Policy Agent for every request Defaults to `5000`."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "maximumCacheSize" = {
                               "description" = "Maximum capacity of the local cache used by the authorizer to avoid querying the Open Policy Agent for every request. Defaults to `50000`."
-                              "type" = "integer"
+                              "type"        = "integer"
                             }
                             "readTimeoutSeconds" = {
                               "description" = "The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "superUsers" = {
                               "description" = "List of super users, which are user principals with unlimited access rights."
@@ -14571,7 +14571,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                             }
                             "supportsAdminApi" = {
                               "description" = "Indicates whether the custom authorizer supports the APIs for managing ACLs using the Kafka Admin API. Defaults to `false`."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "tlsTrustedCertificates" = {
                               "description" = "Trusted certificates for TLS connection to the OAuth server."
@@ -14597,15 +14597,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "properties" = {
                                   "certificate" = {
                                     "description" = "The name of the file certificate in the secret."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "pattern" = {
                                     "description" = "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "secretName" = {
                                     "description" = "The name of the Secret containing the certificate."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -14617,7 +14617,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                             }
                             "tokenEndpointUri" = {
                               "description" = "Authorization server token endpoint URI."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "type" = {
                               "description" = "Authorization type. Currently, the supported types are `simple`, `keycloak`, `opa` and `custom`. `simple` authorization type uses Kafka's built-in authorizer for authorization. `keycloak` authorization type uses Keycloak Authorization Services for authorization. `opa` authorization type uses Open Policy Agent based authorization.`custom` authorization type uses user-provided implementation for authorization."
@@ -14631,8 +14631,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                             }
                             "url" = {
                               "description" = "The URL used to connect to the Open Policy Agent server. The URL has to include the policy which will be queried by the authorizer. This option is required."
-                              "example" = "http://opa:8181/v1/data/kafka/authz/allow"
-                              "type" = "string"
+                              "example"     = "http://opa:8181/v1/data/kafka/authz/allow"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -14642,16 +14642,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                         }
                         "brokerRackInitImage" = {
                           "description" = "The image of the init container used for initializing the `broker.rack`."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "config" = {
-                          "description" = "Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers, node.id, process.roles, controller., metadata.log.dir, zookeeper.metadata.migration.enable, client.quota.callback.static.kafka.admin., client.quota.callback.static.produce, client.quota.callback.static.fetch, client.quota.callback.static.storage.per.volume.limit.min.available., client.quota.callback.static.excluded.principal.name.list (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation, cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms, cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms, cruise.control.metrics.topic.min.insync.replicas, controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms)."
-                          "type" = "object"
+                          "description"                          = "Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers, node.id, process.roles, controller., metadata.log.dir, zookeeper.metadata.migration.enable, client.quota.callback.static.kafka.admin., client.quota.callback.static.produce, client.quota.callback.static.fetch, client.quota.callback.static.storage.per.volume.limit.min.available., client.quota.callback.static.excluded.principal.name.list (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation, cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms, cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms, cruise.control.metrics.topic.min.insync.replicas, controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms)."
+                          "type"                                 = "object"
                           "x-kubernetes-preserve-unknown-fields" = true
                         }
                         "image" = {
                           "description" = "The container image used for Kafka pods. If the property is not set, the default Kafka image version is determined based on the `version` configuration. The image names are specifically mapped to corresponding versions in the Cluster Operator configuration. Changing the Kafka image version does not automatically update the image versions for other components, such as Kafka Exporter. "
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "jmxOptions" = {
                           "description" = "JMX Options for Kafka brokers."
@@ -14683,21 +14683,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "type" = "string"
                               }
                               "description" = "A map of -XX options to the JVM."
-                              "type" = "object"
+                              "type"        = "object"
                             }
                             "-Xms" = {
                               "description" = "-Xms option to to the JVM."
-                              "pattern" = "^[0-9]+[mMgG]?$"
-                              "type" = "string"
+                              "pattern"     = "^[0-9]+[mMgG]?$"
+                              "type"        = "string"
                             }
                             "-Xmx" = {
                               "description" = "-Xmx option to to the JVM."
-                              "pattern" = "^[0-9]+[mMgG]?$"
-                              "type" = "string"
+                              "pattern"     = "^[0-9]+[mMgG]?$"
+                              "type"        = "string"
                             }
                             "gcLoggingEnabled" = {
                               "description" = "Specifies whether the Garbage Collection logging is enabled. The default is false."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "javaSystemProperties" = {
                               "description" = "A map of additional system properties which will be passed using the `-D` option to the JVM."
@@ -14705,11 +14705,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "properties" = {
                                   "name" = {
                                     "description" = "The system property name."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The system property value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "type" = "object"
@@ -14728,42 +14728,42 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "properties" = {
                                   "accessTokenIsJwt" = {
                                     "description" = "Configure whether the access token is treated as JWT. This must be set to `false` if the authorization server returns opaque tokens. Defaults to `true`."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "checkAccessTokenType" = {
                                     "description" = "Configure whether the access token type check is performed or not. This should be set to `false` if the authorization server does not include 'typ' claim in JWT token. Defaults to `true`."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "checkAudience" = {
                                     "description" = "Enable or disable audience checking. Audience checks identify the recipients of tokens. If audience checking is enabled, the OAuth Client ID also has to be configured using the `clientId` property. The Kafka broker will reject tokens that do not have its `clientId` in their `aud` (audience) claim.Default value is `false`."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "checkIssuer" = {
                                     "description" = "Enable or disable issuer checking. By default issuer is checked using the value configured by `validIssuerUri`. Default value is `true`."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "clientAudience" = {
                                     "description" = "The audience to use when making requests to the authorization server's token endpoint. Used for inter-broker authentication and for configuring OAuth 2.0 over PLAIN using the `clientId` and `secret` method."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "clientId" = {
                                     "description" = "OAuth Client ID which the Kafka broker can use to authenticate against the authorization server and use the introspect endpoint URI."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "clientScope" = {
                                     "description" = "The scope to use when making requests to the authorization server's token endpoint. Used for inter-broker authentication and for configuring OAuth 2.0 over PLAIN using the `clientId` and `secret` method."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "clientSecret" = {
                                     "description" = "Link to Kubernetes Secret containing the OAuth client secret which the Kafka broker can use to authenticate against the authorization server and use the introspect endpoint URI."
                                     "properties" = {
                                       "key" = {
                                         "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "secretName" = {
                                         "description" = "The name of the Kubernetes Secret containing the secret value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                     }
                                     "required" = [
@@ -14774,107 +14774,107 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                   }
                                   "connectTimeoutSeconds" = {
                                     "description" = "The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds."
-                                    "type" = "integer"
+                                    "type"        = "integer"
                                   }
                                   "customClaimCheck" = {
                                     "description" = "JsonPath filter query to be applied to the JWT token or to the response of the introspection endpoint for additional token validation. Not set by default."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "disableTlsHostnameVerification" = {
                                     "description" = "Enable or disable TLS hostname verification. Default value is `false`."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "enableECDSA" = {
                                     "description" = "Enable or disable ECDSA support by installing BouncyCastle crypto provider. ECDSA support is always enabled. The BouncyCastle libraries are no longer packaged with Strimzi. Value is ignored."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "enableMetrics" = {
                                     "description" = "Enable or disable OAuth metrics. Default value is `false`."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "enableOauthBearer" = {
                                     "description" = "Enable or disable OAuth authentication over SASL_OAUTHBEARER. Default value is `true`."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "enablePlain" = {
                                     "description" = "Enable or disable OAuth authentication over SASL_PLAIN. There is no re-authentication support when this mechanism is used. Default value is `false`."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "failFast" = {
                                     "description" = "Enable or disable termination of Kafka broker processes due to potentially recoverable runtime errors during startup. Default value is `true`."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "fallbackUserNameClaim" = {
                                     "description" = "The fallback username claim to be used for the user ID if the claim specified by `userNameClaim` is not present. This is useful when `client_credentials` authentication only results in the client ID being provided in another claim. It only takes effect if `userNameClaim` is set."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "fallbackUserNamePrefix" = {
                                     "description" = "The prefix to use with the value of `fallbackUserNameClaim` to construct the user id. This only takes effect if `fallbackUserNameClaim` is true, and the value is present for the claim. Mapping usernames and client ids into the same user id space is useful in preventing name collisions."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "groupsClaim" = {
                                     "description" = "JsonPath query used to extract groups for the user during authentication. Extracted groups can be used by a custom authorizer. By default no groups are extracted."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "groupsClaimDelimiter" = {
                                     "description" = "A delimiter used to parse groups when they are extracted as a single String value rather than a JSON array. Default value is ',' (comma)."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "httpRetries" = {
                                     "description" = "The maximum number of retries to attempt if an initial HTTP request fails. If not set, the default is to not attempt any retries."
-                                    "type" = "integer"
+                                    "type"        = "integer"
                                   }
                                   "httpRetryPauseMs" = {
                                     "description" = "The pause to take before retrying a failed HTTP request. If not set, the default is to not pause at all but to immediately repeat a request."
-                                    "type" = "integer"
+                                    "type"        = "integer"
                                   }
                                   "includeAcceptHeader" = {
                                     "description" = "Whether the Accept header should be set in requests to the authorization servers. The default value is `true`."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "introspectionEndpointUri" = {
                                     "description" = "URI of the token introspection endpoint which can be used to validate opaque non-JWT tokens."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "jwksEndpointUri" = {
                                     "description" = "URI of the JWKS certificate endpoint, which can be used for local JWT validation."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "jwksExpirySeconds" = {
                                     "description" = "Configures how often are the JWKS certificates considered valid. The expiry interval has to be at least 60 seconds longer then the refresh interval specified in `jwksRefreshSeconds`. Defaults to 360 seconds."
-                                    "minimum" = 1
-                                    "type" = "integer"
+                                    "minimum"     = 1
+                                    "type"        = "integer"
                                   }
                                   "jwksIgnoreKeyUse" = {
                                     "description" = "Flag to ignore the 'use' attribute of `key` declarations in a JWKS endpoint response. Default value is `false`."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "jwksMinRefreshPauseSeconds" = {
                                     "description" = "The minimum pause between two consecutive refreshes. When an unknown signing key is encountered the refresh is scheduled immediately, but will always wait for this minimum pause. Defaults to 1 second."
-                                    "minimum" = 0
-                                    "type" = "integer"
+                                    "minimum"     = 0
+                                    "type"        = "integer"
                                   }
                                   "jwksRefreshSeconds" = {
                                     "description" = "Configures how often are the JWKS certificates refreshed. The refresh interval has to be at least 60 seconds shorter then the expiry interval specified in `jwksExpirySeconds`. Defaults to 300 seconds."
-                                    "minimum" = 1
-                                    "type" = "integer"
+                                    "minimum"     = 1
+                                    "type"        = "integer"
                                   }
                                   "listenerConfig" = {
-                                    "description" = "Configuration to be used for a specific listener. All values are prefixed with `listener.name.<listener_name>`."
-                                    "type" = "object"
+                                    "description"                          = "Configuration to be used for a specific listener. All values are prefixed with `listener.name.<listener_name>`."
+                                    "type"                                 = "object"
                                     "x-kubernetes-preserve-unknown-fields" = true
                                   }
                                   "maxSecondsWithoutReauthentication" = {
                                     "description" = "Maximum number of seconds the authenticated session remains valid without re-authentication. This enables Apache Kafka re-authentication feature, and causes sessions to expire when the access token expires. If the access token expires before max time or if max time is reached, the client has to re-authenticate, otherwise the server will drop the connection. Not set by default - the authenticated session does not expire when the access token expires. This option only applies to SASL_OAUTHBEARER authentication mechanism (when `enableOauthBearer` is `true`)."
-                                    "type" = "integer"
+                                    "type"        = "integer"
                                   }
                                   "readTimeoutSeconds" = {
                                     "description" = "The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds."
-                                    "type" = "integer"
+                                    "type"        = "integer"
                                   }
                                   "sasl" = {
                                     "description" = "Enable or disable SASL on this listener."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "secrets" = {
                                     "description" = "Secrets to be mounted to `/opt/kafka/custom-authn-secrets/custom-listener-<listener_name>-<port>/<secret_name>`."
@@ -14882,11 +14882,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                       "properties" = {
                                         "key" = {
                                           "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                                          "type" = "string"
+                                          "type"        = "string"
                                         }
                                         "secretName" = {
                                           "description" = "The name of the Kubernetes Secret containing the secret value."
-                                          "type" = "string"
+                                          "type"        = "string"
                                         }
                                       }
                                       "required" = [
@@ -14899,7 +14899,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                   }
                                   "serverBearerTokenLocation" = {
                                     "description" = "Path to the file on the local filesystem that contains a bearer token to be used instead of client ID and secret when authenticating to authorization server."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "tlsTrustedCertificates" = {
                                     "description" = "Trusted certificates for TLS connection to the OAuth server."
@@ -14925,15 +14925,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                       "properties" = {
                                         "certificate" = {
                                           "description" = "The name of the file certificate in the secret."
-                                          "type" = "string"
+                                          "type"        = "string"
                                         }
                                         "pattern" = {
                                           "description" = "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used."
-                                          "type" = "string"
+                                          "type"        = "string"
                                         }
                                         "secretName" = {
                                           "description" = "The name of the Secret containing the certificate."
-                                          "type" = "string"
+                                          "type"        = "string"
                                         }
                                       }
                                       "required" = [
@@ -14945,7 +14945,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                   }
                                   "tokenEndpointUri" = {
                                     "description" = "URI of the Token Endpoint to use with SASL_PLAIN mechanism when the client authenticates with `clientId` and a `secret`. If set, the client can authenticate over SASL_PLAIN by either setting `username` to `clientId`, and setting `password` to client `secret`, or by setting `username` to account username, and `password` to access token prefixed with `$accessToken:`. If this option is not set, the `password` is always interpreted as an access token (without a prefix), and `username` as the account username (a so called 'no-client-credentials' mode)."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "type" = {
                                     "description" = "Authentication type. `oauth` type uses SASL OAUTHBEARER Authentication. `scram-sha-512` type uses SASL SCRAM-SHA-512 Authentication. `tls` type uses TLS Client Authentication. `tls` type is supported only on TLS listeners.`custom` type allows for any authentication type to be used."
@@ -14959,23 +14959,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                   }
                                   "userInfoEndpointUri" = {
                                     "description" = "URI of the User Info Endpoint to use as a fallback to obtaining the user id when the Introspection Endpoint does not return information that can be used for the user id. "
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "userNameClaim" = {
                                     "description" = "Name of the claim from the JWT authentication token, Introspection Endpoint response or User Info Endpoint response which will be used to extract the user id. Defaults to `sub`."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "userNamePrefix" = {
                                     "description" = "The prefix to use with the value of `userNameClaim` to construct the user ID. This only takes effect if `userNameClaim` is specified and the value is present for the claim. When used in combination with `fallbackUserNameClaims`, it ensures consistent mapping of usernames and client IDs into the same user ID space and prevents name collisions."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "validIssuerUri" = {
                                     "description" = "URI of the token issuer used for authentication."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "validTokenType" = {
                                     "description" = "Valid value for the `token_type` attribute returned by the Introspection Endpoint. No default value, and not checked by default."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "required" = [
@@ -14988,7 +14988,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "properties" = {
                                   "advertisedHostTemplate" = {
                                     "description" = "Configures the template for generating the advertised hostnames of the individual brokers. Valid placeholders that you can use in the template are `{nodeId}` and `{nodePodName}`."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "allocateLoadBalancerNodePorts" = {
                                     "description" = <<-EOT
@@ -14996,7 +14996,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     This is a one to one with the `spec.allocateLoadBalancerNodePorts` configuration in the `Service` type
                                     For `loadbalancer` listeners only.
                                     EOT
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "bootstrap" = {
                                     "description" = "Bootstrap configuration."
@@ -15013,7 +15013,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                           "type" = "string"
                                         }
                                         "description" = "Annotations added to `Ingress`, `Route`, or `Service` resources. You can use this property to configure DNS providers such as External DNS. For `loadbalancer`, `nodeport`, `route`, or `ingress` listeners only."
-                                        "type" = "object"
+                                        "type"        = "object"
                                       }
                                       "externalIPs" = {
                                         "description" = "External IPs associated to the nodeport service. These IPs are used by clients external to the Kubernetes cluster to access the Kafka brokers. This property is helpful when `nodeport` without `externalIP` is not sufficient. For example on bare-metal Kubernetes clusters that do not support Loadbalancer service types. For `nodeport` listeners only."
@@ -15024,22 +15024,22 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                       }
                                       "host" = {
                                         "description" = "Specifies the hostname used for the bootstrap resource. For `route` (optional) or `ingress` (required) listeners only. Ensure the hostname resolves to the Ingress endpoints; no validation is performed by Strimzi."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "labels" = {
                                         "additionalProperties" = {
                                           "type" = "string"
                                         }
                                         "description" = "Labels added to `Ingress`, `Route`, or `Service` resources. For `loadbalancer`, `nodeport`, `route`, or `ingress` listeners only."
-                                        "type" = "object"
+                                        "type"        = "object"
                                       }
                                       "loadBalancerIP" = {
                                         "description" = "The loadbalancer is requested with the IP address specified in this property. This feature depends on whether the underlying cloud provider supports specifying the `loadBalancerIP` when a load balancer is created. This property is ignored if the cloud provider does not support the feature. For `loadbalancer` listeners only."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "nodePort" = {
                                         "description" = "Node port for the bootstrap service. For `nodeport` listeners only."
-                                        "type" = "integer"
+                                        "type"        = "integer"
                                       }
                                     }
                                     "type" = "object"
@@ -15049,15 +15049,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "certificate" = {
                                         "description" = "The name of the file certificate in the Secret."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "key" = {
                                         "description" = "The name of the private key in the Secret."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "secretName" = {
                                         "description" = "The name of the Secret containing the certificate."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                     }
                                     "required" = [
@@ -15073,22 +15073,22 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                       "properties" = {
                                         "advertisedHost" = {
                                           "description" = "The host name used in the brokers' `advertised.listeners`."
-                                          "type" = "string"
+                                          "type"        = "string"
                                         }
                                         "advertisedPort" = {
                                           "description" = "The port number used in the brokers' `advertised.listeners`."
-                                          "type" = "integer"
+                                          "type"        = "integer"
                                         }
                                         "annotations" = {
                                           "additionalProperties" = {
                                             "type" = "string"
                                           }
                                           "description" = "Annotations that will be added to the `Ingress` or `Service` resource. You can use this field to configure DNS providers such as External DNS. This field can be used only with `loadbalancer`, `nodeport`, or `ingress` type listeners."
-                                          "type" = "object"
+                                          "type"        = "object"
                                         }
                                         "broker" = {
                                           "description" = "ID of the kafka broker (broker identifier). Broker IDs start from 0 and correspond to the number of broker replicas."
-                                          "type" = "integer"
+                                          "type"        = "integer"
                                         }
                                         "externalIPs" = {
                                           "description" = "External IPs associated to the nodeport service. These IPs are used by clients external to the Kubernetes cluster to access the Kafka brokers. This field is helpful when `nodeport` without `externalIP` is not sufficient. For example on bare-metal Kubernetes clusters that do not support Loadbalancer service types. This field can only be used with `nodeport` type listener."
@@ -15099,22 +15099,22 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         }
                                         "host" = {
                                           "description" = "The broker host. This field will be used in the Ingress resource or in the Route resource to specify the desired hostname. This field can be used only with `route` (optional) or `ingress` (required) type listeners."
-                                          "type" = "string"
+                                          "type"        = "string"
                                         }
                                         "labels" = {
                                           "additionalProperties" = {
                                             "type" = "string"
                                           }
                                           "description" = "Labels that will be added to the `Ingress`, `Route`, or `Service` resource. This field can be used only with `loadbalancer`, `nodeport`, `route`, or `ingress` type listeners."
-                                          "type" = "object"
+                                          "type"        = "object"
                                         }
                                         "loadBalancerIP" = {
                                           "description" = "The loadbalancer is requested with the IP address specified in this field. This feature depends on whether the underlying cloud provider supports specifying the `loadBalancerIP` when a load balancer is created. This field is ignored if the cloud provider does not support the feature.This field can be used only with `loadbalancer` type listener."
-                                          "type" = "string"
+                                          "type"        = "string"
                                         }
                                         "nodePort" = {
                                           "description" = "Node port for the per-broker service. This field can be used only with `nodeport` type listener."
-                                          "type" = "integer"
+                                          "type"        = "integer"
                                         }
                                       }
                                       "required" = [
@@ -15133,11 +15133,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     
                                     For `ingress` and `loadbalancer` listeners only.
                                     EOT
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "createBootstrapService" = {
                                     "description" = "Whether to create the bootstrap service or not. The bootstrap service is created by default (if not specified differently). This field can be used with the `loadbalancer` listener."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "externalTrafficPolicy" = {
                                     "description" = <<-EOT
@@ -15163,7 +15163,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                   }
                                   "hostTemplate" = {
                                     "description" = "Configures the template for generating the hostnames of the individual brokers. Valid placeholders that you can use in the template are `{nodeId}` and `{nodePodName}`."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "ipFamilies" = {
                                     "description" = "Specifies the IP Families used by the service. Available options are `IPv4` and `IPv6`. If unspecified, Kubernetes will choose the default value based on the `ipFamilyPolicy` setting."
@@ -15202,11 +15202,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                   }
                                   "maxConnectionCreationRate" = {
                                     "description" = "The maximum connection creation rate we allow in this listener at any time. New connections will be throttled if the limit is reached."
-                                    "type" = "integer"
+                                    "type"        = "integer"
                                   }
                                   "maxConnections" = {
                                     "description" = "The maximum number of connections we allow for this listener in the broker at any time. New connections are blocked if the limit is reached."
-                                    "type" = "integer"
+                                    "type"        = "integer"
                                   }
                                   "preferredNodePortAddressType" = {
                                     "description" = <<-EOT
@@ -15231,7 +15231,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                   }
                                   "publishNotReadyAddresses" = {
                                     "description" = "Configures whether the service endpoints are considered \"ready\" even if the Pods themselves are not. Defaults to `false`. This field can not be used with `internal` listeners."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "useServiceDnsDomain" = {
                                     "description" = <<-EOT
@@ -15242,15 +15242,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     
                                     The default is `.cluster.local`, but this is customizable using the environment variable `KUBERNETES_SERVICE_DNS_DOMAIN`. For `internal` and `cluster-ip` listeners only.
                                     EOT
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                 }
                                 "type" = "object"
                               }
                               "name" = {
                                 "description" = "Name of the listener. The name will be used to identify the listener and the related Kubernetes objects. The name has to be unique within given a Kafka cluster. The name can consist of lowercase characters and numbers and be up to 11 characters long."
-                                "pattern" = "^[a-z0-9]{1,11}$"
-                                "type" = "string"
+                                "pattern"     = "^[a-z0-9]{1,11}$"
+                                "type"        = "string"
                               }
                               "networkPolicyPeers" = {
                                 "description" = "List of peers which should be able to connect to this listener. Peers in this list are combined using a logical OR operation. If this field is empty or missing, all connections will be allowed for this listener. If this field is present and contains at least one item, the listener only allows the traffic which matches at least one item in this list."
@@ -15339,12 +15339,12 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               }
                               "port" = {
                                 "description" = "Port number used by the listener inside Kafka. The port number has to be unique within a given Kafka cluster. Allowed port numbers are 9092 and higher with the exception of ports 9404 and 9999, which are already used for Prometheus and JMX. Depending on the listener type, the port number might not be the same as the port number that connects Kafka clients."
-                                "minimum" = 9092
-                                "type" = "integer"
+                                "minimum"     = 9092
+                                "type"        = "integer"
                               }
                               "tls" = {
                                 "description" = "Enables TLS encryption on the listener. This is a required property. For `route` and `ingress` type listeners, TLS encryption must be always enabled."
-                                "type" = "boolean"
+                                "type"        = "boolean"
                               }
                               "type" = {
                                 "description" = <<-EOT
@@ -15378,35 +15378,35 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                             "type" = "object"
                           }
                           "minItems" = 1
-                          "type" = "array"
+                          "type"     = "array"
                         }
                         "livenessProbe" = {
                           "description" = "Pod liveness checking."
                           "properties" = {
                             "failureThreshold" = {
                               "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "initialDelaySeconds" = {
                               "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "periodSeconds" = {
                               "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "successThreshold" = {
                               "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "timeoutSeconds" = {
                               "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                           }
                           "type" = "object"
@@ -15419,7 +15419,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "type" = "string"
                               }
                               "description" = "A Map from logger name to logger level."
-                              "type" = "object"
+                              "type"        = "object"
                             }
                             "type" = {
                               "description" = "Logging type, must be either 'inline' or 'external'."
@@ -15458,7 +15458,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                         }
                         "metadataVersion" = {
                           "description" = "The KRaft metadata version used by the Kafka cluster. This property is ignored when running in ZooKeeper mode. If the property is not set, it defaults to the metadata version that corresponds to the `version` property."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "metricsConfig" = {
                           "description" = "Metrics configuration."
@@ -15503,13 +15503,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "consumerByteRate" = {
                               "description" = "A per-broker byte-rate quota for clients consuming from a broker, independent of their number. If clients consume at maximum speed, the quota is shared equally between all non-excluded consumers. Otherwise, the quota is divided based on each client's consumption rate."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "controllerMutationRate" = {
                               "description" = "The default client quota on the rate at which mutations are accepted per second for create topic requests, create partition requests, and delete topic requests, defined for each broker. The mutations rate is measured by the number of partitions created or deleted. Applied on a per-broker basis."
-                              "minimum" = 0
-                              "type" = "number"
+                              "minimum"     = 0
+                              "type"        = "number"
                             }
                             "excludedPrincipals" = {
                               "description" = "List of principals that are excluded from the quota. The principals have to be prefixed with `User:`, for example `User:my-user;User:CN=my-other-user`."
@@ -15520,24 +15520,24 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                             }
                             "minAvailableBytesPerVolume" = {
                               "description" = "Stop message production if the available size (in bytes) of the storage is lower than or equal to this specified value. This condition is mutually exclusive with `minAvailableRatioPerVolume`."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "minAvailableRatioPerVolume" = {
                               "description" = "Stop message production if the percentage of available storage space falls below or equals the specified ratio (set as a decimal representing a percentage). This condition is mutually exclusive with `minAvailableBytesPerVolume`."
-                              "maximum" = 1
-                              "minimum" = 0
-                              "type" = "number"
+                              "maximum"     = 1
+                              "minimum"     = 0
+                              "type"        = "number"
                             }
                             "producerByteRate" = {
                               "description" = "A per-broker byte-rate quota for clients producing to a broker, independent of their number. If clients produce at maximum speed, the quota is shared equally between all non-excluded producers. Otherwise, the quota is divided based on each client's production rate."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "requestPercentage" = {
                               "description" = "The default client quota limits the maximum CPU utilization of each client as a percentage of the network and I/O threads of each broker. Applied on a per-broker basis."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "type" = {
                               "description" = "Quotas plugin type. Currently, the supported types are `kafka` and `strimzi`. `kafka` quotas type uses Kafka's built-in quotas plugin. `strimzi` quotas type uses Strimzi quotas plugin."
@@ -15558,8 +15558,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "topologyKey" = {
                               "description" = "A key that matches labels assigned to the Kubernetes cluster nodes. The value of the label is used to set a broker's `broker.rack` config, and the `client.rack` config for Kafka Connect or MirrorMaker 2."
-                              "example" = "topology.kubernetes.io/zone"
-                              "type" = "string"
+                              "example"     = "topology.kubernetes.io/zone"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -15572,36 +15572,36 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "failureThreshold" = {
                               "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "initialDelaySeconds" = {
                               "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "periodSeconds" = {
                               "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "successThreshold" = {
                               "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "timeoutSeconds" = {
                               "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                           }
                           "type" = "object"
                         }
                         "replicas" = {
                           "description" = "The number of pods in the cluster. This property is required when node pools are not used."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "resources" = {
                           "description" = "CPU and memory resources to reserve."
@@ -15627,7 +15627,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   },
                                 ]
-                                "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                 "x-kubernetes-int-or-string" = true
                               }
                               "type" = "object"
@@ -15642,7 +15642,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   },
                                 ]
-                                "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                 "x-kubernetes-int-or-string" = true
                               }
                               "type" = "object"
@@ -15655,16 +15655,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "class" = {
                               "description" = "The storage class to use for dynamic volume allocation."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "deleteClaim" = {
                               "description" = "Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "id" = {
                               "description" = "Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "kraftMetadata" = {
                               "description" = "Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is `shared`. At most one volume can have this property set."
@@ -15679,11 +15679,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "properties" = {
                                   "broker" = {
                                     "description" = "Id of the kafka broker (broker identifier)."
-                                    "type" = "integer"
+                                    "type"        = "integer"
                                   }
                                   "class" = {
                                     "description" = "The storage class to use for dynamic volume allocation for this broker."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "type" = "object"
@@ -15695,16 +15695,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "type" = "string"
                               }
                               "description" = "Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume."
-                              "type" = "object"
+                              "type"        = "object"
                             }
                             "size" = {
                               "description" = "When `type=persistent-claim`, defines the size of the persistent volume claim, such as 100Gi. Mandatory when `type=persistent-claim`."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "sizeLimit" = {
                               "description" = "When type=ephemeral, defines the total amount of local storage required for this EmptyDir volume (for example 1Gi)."
-                              "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                              "type" = "string"
+                              "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                              "type"        = "string"
                             }
                             "type" = {
                               "description" = "Storage type, must be either 'ephemeral', 'persistent-claim', or 'jbod'."
@@ -15721,16 +15721,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "properties" = {
                                   "class" = {
                                     "description" = "The storage class to use for dynamic volume allocation."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "deleteClaim" = {
                                     "description" = "Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed."
-                                    "type" = "boolean"
+                                    "type"        = "boolean"
                                   }
                                   "id" = {
                                     "description" = "Storage identification number. Mandatory for storage volumes defined with a `jbod` storage type configuration."
-                                    "minimum" = 0
-                                    "type" = "integer"
+                                    "minimum"     = 0
+                                    "type"        = "integer"
                                   }
                                   "kraftMetadata" = {
                                     "description" = "Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is `shared`. At most one volume can have this property set."
@@ -15745,11 +15745,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                       "properties" = {
                                         "broker" = {
                                           "description" = "Id of the kafka broker (broker identifier)."
-                                          "type" = "integer"
+                                          "type"        = "integer"
                                         }
                                         "class" = {
                                           "description" = "The storage class to use for dynamic volume allocation for this broker."
-                                          "type" = "string"
+                                          "type"        = "string"
                                         }
                                       }
                                       "type" = "object"
@@ -15761,16 +15761,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                       "type" = "string"
                                     }
                                     "description" = "Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume."
-                                    "type" = "object"
+                                    "type"        = "object"
                                   }
                                   "size" = {
                                     "description" = "When `type=persistent-claim`, defines the size of the persistent volume claim, such as 100Gi. Mandatory when `type=persistent-claim`."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "sizeLimit" = {
                                     "description" = "When type=ephemeral, defines the total amount of local storage required for this EmptyDir volume (for example 1Gi)."
-                                    "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                                    "type" = "string"
+                                    "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                                    "type"        = "string"
                                   }
                                   "type" = {
                                     "description" = "Storage type, must be either 'ephemeral' or 'persistent-claim'."
@@ -15828,14 +15828,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -15874,14 +15874,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -15900,14 +15900,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -15926,14 +15926,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -15952,14 +15952,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -15978,14 +15978,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -16004,14 +16004,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -16046,11 +16046,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "name" = {
                                         "description" = "The environment variable key."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "value" = {
                                         "description" = "The environment variable value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "valueFrom" = {
                                         "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -16255,14 +16255,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -16297,11 +16297,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "name" = {
                                         "description" = "The environment variable key."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "value" = {
                                         "description" = "The environment variable value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "valueFrom" = {
                                         "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -16506,14 +16506,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -16532,14 +16532,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -16558,14 +16558,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -16584,14 +16584,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -17114,7 +17114,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 }
                                 "enableServiceLinks" = {
                                   "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                                  "type" = "boolean"
+                                  "type"        = "boolean"
                                 }
                                 "hostAliases" = {
                                   "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -17154,25 +17154,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
                                 }
                                 "priorityClassName" = {
                                   "description" = "The name of the priority class used to assign priority to the pods. "
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "schedulerName" = {
                                   "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "securityContext" = {
                                   "description" = "Configures pod-level security attributes and common container settings."
@@ -17273,13 +17273,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 }
                                 "terminationGracePeriodSeconds" = {
                                   "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "tmpDirSizeLimit" = {
                                   "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                                  "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                                  "type" = "string"
+                                  "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                                  "type"        = "string"
                                 }
                                 "tolerations" = {
                                   "description" = "The pod's tolerations."
@@ -17375,11 +17375,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "oneOf" = [
                                       {
                                         "properties" = {
-                                          "configMap" = {}
-                                          "csi" = {}
-                                          "emptyDir" = {}
+                                          "configMap"             = {}
+                                          "csi"                   = {}
+                                          "emptyDir"              = {}
                                           "persistentVolumeClaim" = {}
-                                          "secret" = {}
+                                          "secret"                = {}
                                         }
                                       },
                                     ]
@@ -17467,7 +17467,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                       }
                                       "name" = {
                                         "description" = "Name to use for the volume. Required."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "persistentVolumeClaim" = {
                                         "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -17526,8 +17526,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               "properties" = {
                                 "maxUnavailable" = {
                                   "description" = "Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the `maxUnavailable` number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "metadata" = {
                                   "description" = "Metadata to apply to the `PodDisruptionBudgetTemplate` resource."
@@ -17537,14 +17537,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -17563,14 +17563,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -17589,14 +17589,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -17615,14 +17615,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -17649,18 +17649,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               "properties" = {
                                 "className" = {
                                   "description" = "The class name for the `RemoteStorageManager` implementation."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "classPath" = {
                                   "description" = "The class path for the `RemoteStorageManager` implementation."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "config" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "The additional configuration map for the `RemoteStorageManager` implementation. Keys will be automatically prefixed with `rsm.config.`, and added to Kafka broker configuration."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -17680,7 +17680,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                         }
                         "version" = {
                           "description" = "The Kafka broker version. Defaults to the latest version. Consult the user documentation to understand the process required to upgrade or downgrade the version."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                       }
                       "required" = [
@@ -17693,82 +17693,82 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                       "properties" = {
                         "enableSaramaLogging" = {
                           "description" = "Enable Sarama logging, a Go client library used by the Kafka Exporter."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "groupExcludeRegex" = {
                           "description" = "Regular expression to specify which consumer groups to exclude."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "groupRegex" = {
                           "description" = "Regular expression to specify which consumer groups to collect. Default value is `.*`."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "image" = {
                           "description" = "The container image used for the Kafka Exporter pods. If no image name is explicitly specified, the image name corresponds to the version specified in the Cluster Operator configuration. If an image name is not defined in the Cluster Operator configuration, a default value is used."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "livenessProbe" = {
                           "description" = "Pod liveness check."
                           "properties" = {
                             "failureThreshold" = {
                               "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "initialDelaySeconds" = {
                               "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "periodSeconds" = {
                               "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "successThreshold" = {
                               "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "timeoutSeconds" = {
                               "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                           }
                           "type" = "object"
                         }
                         "logging" = {
                           "description" = "Only log messages with the given severity or above. Valid levels: [`info`, `debug`, `trace`]. Default log level is `info`."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "readinessProbe" = {
                           "description" = "Pod readiness check."
                           "properties" = {
                             "failureThreshold" = {
                               "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "initialDelaySeconds" = {
                               "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "periodSeconds" = {
                               "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "successThreshold" = {
                               "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "timeoutSeconds" = {
                               "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                           }
                           "type" = "object"
@@ -17797,7 +17797,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   },
                                 ]
-                                "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                 "x-kubernetes-int-or-string" = true
                               }
                               "type" = "object"
@@ -17812,7 +17812,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   },
                                 ]
-                                "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                 "x-kubernetes-int-or-string" = true
                               }
                               "type" = "object"
@@ -17822,7 +17822,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                         }
                         "showAllOffsets" = {
                           "description" = "Whether show the offset/lag for all consumer group, otherwise, only show connected consumer groups."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "template" = {
                           "description" = "Customization of deployment templates and pods."
@@ -17854,11 +17854,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "name" = {
                                         "description" = "The environment variable key."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "value" = {
                                         "description" = "The environment variable value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "valueFrom" = {
                                         "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -18071,14 +18071,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -18601,7 +18601,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 }
                                 "enableServiceLinks" = {
                                   "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                                  "type" = "boolean"
+                                  "type"        = "boolean"
                                 }
                                 "hostAliases" = {
                                   "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -18641,25 +18641,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
                                 }
                                 "priorityClassName" = {
                                   "description" = "The name of the priority class used to assign priority to the pods. "
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "schedulerName" = {
                                   "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "securityContext" = {
                                   "description" = "Configures pod-level security attributes and common container settings."
@@ -18760,13 +18760,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 }
                                 "terminationGracePeriodSeconds" = {
                                   "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "tmpDirSizeLimit" = {
                                   "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                                  "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                                  "type" = "string"
+                                  "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                                  "type"        = "string"
                                 }
                                 "tolerations" = {
                                   "description" = "The pod's tolerations."
@@ -18862,11 +18862,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "oneOf" = [
                                       {
                                         "properties" = {
-                                          "configMap" = {}
-                                          "csi" = {}
-                                          "emptyDir" = {}
+                                          "configMap"             = {}
+                                          "csi"                   = {}
+                                          "emptyDir"              = {}
                                           "persistentVolumeClaim" = {}
-                                          "secret" = {}
+                                          "secret"                = {}
                                         }
                                       },
                                     ]
@@ -18954,7 +18954,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                       }
                                       "name" = {
                                         "description" = "Name to use for the volume. Required."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "persistentVolumeClaim" = {
                                         "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -19019,14 +19019,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -19045,14 +19045,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -19065,11 +19065,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                         }
                         "topicExcludeRegex" = {
                           "description" = "Regular expression to specify which topics to exclude."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "topicRegex" = {
                           "description" = "Regular expression to specify which topics to collect. Default value is `.*`."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                       }
                       "type" = "object"
@@ -19085,13 +19085,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                       "description" = "Configuration of the ZooKeeper cluster. This section is required when running a ZooKeeper-based Apache Kafka cluster."
                       "properties" = {
                         "config" = {
-                          "description" = "The ZooKeeper broker config. Properties with the following prefixes cannot be set: server., dataDir, dataLogDir, clientPort, authProvider, quorum.auth, requireClientAuthScheme, snapshot.trust.empty, standaloneEnabled, reconfigEnabled, 4lw.commands.whitelist, secureClientPort, ssl., serverCnxnFactory, sslQuorum (with the exception of: ssl.protocol, ssl.quorum.protocol, ssl.enabledProtocols, ssl.quorum.enabledProtocols, ssl.ciphersuites, ssl.quorum.ciphersuites, ssl.hostnameVerification, ssl.quorum.hostnameVerification)."
-                          "type" = "object"
+                          "description"                          = "The ZooKeeper broker config. Properties with the following prefixes cannot be set: server., dataDir, dataLogDir, clientPort, authProvider, quorum.auth, requireClientAuthScheme, snapshot.trust.empty, standaloneEnabled, reconfigEnabled, 4lw.commands.whitelist, secureClientPort, ssl., serverCnxnFactory, sslQuorum (with the exception of: ssl.protocol, ssl.quorum.protocol, ssl.enabledProtocols, ssl.quorum.enabledProtocols, ssl.ciphersuites, ssl.quorum.ciphersuites, ssl.hostnameVerification, ssl.quorum.hostnameVerification)."
+                          "type"                                 = "object"
                           "x-kubernetes-preserve-unknown-fields" = true
                         }
                         "image" = {
                           "description" = "The container image used for ZooKeeper pods. If no image name is explicitly specified, it is determined based on the Kafka version set in `spec.kafka.version`. The image names are specifically mapped to corresponding versions in the Cluster Operator configuration."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "jmxOptions" = {
                           "description" = "JMX Options for Zookeeper nodes."
@@ -19123,21 +19123,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "type" = "string"
                               }
                               "description" = "A map of -XX options to the JVM."
-                              "type" = "object"
+                              "type"        = "object"
                             }
                             "-Xms" = {
                               "description" = "-Xms option to to the JVM."
-                              "pattern" = "^[0-9]+[mMgG]?$"
-                              "type" = "string"
+                              "pattern"     = "^[0-9]+[mMgG]?$"
+                              "type"        = "string"
                             }
                             "-Xmx" = {
                               "description" = "-Xmx option to to the JVM."
-                              "pattern" = "^[0-9]+[mMgG]?$"
-                              "type" = "string"
+                              "pattern"     = "^[0-9]+[mMgG]?$"
+                              "type"        = "string"
                             }
                             "gcLoggingEnabled" = {
                               "description" = "Specifies whether the Garbage Collection logging is enabled. The default is false."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "javaSystemProperties" = {
                               "description" = "A map of additional system properties which will be passed using the `-D` option to the JVM."
@@ -19145,11 +19145,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "properties" = {
                                   "name" = {
                                     "description" = "The system property name."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The system property value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "type" = "object"
@@ -19164,28 +19164,28 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "failureThreshold" = {
                               "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "initialDelaySeconds" = {
                               "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "periodSeconds" = {
                               "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "successThreshold" = {
                               "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "timeoutSeconds" = {
                               "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                           }
                           "type" = "object"
@@ -19198,7 +19198,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "type" = "string"
                               }
                               "description" = "A Map from logger name to logger level."
-                              "type" = "object"
+                              "type"        = "object"
                             }
                             "type" = {
                               "description" = "Logging type, must be either 'inline' or 'external'."
@@ -19278,36 +19278,36 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "failureThreshold" = {
                               "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "initialDelaySeconds" = {
                               "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "periodSeconds" = {
                               "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "successThreshold" = {
                               "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                             "timeoutSeconds" = {
                               "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                              "minimum" = 1
-                              "type" = "integer"
+                              "minimum"     = 1
+                              "type"        = "integer"
                             }
                           }
                           "type" = "object"
                         }
                         "replicas" = {
                           "description" = "The number of pods in the cluster."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "resources" = {
                           "description" = "CPU and memory resources to reserve."
@@ -19333,7 +19333,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   },
                                 ]
-                                "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                 "x-kubernetes-int-or-string" = true
                               }
                               "type" = "object"
@@ -19348,7 +19348,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "type" = "string"
                                   },
                                 ]
-                                "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                 "x-kubernetes-int-or-string" = true
                               }
                               "type" = "object"
@@ -19361,16 +19361,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           "properties" = {
                             "class" = {
                               "description" = "The storage class to use for dynamic volume allocation."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "deleteClaim" = {
                               "description" = "Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "id" = {
                               "description" = "Storage identification number. Mandatory for storage volumes defined with a `jbod` storage type configuration."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "kraftMetadata" = {
                               "description" = "Specifies whether this volume should be used for storing KRaft metadata. This property is optional. When set, the only currently supported value is `shared`. At most one volume can have this property set."
@@ -19385,11 +19385,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "properties" = {
                                   "broker" = {
                                     "description" = "Id of the kafka broker (broker identifier)."
-                                    "type" = "integer"
+                                    "type"        = "integer"
                                   }
                                   "class" = {
                                     "description" = "The storage class to use for dynamic volume allocation for this broker."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                 }
                                 "type" = "object"
@@ -19401,16 +19401,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 "type" = "string"
                               }
                               "description" = "Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume."
-                              "type" = "object"
+                              "type"        = "object"
                             }
                             "size" = {
                               "description" = "When `type=persistent-claim`, defines the size of the persistent volume claim, such as 100Gi. Mandatory when `type=persistent-claim`."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "sizeLimit" = {
                               "description" = "When type=ephemeral, defines the total amount of local storage required for this EmptyDir volume (for example 1Gi)."
-                              "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                              "type" = "string"
+                              "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                              "type"        = "string"
                             }
                             "type" = {
                               "description" = "Storage type, must be either 'ephemeral' or 'persistent-claim'."
@@ -19460,14 +19460,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -19486,14 +19486,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -19532,14 +19532,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -19558,14 +19558,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -20088,7 +20088,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 }
                                 "enableServiceLinks" = {
                                   "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                                  "type" = "boolean"
+                                  "type"        = "boolean"
                                 }
                                 "hostAliases" = {
                                   "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -20128,25 +20128,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
                                 }
                                 "priorityClassName" = {
                                   "description" = "The name of the priority class used to assign priority to the pods. "
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "schedulerName" = {
                                   "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "securityContext" = {
                                   "description" = "Configures pod-level security attributes and common container settings."
@@ -20247,13 +20247,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                 }
                                 "terminationGracePeriodSeconds" = {
                                   "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "tmpDirSizeLimit" = {
                                   "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                                  "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                                  "type" = "string"
+                                  "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                                  "type"        = "string"
                                 }
                                 "tolerations" = {
                                   "description" = "The pod's tolerations."
@@ -20349,11 +20349,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "oneOf" = [
                                       {
                                         "properties" = {
-                                          "configMap" = {}
-                                          "csi" = {}
-                                          "emptyDir" = {}
+                                          "configMap"             = {}
+                                          "csi"                   = {}
+                                          "emptyDir"              = {}
                                           "persistentVolumeClaim" = {}
-                                          "secret" = {}
+                                          "secret"                = {}
                                         }
                                       },
                                     ]
@@ -20441,7 +20441,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                       }
                                       "name" = {
                                         "description" = "Name to use for the volume. Required."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "persistentVolumeClaim" = {
                                         "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -20500,8 +20500,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               "properties" = {
                                 "maxUnavailable" = {
                                   "description" = "Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the `maxUnavailable` number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1."
-                                  "minimum" = 0
-                                  "type" = "integer"
+                                  "minimum"     = 0
+                                  "type"        = "integer"
                                 }
                                 "metadata" = {
                                   "description" = "Metadata to apply to the `PodDisruptionBudgetTemplate` resource."
@@ -20511,14 +20511,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -20537,14 +20537,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -20563,14 +20563,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -20589,14 +20589,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                         "type" = "string"
                                       }
                                       "description" = "Annotations added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                     "labels" = {
                                       "additionalProperties" = {
                                         "type" = "string"
                                       }
                                       "description" = "Labels added to the Kubernetes resource."
-                                      "type" = "object"
+                                      "type"        = "object"
                                     }
                                   }
                                   "type" = "object"
@@ -20639,11 +20639,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                                     "properties" = {
                                       "name" = {
                                         "description" = "The environment variable key."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "value" = {
                                         "description" = "The environment variable value."
-                                        "type" = "string"
+                                        "type"        = "string"
                                       }
                                       "valueFrom" = {
                                         "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -20861,7 +20861,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                       "properties" = {
                         "lastTransitionTime" = {
                           "description" = "The timestamp of the latest auto-rebalancing state update."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "modes" = {
                           "description" = <<-EOT
@@ -20920,7 +20920,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                     }
                     "clusterId" = {
                       "description" = "Kafka cluster Id."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "conditions" = {
                       "description" = "List of status conditions."
@@ -20928,23 +20928,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -20965,7 +20965,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                     }
                     "kafkaMetadataVersion" = {
                       "description" = "The KRaft metadata.version currently used by the Kafka cluster."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "kafkaNodePools" = {
                       "description" = "List of the KafkaNodePools used by this Kafka cluster."
@@ -20973,7 +20973,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                         "properties" = {
                           "name" = {
                             "description" = "The name of the KafkaNodePool used by this Kafka resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -20982,7 +20982,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                     }
                     "kafkaVersion" = {
                       "description" = "The version of Kafka currently deployed in the cluster."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "listeners" = {
                       "description" = "Addresses of the internal and external listeners."
@@ -20994,11 +20994,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                               "properties" = {
                                 "host" = {
                                   "description" = "The DNS name or IP address of the Kafka bootstrap service."
-                                  "type" = "string"
+                                  "type"        = "string"
                                 }
                                 "port" = {
                                   "description" = "The port of the Kafka bootstrap service."
-                                  "type" = "integer"
+                                  "type"        = "integer"
                                 }
                               }
                               "type" = "object"
@@ -21007,7 +21007,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           }
                           "bootstrapServers" = {
                             "description" = "A comma-separated list of `host:port` pairs for connecting to the Kafka cluster using this listener."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "certificates" = {
                             "description" = "A list of TLS certificates which can be used to verify the identity of the server when connecting to the given listener. Set only for `tls` and `external` listeners."
@@ -21018,11 +21018,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                           }
                           "name" = {
                             "description" = "The name of the listener."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The name of the listener."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -21031,11 +21031,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "operatorLastSuccessfulVersion" = {
                       "description" = "The version of the Strimzi Cluster Operator which performed the last successful reconciliation."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "registeredNodeIds" = {
                       "description" = "Registered node IDs used by this Kafka cluster. This field is used for internal purposes only and will be removed in the future."
@@ -21051,7 +21051,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = true
           "subresources" = {
             "status" = {}
@@ -21065,10 +21065,10 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkas_kafka_strimzi_io
 resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_strimzi_io" {
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "labels" = {
-        "app" = "strimzi"
+        "app"                    = "strimzi"
         "strimzi.io/crd-install" = "true"
       }
       "name" = "kafkabridges.kafka.strimzi.io"
@@ -21082,9 +21082,9 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
         "categories" = [
           "strimzi",
         ]
-        "kind" = "KafkaBridge"
+        "kind"     = "KafkaBridge"
         "listKind" = "KafkaBridgeList"
-        "plural" = "kafkabridges"
+        "plural"   = "kafkabridges"
         "shortNames" = [
           "kb",
         ]
@@ -21096,22 +21096,22 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
           "additionalPrinterColumns" = [
             {
               "description" = "The desired number of Kafka Bridge replicas"
-              "jsonPath" = ".spec.replicas"
-              "name" = "Desired replicas"
-              "type" = "integer"
+              "jsonPath"    = ".spec.replicas"
+              "name"        = "Desired replicas"
+              "type"        = "integer"
             },
             {
               "description" = "The boostrap servers"
-              "jsonPath" = ".spec.bootstrapServers"
-              "name" = "Bootstrap Servers"
-              "priority" = 1
-              "type" = "string"
+              "jsonPath"    = ".spec.bootstrapServers"
+              "name"        = "Bootstrap Servers"
+              "priority"    = 1
+              "type"        = "string"
             },
             {
               "description" = "The state of the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Ready\")].status"
-              "name" = "Ready"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Ready\")].status"
+              "name"        = "Ready"
+              "type"        = "string"
             },
           ]
           "name" = "v1beta2"
@@ -21120,11 +21120,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -21136,8 +21136,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                       "description" = "Kafka AdminClient related configuration."
                       "properties" = {
                         "config" = {
-                          "description" = "The Kafka AdminClient configuration used for AdminClient instances created by the bridge."
-                          "type" = "object"
+                          "description"                          = "The Kafka AdminClient configuration used for AdminClient instances created by the bridge."
+                          "type"                                 = "object"
                           "x-kubernetes-preserve-unknown-fields" = true
                         }
                       }
@@ -21151,11 +21151,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                           "properties" = {
                             "key" = {
                               "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "secretName" = {
                               "description" = "The name of the Kubernetes Secret containing the secret value."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -21166,30 +21166,30 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                         }
                         "accessTokenIsJwt" = {
                           "description" = "Configure whether access token should be treated as JWT. This should be set to `false` if the authorization server returns opaque tokens. Defaults to `true`."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "accessTokenLocation" = {
                           "description" = "Path to the token file containing an access token to be used for authentication."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "audience" = {
                           "description" = "OAuth audience to use when authenticating against the authorization server. Some authorization servers require the audience to be explicitly set. The possible values depend on how the authorization server is configured. By default, `audience` is not specified when performing the token endpoint request."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "certificateAndKey" = {
                           "description" = "Reference to the `Secret` which holds the certificate and private key pair."
                           "properties" = {
                             "certificate" = {
                               "description" = "The name of the file certificate in the Secret."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "key" = {
                               "description" = "The name of the private key in the Secret."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "secretName" = {
                               "description" = "The name of the Secret containing the certificate."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -21204,11 +21204,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                           "properties" = {
                             "key" = {
                               "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "secretName" = {
                               "description" = "The name of the Kubernetes Secret containing the secret value."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -21219,26 +21219,26 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                         }
                         "clientAssertionLocation" = {
                           "description" = "Path to the file containing the client assertion to be used for authentication."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "clientAssertionType" = {
                           "description" = "The client assertion type. If not set, and either `clientAssertion` or `clientAssertionLocation` is configured, this value defaults to `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "clientId" = {
                           "description" = "OAuth Client ID which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "clientSecret" = {
                           "description" = "Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI."
                           "properties" = {
                             "key" = {
                               "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "secretName" = {
                               "description" = "The name of the Kubernetes Secret containing the secret value."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -21249,42 +21249,42 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                         }
                         "connectTimeoutSeconds" = {
                           "description" = "The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                         "disableTlsHostnameVerification" = {
                           "description" = "Enable or disable TLS hostname verification. Default value is `false`."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "enableMetrics" = {
                           "description" = "Enable or disable OAuth metrics. Default value is `false`."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "httpRetries" = {
                           "description" = "The maximum number of retries to attempt if an initial HTTP request fails. If not set, the default is to not attempt any retries."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                         "httpRetryPauseMs" = {
                           "description" = "The pause to take before retrying a failed HTTP request. If not set, the default is to not pause at all but to immediately repeat a request."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                         "includeAcceptHeader" = {
                           "description" = "Whether the Accept header should be set in requests to the authorization servers. The default value is `true`."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "maxTokenExpirySeconds" = {
                           "description" = "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                         "passwordSecret" = {
                           "description" = "Reference to the `Secret` which holds the password."
                           "properties" = {
                             "password" = {
                               "description" = "The name of the key in the Secret under which the password is stored."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "secretName" = {
                               "description" = "The name of the Secret containing the password."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -21295,18 +21295,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                         }
                         "readTimeoutSeconds" = {
                           "description" = "The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                         "refreshToken" = {
                           "description" = "Link to Kubernetes Secret containing the refresh token which can be used to obtain access token from the authorization server."
                           "properties" = {
                             "key" = {
                               "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "secretName" = {
                               "description" = "The name of the Kubernetes Secret containing the secret value."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -21320,11 +21320,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                             "type" = "string"
                           }
                           "description" = "SASL extensions parameters."
-                          "type" = "object"
+                          "type"        = "object"
                         }
                         "scope" = {
                           "description" = "OAuth scope to use when authenticating against the authorization server. Some authorization servers require this to be set. The possible values depend on how authorization server is configured. By default `scope` is not specified when doing the token endpoint request."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "tlsTrustedCertificates" = {
                           "description" = "Trusted certificates for TLS connection to the OAuth server."
@@ -21350,15 +21350,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                             "properties" = {
                               "certificate" = {
                                 "description" = "The name of the file certificate in the secret."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "pattern" = {
                                 "description" = "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "secretName" = {
                                 "description" = "The name of the Secret containing the certificate."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                             }
                             "required" = [
@@ -21370,7 +21370,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                         }
                         "tokenEndpointUri" = {
                           "description" = "Authorization server token endpoint URI."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "type" = {
                           "description" = "Authentication type. Currently the supported types are `tls`, `scram-sha-256`, `scram-sha-512`, `plain`, and 'oauth'. `scram-sha-256` and `scram-sha-512` types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. `plain` type uses SASL PLAIN Authentication. `oauth` type uses SASL OAUTHBEARER Authentication. The `tls` type uses TLS Client Authentication. The `tls` type is supported only over TLS connections."
@@ -21385,7 +21385,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                         }
                         "username" = {
                           "description" = "Username used for the authentication."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                       }
                       "required" = [
@@ -21395,34 +21395,34 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                     }
                     "bootstrapServers" = {
                       "description" = "A list of host:port pairs for establishing the initial connection to the Kafka cluster."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "clientRackInitImage" = {
                       "description" = "The image of the init container used for initializing the `client.rack`."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "consumer" = {
                       "description" = "Kafka consumer related configuration."
                       "properties" = {
                         "config" = {
-                          "description" = "The Kafka consumer configuration used for consumer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, group.id, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
-                          "type" = "object"
+                          "description"                          = "The Kafka consumer configuration used for consumer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, group.id, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
+                          "type"                                 = "object"
                           "x-kubernetes-preserve-unknown-fields" = true
                         }
                         "enabled" = {
                           "description" = "Whether the HTTP consumer should be enabled or disabled. The default is enabled (`true`)."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "timeoutSeconds" = {
                           "description" = "The timeout in seconds for deleting inactive consumers, default is -1 (disabled)."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
                     }
                     "enableMetrics" = {
                       "description" = "Enable the metrics for the Kafka Bridge. Default is false."
-                      "type" = "boolean"
+                      "type"        = "boolean"
                     }
                     "http" = {
                       "description" = "The HTTP related configuration."
@@ -21453,15 +21453,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                         }
                         "port" = {
                           "description" = "The port which is the server listening on."
-                          "minimum" = 1023
-                          "type" = "integer"
+                          "minimum"     = 1023
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
                     }
                     "image" = {
                       "description" = "The container image used for Kafka Bridge pods. If no image name is explicitly specified, the image name corresponds to the image specified in the Cluster Operator configuration. If an image name is not defined in the Cluster Operator configuration, a default value is used."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "jvmOptions" = {
                       "description" = "**Currently not supported** JVM Options for pods."
@@ -21471,21 +21471,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                             "type" = "string"
                           }
                           "description" = "A map of -XX options to the JVM."
-                          "type" = "object"
+                          "type"        = "object"
                         }
                         "-Xms" = {
                           "description" = "-Xms option to to the JVM."
-                          "pattern" = "^[0-9]+[mMgG]?$"
-                          "type" = "string"
+                          "pattern"     = "^[0-9]+[mMgG]?$"
+                          "type"        = "string"
                         }
                         "-Xmx" = {
                           "description" = "-Xmx option to to the JVM."
-                          "pattern" = "^[0-9]+[mMgG]?$"
-                          "type" = "string"
+                          "pattern"     = "^[0-9]+[mMgG]?$"
+                          "type"        = "string"
                         }
                         "gcLoggingEnabled" = {
                           "description" = "Specifies whether the Garbage Collection logging is enabled. The default is false."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "javaSystemProperties" = {
                           "description" = "A map of additional system properties which will be passed using the `-D` option to the JVM."
@@ -21493,11 +21493,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                             "properties" = {
                               "name" = {
                                 "description" = "The system property name."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "value" = {
                                 "description" = "The system property value."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                             }
                             "type" = "object"
@@ -21512,28 +21512,28 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                       "properties" = {
                         "failureThreshold" = {
                           "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "initialDelaySeconds" = {
                           "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "periodSeconds" = {
                           "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "successThreshold" = {
                           "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "timeoutSeconds" = {
                           "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
@@ -21546,7 +21546,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                             "type" = "string"
                           }
                           "description" = "A Map from logger name to logger level."
-                          "type" = "object"
+                          "type"        = "object"
                         }
                         "type" = {
                           "description" = "Logging type, must be either 'inline' or 'external'."
@@ -21587,13 +21587,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                       "description" = "Kafka producer related configuration."
                       "properties" = {
                         "config" = {
-                          "description" = "The Kafka producer configuration used for producer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
-                          "type" = "object"
+                          "description"                          = "The Kafka producer configuration used for producer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
+                          "type"                                 = "object"
                           "x-kubernetes-preserve-unknown-fields" = true
                         }
                         "enabled" = {
                           "description" = "Whether the HTTP producer should be enabled or disabled. The default is enabled (`true`)."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                       }
                       "type" = "object"
@@ -21603,8 +21603,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                       "properties" = {
                         "topologyKey" = {
                           "description" = "A key that matches labels assigned to the Kubernetes cluster nodes. The value of the label is used to set a broker's `broker.rack` config, and the `client.rack` config for Kafka Connect or MirrorMaker 2."
-                          "example" = "topology.kubernetes.io/zone"
-                          "type" = "string"
+                          "example"     = "topology.kubernetes.io/zone"
+                          "type"        = "string"
                         }
                       }
                       "required" = [
@@ -21617,36 +21617,36 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                       "properties" = {
                         "failureThreshold" = {
                           "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "initialDelaySeconds" = {
                           "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "periodSeconds" = {
                           "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "successThreshold" = {
                           "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "timeoutSeconds" = {
                           "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
                     }
                     "replicas" = {
                       "description" = "The number of pods in the `Deployment`.  Defaults to `1`."
-                      "minimum" = 0
-                      "type" = "integer"
+                      "minimum"     = 0
+                      "type"        = "integer"
                     }
                     "resources" = {
                       "description" = "CPU and memory resources to reserve."
@@ -21672,7 +21672,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                                 "type" = "string"
                               },
                             ]
-                            "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                            "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                             "x-kubernetes-int-or-string" = true
                           }
                           "type" = "object"
@@ -21687,7 +21687,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                                 "type" = "string"
                               },
                             ]
-                            "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                            "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                             "x-kubernetes-int-or-string" = true
                           }
                           "type" = "object"
@@ -21729,14 +21729,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -21771,11 +21771,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                                 "properties" = {
                                   "name" = {
                                     "description" = "The environment variable key."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The environment variable value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "valueFrom" = {
                                     "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -21980,14 +21980,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -22014,14 +22014,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -22056,11 +22056,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                                 "properties" = {
                                   "name" = {
                                     "description" = "The environment variable key."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The environment variable value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "valueFrom" = {
                                     "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -22769,7 +22769,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                             }
                             "enableServiceLinks" = {
                               "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "hostAliases" = {
                               "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -22809,25 +22809,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
                             }
                             "priorityClassName" = {
                               "description" = "The name of the priority class used to assign priority to the pods. "
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "schedulerName" = {
                               "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "securityContext" = {
                               "description" = "Configures pod-level security attributes and common container settings."
@@ -22928,13 +22928,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                             }
                             "terminationGracePeriodSeconds" = {
                               "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "tmpDirSizeLimit" = {
                               "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                              "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                              "type" = "string"
+                              "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                              "type"        = "string"
                             }
                             "tolerations" = {
                               "description" = "The pod's tolerations."
@@ -23030,11 +23030,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                                 "oneOf" = [
                                   {
                                     "properties" = {
-                                      "configMap" = {}
-                                      "csi" = {}
-                                      "emptyDir" = {}
+                                      "configMap"             = {}
+                                      "csi"                   = {}
+                                      "emptyDir"              = {}
                                       "persistentVolumeClaim" = {}
-                                      "secret" = {}
+                                      "secret"                = {}
                                     }
                                   },
                                 ]
@@ -23122,7 +23122,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                                   }
                                   "name" = {
                                     "description" = "Name to use for the volume. Required."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "persistentVolumeClaim" = {
                                     "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -23181,8 +23181,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                           "properties" = {
                             "maxUnavailable" = {
                               "description" = "Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the `maxUnavailable` number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "metadata" = {
                               "description" = "Metadata to apply to the `PodDisruptionBudgetTemplate` resource."
@@ -23192,14 +23192,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -23218,14 +23218,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -23263,15 +23263,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                             "properties" = {
                               "certificate" = {
                                 "description" = "The name of the file certificate in the secret."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "pattern" = {
                                 "description" = "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "secretName" = {
                                 "description" = "The name of the Secret containing the certificate."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                             }
                             "required" = [
@@ -23316,23 +23316,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -23341,19 +23341,19 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
                     }
                     "labelSelector" = {
                       "description" = "Label selector for pods providing this resource."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "replicas" = {
                       "description" = "The current number of pods being used to provide this resource."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "url" = {
                       "description" = "The URL at which external client applications can access the Kafka Bridge."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -23362,12 +23362,12 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = true
           "subresources" = {
             "scale" = {
-              "labelSelectorPath" = ".status.labelSelector"
-              "specReplicasPath" = ".spec.replicas"
+              "labelSelectorPath"  = ".status.labelSelector"
+              "specReplicasPath"   = ".spec.replicas"
               "statusReplicasPath" = ".status.replicas"
             }
             "status" = {}
@@ -23381,23 +23381,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkabridges_kafka_stri
 resource "kubernetes_manifest" "rolebinding_kafka_strimzi_cluster_operator_leader_election" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "RoleBinding"
+    "kind"       = "RoleBinding"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
       }
-      "name" = "strimzi-cluster-operator-leader-election"
+      "name"      = "strimzi-cluster-operator-leader-election"
       "namespace" = "kafka"
     }
     "roleRef" = {
       "apiGroup" = "rbac.authorization.k8s.io"
-      "kind" = "ClusterRole"
-      "name" = "strimzi-cluster-operator-leader-election"
+      "kind"     = "ClusterRole"
+      "name"     = "strimzi-cluster-operator-leader-election"
     }
     "subjects" = [
       {
-        "kind" = "ServiceAccount"
-        "name" = "strimzi-cluster-operator"
+        "kind"      = "ServiceAccount"
+        "name"      = "strimzi-cluster-operator"
         "namespace" = "kafka"
       },
     ]
@@ -23407,7 +23407,7 @@ resource "kubernetes_manifest" "rolebinding_kafka_strimzi_cluster_operator_leade
 resource "kubernetes_manifest" "clusterrole_strimzi_entity_operator" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "ClusterRole"
+    "kind"       = "ClusterRole"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
@@ -23486,7 +23486,7 @@ resource "kubernetes_manifest" "clusterrole_strimzi_entity_operator" {
 resource "kubernetes_manifest" "clusterrole_strimzi_cluster_operator_namespaced" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "ClusterRole"
+    "kind"       = "ClusterRole"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
@@ -23684,7 +23684,7 @@ resource "kubernetes_manifest" "clusterrole_strimzi_cluster_operator_namespaced"
 resource "kubernetes_manifest" "clusterrolebinding_strimzi_cluster_operator_kafka_client_delegation" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "ClusterRoleBinding"
+    "kind"       = "ClusterRoleBinding"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
@@ -23693,13 +23693,13 @@ resource "kubernetes_manifest" "clusterrolebinding_strimzi_cluster_operator_kafk
     }
     "roleRef" = {
       "apiGroup" = "rbac.authorization.k8s.io"
-      "kind" = "ClusterRole"
-      "name" = "strimzi-kafka-client"
+      "kind"     = "ClusterRole"
+      "name"     = "strimzi-kafka-client"
     }
     "subjects" = [
       {
-        "kind" = "ServiceAccount"
-        "name" = "strimzi-cluster-operator"
+        "kind"      = "ServiceAccount"
+        "name"      = "strimzi-cluster-operator"
         "namespace" = "kafka"
       },
     ]
@@ -23709,23 +23709,23 @@ resource "kubernetes_manifest" "clusterrolebinding_strimzi_cluster_operator_kafk
 resource "kubernetes_manifest" "rolebinding_kafka_strimzi_cluster_operator_watched" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "RoleBinding"
+    "kind"       = "RoleBinding"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
       }
-      "name" = "strimzi-cluster-operator-watched"
+      "name"      = "strimzi-cluster-operator-watched"
       "namespace" = "kafka"
     }
     "roleRef" = {
       "apiGroup" = "rbac.authorization.k8s.io"
-      "kind" = "ClusterRole"
-      "name" = "strimzi-cluster-operator-watched"
+      "kind"     = "ClusterRole"
+      "name"     = "strimzi-cluster-operator-watched"
     }
     "subjects" = [
       {
-        "kind" = "ServiceAccount"
-        "name" = "strimzi-cluster-operator"
+        "kind"      = "ServiceAccount"
+        "name"      = "strimzi-cluster-operator"
         "namespace" = "kafka"
       },
     ]
@@ -23735,12 +23735,12 @@ resource "kubernetes_manifest" "rolebinding_kafka_strimzi_cluster_operator_watch
 resource "kubernetes_manifest" "serviceaccount_kafka_strimzi_cluster_operator" {
   manifest = {
     "apiVersion" = "v1"
-    "kind" = "ServiceAccount"
+    "kind"       = "ServiceAccount"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
       }
-      "name" = "strimzi-cluster-operator"
+      "name"      = "strimzi-cluster-operator"
       "namespace" = "kafka"
     }
   }
@@ -23749,7 +23749,7 @@ resource "kubernetes_manifest" "serviceaccount_kafka_strimzi_cluster_operator" {
 resource "kubernetes_manifest" "clusterrole_strimzi_cluster_operator_global" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "ClusterRole"
+    "kind"       = "ClusterRole"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
@@ -23803,10 +23803,10 @@ resource "kubernetes_manifest" "clusterrole_strimzi_cluster_operator_global" {
 resource "kubernetes_manifest" "customresourcedefinition_kafkaconnectors_kafka_strimzi_io" {
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "labels" = {
-        "app" = "strimzi"
+        "app"                    = "strimzi"
         "strimzi.io/crd-install" = "true"
       }
       "name" = "kafkaconnectors.kafka.strimzi.io"
@@ -23820,9 +23820,9 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnectors_kafka_s
         "categories" = [
           "strimzi",
         ]
-        "kind" = "KafkaConnector"
+        "kind"     = "KafkaConnector"
         "listKind" = "KafkaConnectorList"
-        "plural" = "kafkaconnectors"
+        "plural"   = "kafkaconnectors"
         "shortNames" = [
           "kctr",
         ]
@@ -23834,27 +23834,27 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnectors_kafka_s
           "additionalPrinterColumns" = [
             {
               "description" = "The name of the Kafka Connect cluster this connector belongs to"
-              "jsonPath" = ".metadata.labels.strimzi\\.io/cluster"
-              "name" = "Cluster"
-              "type" = "string"
+              "jsonPath"    = ".metadata.labels.strimzi\\.io/cluster"
+              "name"        = "Cluster"
+              "type"        = "string"
             },
             {
               "description" = "The class used by this connector"
-              "jsonPath" = ".spec.class"
-              "name" = "Connector class"
-              "type" = "string"
+              "jsonPath"    = ".spec.class"
+              "name"        = "Connector class"
+              "type"        = "string"
             },
             {
               "description" = "Maximum number of tasks"
-              "jsonPath" = ".spec.tasksMax"
-              "name" = "Max Tasks"
-              "type" = "integer"
+              "jsonPath"    = ".spec.tasksMax"
+              "name"        = "Max Tasks"
+              "type"        = "integer"
             },
             {
               "description" = "The state of the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Ready\")].status"
-              "name" = "Ready"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Ready\")].status"
+              "name"        = "Ready"
+              "type"        = "string"
             },
           ]
           "name" = "v1beta2"
@@ -23863,11 +23863,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnectors_kafka_s
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -23898,22 +23898,22 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnectors_kafka_s
                       "properties" = {
                         "enabled" = {
                           "description" = "Whether automatic restart for failed connectors and tasks should be enabled or disabled."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "maxRestarts" = {
                           "description" = "The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
                     }
                     "class" = {
                       "description" = "The Class for the Kafka Connector."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "config" = {
-                      "description" = "The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max."
-                      "type" = "object"
+                      "description"                          = "The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max."
+                      "type"                                 = "object"
                       "x-kubernetes-preserve-unknown-fields" = true
                     }
                     "listOffsets" = {
@@ -23936,7 +23936,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnectors_kafka_s
                     }
                     "pause" = {
                       "description" = "Whether the connector should be paused. Defaults to false."
-                      "type" = "boolean"
+                      "type"        = "boolean"
                     }
                     "state" = {
                       "description" = "The state the connector should be in. Defaults to running."
@@ -23949,8 +23949,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnectors_kafka_s
                     }
                     "tasksMax" = {
                       "description" = "The maximum number of tasks for the Kafka Connector."
-                      "minimum" = 1
-                      "type" = "integer"
+                      "minimum"     = 1
+                      "type"        = "integer"
                     }
                   }
                   "type" = "object"
@@ -23963,15 +23963,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnectors_kafka_s
                       "properties" = {
                         "connectorName" = {
                           "description" = "The name of the connector being restarted."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "count" = {
                           "description" = "The number of times the connector or task is restarted."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                         "lastRestartTimestamp" = {
                           "description" = "The last time the automatic restart was attempted. The required format is 'yyyy-MM-ddTHH:mm:ssZ' in the UTC time zone."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                       }
                       "type" = "object"
@@ -23982,23 +23982,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnectors_kafka_s
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -24006,17 +24006,17 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnectors_kafka_s
                       "type" = "array"
                     }
                     "connectorStatus" = {
-                      "description" = "The connector status, as reported by the Kafka Connect REST API."
-                      "type" = "object"
+                      "description"                          = "The connector status, as reported by the Kafka Connect REST API."
+                      "type"                                 = "object"
                       "x-kubernetes-preserve-unknown-fields" = true
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "tasksMax" = {
                       "description" = "The maximum number of tasks for the Kafka Connector."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "topics" = {
                       "description" = "The list of topics used by the Kafka Connector."
@@ -24032,11 +24032,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnectors_kafka_s
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = true
           "subresources" = {
             "scale" = {
-              "specReplicasPath" = ".spec.tasksMax"
+              "specReplicasPath"   = ".spec.tasksMax"
               "statusReplicasPath" = ".status.tasksMax"
             }
             "status" = {}
@@ -24050,23 +24050,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnectors_kafka_s
 resource "kubernetes_manifest" "rolebinding_kafka_strimzi_cluster_operator" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "RoleBinding"
+    "kind"       = "RoleBinding"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
       }
-      "name" = "strimzi-cluster-operator"
+      "name"      = "strimzi-cluster-operator"
       "namespace" = "kafka"
     }
     "roleRef" = {
       "apiGroup" = "rbac.authorization.k8s.io"
-      "kind" = "ClusterRole"
-      "name" = "strimzi-cluster-operator-namespaced"
+      "kind"     = "ClusterRole"
+      "name"     = "strimzi-cluster-operator-namespaced"
     }
     "subjects" = [
       {
-        "kind" = "ServiceAccount"
-        "name" = "strimzi-cluster-operator"
+        "kind"      = "ServiceAccount"
+        "name"      = "strimzi-cluster-operator"
         "namespace" = "kafka"
       },
     ]
@@ -24076,7 +24076,7 @@ resource "kubernetes_manifest" "rolebinding_kafka_strimzi_cluster_operator" {
 resource "kubernetes_manifest" "clusterrolebinding_strimzi_cluster_operator" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "ClusterRoleBinding"
+    "kind"       = "ClusterRoleBinding"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
@@ -24085,13 +24085,13 @@ resource "kubernetes_manifest" "clusterrolebinding_strimzi_cluster_operator" {
     }
     "roleRef" = {
       "apiGroup" = "rbac.authorization.k8s.io"
-      "kind" = "ClusterRole"
-      "name" = "strimzi-cluster-operator-global"
+      "kind"     = "ClusterRole"
+      "name"     = "strimzi-cluster-operator-global"
     }
     "subjects" = [
       {
-        "kind" = "ServiceAccount"
-        "name" = "strimzi-cluster-operator"
+        "kind"      = "ServiceAccount"
+        "name"      = "strimzi-cluster-operator"
         "namespace" = "kafka"
       },
     ]
@@ -24101,23 +24101,23 @@ resource "kubernetes_manifest" "clusterrolebinding_strimzi_cluster_operator" {
 resource "kubernetes_manifest" "rolebinding_kafka_strimzi_cluster_operator_entity_operator_delegation" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "RoleBinding"
+    "kind"       = "RoleBinding"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
       }
-      "name" = "strimzi-cluster-operator-entity-operator-delegation"
+      "name"      = "strimzi-cluster-operator-entity-operator-delegation"
       "namespace" = "kafka"
     }
     "roleRef" = {
       "apiGroup" = "rbac.authorization.k8s.io"
-      "kind" = "ClusterRole"
-      "name" = "strimzi-entity-operator"
+      "kind"     = "ClusterRole"
+      "name"     = "strimzi-entity-operator"
     }
     "subjects" = [
       {
-        "kind" = "ServiceAccount"
-        "name" = "strimzi-cluster-operator"
+        "kind"      = "ServiceAccount"
+        "name"      = "strimzi-cluster-operator"
         "namespace" = "kafka"
       },
     ]
@@ -24127,7 +24127,7 @@ resource "kubernetes_manifest" "rolebinding_kafka_strimzi_cluster_operator_entit
 resource "kubernetes_manifest" "clusterrole_strimzi_kafka_client" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "ClusterRole"
+    "kind"       = "ClusterRole"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
@@ -24153,7 +24153,7 @@ resource "kubernetes_manifest" "clusterrole_strimzi_kafka_client" {
 resource "kubernetes_manifest" "clusterrole_strimzi_cluster_operator_leader_election" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "ClusterRole"
+    "kind"       = "ClusterRole"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
@@ -24198,7 +24198,7 @@ resource "kubernetes_manifest" "clusterrole_strimzi_cluster_operator_leader_elec
 resource "kubernetes_manifest" "clusterrole_strimzi_kafka_broker" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "ClusterRole"
+    "kind"       = "ClusterRole"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
@@ -24224,26 +24224,26 @@ resource "kubernetes_manifest" "clusterrole_strimzi_kafka_broker" {
 resource "kubernetes_manifest" "deployment_kafka_strimzi_cluster_operator" {
   manifest = {
     "apiVersion" = "apps/v1"
-    "kind" = "Deployment"
+    "kind"       = "Deployment"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
       }
-      "name" = "strimzi-cluster-operator"
+      "name"      = "strimzi-cluster-operator"
       "namespace" = "kafka"
     }
     "spec" = {
       "replicas" = 1
       "selector" = {
         "matchLabels" = {
-          "name" = "strimzi-cluster-operator"
+          "name"            = "strimzi-cluster-operator"
           "strimzi.io/kind" = "cluster-operator"
         }
       }
       "template" = {
         "metadata" = {
           "labels" = {
-            "name" = "strimzi-cluster-operator"
+            "name"            = "strimzi-cluster-operator"
             "strimzi.io/kind" = "cluster-operator"
           }
         }
@@ -24263,23 +24263,23 @@ resource "kubernetes_manifest" "deployment_kafka_strimzi_cluster_operator" {
                   }
                 },
                 {
-                  "name" = "STRIMZI_FULL_RECONCILIATION_INTERVAL_MS"
+                  "name"  = "STRIMZI_FULL_RECONCILIATION_INTERVAL_MS"
                   "value" = "120000"
                 },
                 {
-                  "name" = "STRIMZI_OPERATION_TIMEOUT_MS"
+                  "name"  = "STRIMZI_OPERATION_TIMEOUT_MS"
                   "value" = "300000"
                 },
                 {
-                  "name" = "STRIMZI_DEFAULT_KAFKA_EXPORTER_IMAGE"
+                  "name"  = "STRIMZI_DEFAULT_KAFKA_EXPORTER_IMAGE"
                   "value" = "quay.io/strimzi/kafka:0.45.0-kafka-3.9.0"
                 },
                 {
-                  "name" = "STRIMZI_DEFAULT_CRUISE_CONTROL_IMAGE"
+                  "name"  = "STRIMZI_DEFAULT_CRUISE_CONTROL_IMAGE"
                   "value" = "quay.io/strimzi/kafka:0.45.0-kafka-3.9.0"
                 },
                 {
-                  "name" = "STRIMZI_KAFKA_IMAGES"
+                  "name"  = "STRIMZI_KAFKA_IMAGES"
                   "value" = <<-EOT
                   3.8.0=quay.io/strimzi/kafka:0.45.0-kafka-3.8.0
                   3.8.1=quay.io/strimzi/kafka:0.45.0-kafka-3.8.1
@@ -24288,7 +24288,7 @@ resource "kubernetes_manifest" "deployment_kafka_strimzi_cluster_operator" {
                   EOT
                 },
                 {
-                  "name" = "STRIMZI_KAFKA_CONNECT_IMAGES"
+                  "name"  = "STRIMZI_KAFKA_CONNECT_IMAGES"
                   "value" = <<-EOT
                   3.8.0=quay.io/strimzi/kafka:0.45.0-kafka-3.8.0
                   3.8.1=quay.io/strimzi/kafka:0.45.0-kafka-3.8.1
@@ -24297,7 +24297,7 @@ resource "kubernetes_manifest" "deployment_kafka_strimzi_cluster_operator" {
                   EOT
                 },
                 {
-                  "name" = "STRIMZI_KAFKA_MIRROR_MAKER_IMAGES"
+                  "name"  = "STRIMZI_KAFKA_MIRROR_MAKER_IMAGES"
                   "value" = <<-EOT
                   3.8.0=quay.io/strimzi/kafka:0.45.0-kafka-3.8.0
                   3.8.1=quay.io/strimzi/kafka:0.45.0-kafka-3.8.1
@@ -24306,7 +24306,7 @@ resource "kubernetes_manifest" "deployment_kafka_strimzi_cluster_operator" {
                   EOT
                 },
                 {
-                  "name" = "STRIMZI_KAFKA_MIRROR_MAKER_2_IMAGES"
+                  "name"  = "STRIMZI_KAFKA_MIRROR_MAKER_2_IMAGES"
                   "value" = <<-EOT
                   3.8.0=quay.io/strimzi/kafka:0.45.0-kafka-3.8.0
                   3.8.1=quay.io/strimzi/kafka:0.45.0-kafka-3.8.1
@@ -24315,27 +24315,27 @@ resource "kubernetes_manifest" "deployment_kafka_strimzi_cluster_operator" {
                   EOT
                 },
                 {
-                  "name" = "STRIMZI_DEFAULT_TOPIC_OPERATOR_IMAGE"
+                  "name"  = "STRIMZI_DEFAULT_TOPIC_OPERATOR_IMAGE"
                   "value" = "quay.io/strimzi/operator:0.45.0"
                 },
                 {
-                  "name" = "STRIMZI_DEFAULT_USER_OPERATOR_IMAGE"
+                  "name"  = "STRIMZI_DEFAULT_USER_OPERATOR_IMAGE"
                   "value" = "quay.io/strimzi/operator:0.45.0"
                 },
                 {
-                  "name" = "STRIMZI_DEFAULT_KAFKA_INIT_IMAGE"
+                  "name"  = "STRIMZI_DEFAULT_KAFKA_INIT_IMAGE"
                   "value" = "quay.io/strimzi/operator:0.45.0"
                 },
                 {
-                  "name" = "STRIMZI_DEFAULT_KAFKA_BRIDGE_IMAGE"
+                  "name"  = "STRIMZI_DEFAULT_KAFKA_BRIDGE_IMAGE"
                   "value" = "quay.io/strimzi/kafka-bridge:0.31.1"
                 },
                 {
-                  "name" = "STRIMZI_DEFAULT_KANIKO_EXECUTOR_IMAGE"
+                  "name"  = "STRIMZI_DEFAULT_KANIKO_EXECUTOR_IMAGE"
                   "value" = "quay.io/strimzi/kaniko-executor:0.45.0"
                 },
                 {
-                  "name" = "STRIMZI_DEFAULT_MAVEN_BUILDER"
+                  "name"  = "STRIMZI_DEFAULT_MAVEN_BUILDER"
                   "value" = "quay.io/strimzi/maven-builder:0.45.0"
                 },
                 {
@@ -24347,15 +24347,15 @@ resource "kubernetes_manifest" "deployment_kafka_strimzi_cluster_operator" {
                   }
                 },
                 {
-                  "name" = "STRIMZI_FEATURE_GATES"
+                  "name"  = "STRIMZI_FEATURE_GATES"
                   "value" = ""
                 },
                 {
-                  "name" = "STRIMZI_LEADER_ELECTION_ENABLED"
+                  "name"  = "STRIMZI_LEADER_ELECTION_ENABLED"
                   "value" = "true"
                 },
                 {
-                  "name" = "STRIMZI_LEADER_ELECTION_LEASE_NAME"
+                  "name"  = "STRIMZI_LEADER_ELECTION_LEASE_NAME"
                   "value" = "strimzi-cluster-operator"
                 },
                 {
@@ -24382,13 +24382,13 @@ resource "kubernetes_manifest" "deployment_kafka_strimzi_cluster_operator" {
                   "port" = "http"
                 }
                 "initialDelaySeconds" = 10
-                "periodSeconds" = 30
+                "periodSeconds"       = 30
               }
               "name" = "strimzi-cluster-operator"
               "ports" = [
                 {
                   "containerPort" = 8080
-                  "name" = "http"
+                  "name"          = "http"
                 },
               ]
               "readinessProbe" = {
@@ -24397,26 +24397,26 @@ resource "kubernetes_manifest" "deployment_kafka_strimzi_cluster_operator" {
                   "port" = "http"
                 }
                 "initialDelaySeconds" = 10
-                "periodSeconds" = 30
+                "periodSeconds"       = 30
               }
               "resources" = {
                 "limits" = {
-                  "cpu" = "1000m"
+                  "cpu"    = "1000m"
                   "memory" = "384Mi"
                 }
                 "requests" = {
-                  "cpu" = "200m"
+                  "cpu"    = "200m"
                   "memory" = "384Mi"
                 }
               }
               "volumeMounts" = [
                 {
                   "mountPath" = "/tmp"
-                  "name" = "strimzi-tmp"
+                  "name"      = "strimzi-tmp"
                 },
                 {
                   "mountPath" = "/opt/strimzi/custom-config/"
-                  "name" = "co-config-volume"
+                  "name"      = "co-config-volume"
                 },
               ]
             },
@@ -24425,7 +24425,7 @@ resource "kubernetes_manifest" "deployment_kafka_strimzi_cluster_operator" {
           "volumes" = [
             {
               "emptyDir" = {
-                "medium" = "Memory"
+                "medium"    = "Memory"
                 "sizeLimit" = "1Mi"
               }
               "name" = "strimzi-tmp"
@@ -24446,7 +24446,7 @@ resource "kubernetes_manifest" "deployment_kafka_strimzi_cluster_operator" {
 resource "kubernetes_manifest" "clusterrole_strimzi_cluster_operator_watched" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "ClusterRole"
+    "kind"       = "ClusterRole"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
@@ -24590,7 +24590,7 @@ resource "kubernetes_manifest" "configmap_kafka_strimzi_cluster_operator" {
       "labels" = {
         "app" = "strimzi"
       }
-      "name" = "strimzi-cluster-operator"
+      "name"      = "strimzi-cluster-operator"
       "namespace" = "kafka"
     }
   }
@@ -24599,10 +24599,10 @@ resource "kubernetes_manifest" "configmap_kafka_strimzi_cluster_operator" {
 resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_strimzi_io" {
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "labels" = {
-        "app" = "strimzi"
+        "app"                    = "strimzi"
         "strimzi.io/crd-install" = "true"
       }
       "name" = "kafkaconnects.kafka.strimzi.io"
@@ -24616,9 +24616,9 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
         "categories" = [
           "strimzi",
         ]
-        "kind" = "KafkaConnect"
+        "kind"     = "KafkaConnect"
         "listKind" = "KafkaConnectList"
-        "plural" = "kafkaconnects"
+        "plural"   = "kafkaconnects"
         "shortNames" = [
           "kc",
         ]
@@ -24630,15 +24630,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
           "additionalPrinterColumns" = [
             {
               "description" = "The desired number of Kafka Connect replicas"
-              "jsonPath" = ".spec.replicas"
-              "name" = "Desired replicas"
-              "type" = "integer"
+              "jsonPath"    = ".spec.replicas"
+              "name"        = "Desired replicas"
+              "type"        = "integer"
             },
             {
               "description" = "The state of the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Ready\")].status"
-              "name" = "Ready"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Ready\")].status"
+              "name"        = "Ready"
+              "type"        = "string"
             },
           ]
           "name" = "v1beta2"
@@ -24647,11 +24647,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -24667,11 +24667,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                           "properties" = {
                             "key" = {
                               "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "secretName" = {
                               "description" = "The name of the Kubernetes Secret containing the secret value."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -24682,30 +24682,30 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                         }
                         "accessTokenIsJwt" = {
                           "description" = "Configure whether access token should be treated as JWT. This should be set to `false` if the authorization server returns opaque tokens. Defaults to `true`."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "accessTokenLocation" = {
                           "description" = "Path to the token file containing an access token to be used for authentication."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "audience" = {
                           "description" = "OAuth audience to use when authenticating against the authorization server. Some authorization servers require the audience to be explicitly set. The possible values depend on how the authorization server is configured. By default, `audience` is not specified when performing the token endpoint request."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "certificateAndKey" = {
                           "description" = "Reference to the `Secret` which holds the certificate and private key pair."
                           "properties" = {
                             "certificate" = {
                               "description" = "The name of the file certificate in the Secret."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "key" = {
                               "description" = "The name of the private key in the Secret."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "secretName" = {
                               "description" = "The name of the Secret containing the certificate."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -24720,11 +24720,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                           "properties" = {
                             "key" = {
                               "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "secretName" = {
                               "description" = "The name of the Kubernetes Secret containing the secret value."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -24735,26 +24735,26 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                         }
                         "clientAssertionLocation" = {
                           "description" = "Path to the file containing the client assertion to be used for authentication."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "clientAssertionType" = {
                           "description" = "The client assertion type. If not set, and either `clientAssertion` or `clientAssertionLocation` is configured, this value defaults to `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "clientId" = {
                           "description" = "OAuth Client ID which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "clientSecret" = {
                           "description" = "Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI."
                           "properties" = {
                             "key" = {
                               "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "secretName" = {
                               "description" = "The name of the Kubernetes Secret containing the secret value."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -24765,42 +24765,42 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                         }
                         "connectTimeoutSeconds" = {
                           "description" = "The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                         "disableTlsHostnameVerification" = {
                           "description" = "Enable or disable TLS hostname verification. Default value is `false`."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "enableMetrics" = {
                           "description" = "Enable or disable OAuth metrics. Default value is `false`."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "httpRetries" = {
                           "description" = "The maximum number of retries to attempt if an initial HTTP request fails. If not set, the default is to not attempt any retries."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                         "httpRetryPauseMs" = {
                           "description" = "The pause to take before retrying a failed HTTP request. If not set, the default is to not pause at all but to immediately repeat a request."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                         "includeAcceptHeader" = {
                           "description" = "Whether the Accept header should be set in requests to the authorization servers. The default value is `true`."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "maxTokenExpirySeconds" = {
                           "description" = "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                         "passwordSecret" = {
                           "description" = "Reference to the `Secret` which holds the password."
                           "properties" = {
                             "password" = {
                               "description" = "The name of the key in the Secret under which the password is stored."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "secretName" = {
                               "description" = "The name of the Secret containing the password."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -24811,18 +24811,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                         }
                         "readTimeoutSeconds" = {
                           "description" = "The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                         "refreshToken" = {
                           "description" = "Link to Kubernetes Secret containing the refresh token which can be used to obtain access token from the authorization server."
                           "properties" = {
                             "key" = {
                               "description" = "The key under which the secret value is stored in the Kubernetes Secret."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "secretName" = {
                               "description" = "The name of the Kubernetes Secret containing the secret value."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "required" = [
@@ -24836,11 +24836,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                             "type" = "string"
                           }
                           "description" = "SASL extensions parameters."
-                          "type" = "object"
+                          "type"        = "object"
                         }
                         "scope" = {
                           "description" = "OAuth scope to use when authenticating against the authorization server. Some authorization servers require this to be set. The possible values depend on how authorization server is configured. By default `scope` is not specified when doing the token endpoint request."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "tlsTrustedCertificates" = {
                           "description" = "Trusted certificates for TLS connection to the OAuth server."
@@ -24866,15 +24866,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                             "properties" = {
                               "certificate" = {
                                 "description" = "The name of the file certificate in the secret."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "pattern" = {
                                 "description" = "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "secretName" = {
                                 "description" = "The name of the Secret containing the certificate."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                             }
                             "required" = [
@@ -24886,7 +24886,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                         }
                         "tokenEndpointUri" = {
                           "description" = "Authorization server token endpoint URI."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "type" = {
                           "description" = "Authentication type. Currently the supported types are `tls`, `scram-sha-256`, `scram-sha-512`, `plain`, and 'oauth'. `scram-sha-256` and `scram-sha-512` types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. `plain` type uses SASL PLAIN Authentication. `oauth` type uses SASL OAUTHBEARER Authentication. The `tls` type uses TLS Client Authentication. The `tls` type is supported only over TLS connections."
@@ -24901,7 +24901,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                         }
                         "username" = {
                           "description" = "Username used for the authentication."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                       }
                       "required" = [
@@ -24911,7 +24911,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                     }
                     "bootstrapServers" = {
                       "description" = "Bootstrap servers to connect to. This should be given as a comma separated list of _<hostname>_:_<port>_ pairs."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "build" = {
                       "description" = "Configures how the Connect container image should be built. Optional."
@@ -24928,11 +24928,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                             }
                             "image" = {
                               "description" = "The name of the image which will be built. Required."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "pushSecret" = {
                               "description" = "Container Registry Secret with the credentials for pushing the newly built image."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "type" = {
                               "description" = "Output type. Must be either `docker` for pushing the newly build image to Docker compatible registry or `imagestream` for pushing the image to OpenShift ImageStream. Required."
@@ -24959,27 +24959,27 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                   "properties" = {
                                     "artifact" = {
                                       "description" = "Maven artifact id. Applicable to the `maven` artifact type only."
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                     "fileName" = {
                                       "description" = "Name under which the artifact will be stored."
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                     "group" = {
                                       "description" = "Maven group id. Applicable to the `maven` artifact type only."
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                     "insecure" = {
                                       "description" = "By default, connections using TLS are verified to check they are secure. The server certificate used must be valid, trusted, and contain the server name. By setting this option to `true`, all TLS verification is disabled and the artifact will be downloaded, even when the server is considered insecure."
-                                      "type" = "boolean"
+                                      "type"        = "boolean"
                                     }
                                     "repository" = {
                                       "description" = "Maven repository to download the artifact from. Applicable to the `maven` artifact type only."
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                     "sha512sum" = {
                                       "description" = "SHA512 checksum of the artifact. Optional. If specified, the checksum will be verified while building the new container. If not specified, the downloaded artifact will not be verified. Not applicable to the `maven` artifact type. "
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                     "type" = {
                                       "description" = "Artifact type. Currently, the supported artifact types are `tgz`, `jar`, `zip`, `other` and `maven`."
@@ -24994,12 +24994,12 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     }
                                     "url" = {
                                       "description" = "URL of the artifact which will be downloaded. Strimzi does not do any security scanning of the downloaded artifacts. For security reasons, you should first verify the artifacts manually and configure the checksum verification to make sure the same artifact is used in the automated build. Required for `jar`, `zip`, `tgz` and `other` artifacts. Not applicable to the `maven` artifact type."
-                                      "pattern" = "^(https?|ftp)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]$"
-                                      "type" = "string"
+                                      "pattern"     = "^(https?|ftp)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]$"
+                                      "type"        = "string"
                                     }
                                     "version" = {
                                       "description" = "Maven version number. Applicable to the `maven` artifact type only."
-                                      "type" = "string"
+                                      "type"        = "string"
                                     }
                                   }
                                   "required" = [
@@ -25011,8 +25011,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                               }
                               "name" = {
                                 "description" = "The unique name of the connector plugin. Will be used to generate the path where the connector artifacts will be stored. The name has to be unique within the KafkaConnect resource. The name has to follow the following pattern: `^[a-z][-_a-z0-9]*[a-z]$`. Required."
-                                "pattern" = "^[a-z0-9][-_a-z0-9]*[a-z0-9]$"
-                                "type" = "string"
+                                "pattern"     = "^[a-z0-9][-_a-z0-9]*[a-z0-9]$"
+                                "type"        = "string"
                               }
                             }
                             "required" = [
@@ -25047,7 +25047,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   },
                                 ]
-                                "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                 "x-kubernetes-int-or-string" = true
                               }
                               "type" = "object"
@@ -25062,7 +25062,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   },
                                 ]
-                                "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                                "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                                 "x-kubernetes-int-or-string" = true
                               }
                               "type" = "object"
@@ -25079,11 +25079,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                     }
                     "clientRackInitImage" = {
                       "description" = "The image of the init container used for initializing the `client.rack`."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "config" = {
-                      "description" = "The Kafka Connect configuration. Properties with the following prefixes cannot be set: ssl., sasl., security., listeners, plugin.path, rest., bootstrap.servers, consumer.interceptor.classes, producer.interceptor.classes (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
-                      "type" = "object"
+                      "description"                          = "The Kafka Connect configuration. Properties with the following prefixes cannot be set: ssl., sasl., security., listeners, plugin.path, rest., bootstrap.servers, consumer.interceptor.classes, producer.interceptor.classes (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
+                      "type"                                 = "object"
                       "x-kubernetes-preserve-unknown-fields" = true
                     }
                     "externalConfiguration" = {
@@ -25095,7 +25095,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                             "properties" = {
                               "name" = {
                                 "description" = "Name of the environment variable which will be passed to the Kafka Connect pods. The name of the environment variable cannot start with `KAFKA_` or `STRIMZI_`."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "valueFrom" = {
                                 "description" = "Value of the environment variable which will be passed to the Kafka Connect pods. It can be passed either as a reference to Secret or ConfigMap field. The field has to specify exactly one Secret or ConfigMap."
@@ -25216,7 +25216,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                               }
                               "name" = {
                                 "description" = "Name of the volume which will be added to the Kafka Connect pods."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "secret" = {
                                 "description" = "Reference to a key in a Secret. Exactly one Secret or ConfigMap has to be specified."
@@ -25263,7 +25263,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                     }
                     "image" = {
                       "description" = "The container image used for Kafka Connect pods. If no image name is explicitly specified, it is determined based on the `spec.version` configuration. The image names are specifically mapped to corresponding versions in the Cluster Operator configuration."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "jmxOptions" = {
                       "description" = "JMX Options."
@@ -25295,21 +25295,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                             "type" = "string"
                           }
                           "description" = "A map of -XX options to the JVM."
-                          "type" = "object"
+                          "type"        = "object"
                         }
                         "-Xms" = {
                           "description" = "-Xms option to to the JVM."
-                          "pattern" = "^[0-9]+[mMgG]?$"
-                          "type" = "string"
+                          "pattern"     = "^[0-9]+[mMgG]?$"
+                          "type"        = "string"
                         }
                         "-Xmx" = {
                           "description" = "-Xmx option to to the JVM."
-                          "pattern" = "^[0-9]+[mMgG]?$"
-                          "type" = "string"
+                          "pattern"     = "^[0-9]+[mMgG]?$"
+                          "type"        = "string"
                         }
                         "gcLoggingEnabled" = {
                           "description" = "Specifies whether the Garbage Collection logging is enabled. The default is false."
-                          "type" = "boolean"
+                          "type"        = "boolean"
                         }
                         "javaSystemProperties" = {
                           "description" = "A map of additional system properties which will be passed using the `-D` option to the JVM."
@@ -25317,11 +25317,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                             "properties" = {
                               "name" = {
                                 "description" = "The system property name."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "value" = {
                                 "description" = "The system property value."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                             }
                             "type" = "object"
@@ -25336,28 +25336,28 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                       "properties" = {
                         "failureThreshold" = {
                           "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "initialDelaySeconds" = {
                           "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "periodSeconds" = {
                           "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "successThreshold" = {
                           "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "timeoutSeconds" = {
                           "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
@@ -25370,7 +25370,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                             "type" = "string"
                           }
                           "description" = "A Map from logger name to logger level."
-                          "type" = "object"
+                          "type"        = "object"
                         }
                         "type" = {
                           "description" = "Logging type, must be either 'inline' or 'external'."
@@ -25450,8 +25450,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                       "properties" = {
                         "topologyKey" = {
                           "description" = "A key that matches labels assigned to the Kubernetes cluster nodes. The value of the label is used to set a broker's `broker.rack` config, and the `client.rack` config for Kafka Connect or MirrorMaker 2."
-                          "example" = "topology.kubernetes.io/zone"
-                          "type" = "string"
+                          "example"     = "topology.kubernetes.io/zone"
+                          "type"        = "string"
                         }
                       }
                       "required" = [
@@ -25464,35 +25464,35 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                       "properties" = {
                         "failureThreshold" = {
                           "description" = "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "initialDelaySeconds" = {
                           "description" = "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "periodSeconds" = {
                           "description" = "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "successThreshold" = {
                           "description" = "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                         "timeoutSeconds" = {
                           "description" = "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1."
-                          "minimum" = 1
-                          "type" = "integer"
+                          "minimum"     = 1
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
                     }
                     "replicas" = {
                       "description" = "The number of pods in the Kafka Connect group. Defaults to `3`."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "resources" = {
                       "description" = "The maximum limits for CPU and memory resources and the requested initial resources."
@@ -25518,7 +25518,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                 "type" = "string"
                               },
                             ]
-                            "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                            "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                             "x-kubernetes-int-or-string" = true
                           }
                           "type" = "object"
@@ -25533,7 +25533,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                 "type" = "string"
                               },
                             ]
-                            "pattern" = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
+                            "pattern"                    = "^(\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\\+|-)?(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))))?$"
                             "x-kubernetes-int-or-string" = true
                           }
                           "type" = "object"
@@ -25575,14 +25575,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -25601,21 +25601,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
                             }
                             "pullSecret" = {
                               "description" = "Container Registry Secret with the credentials for pulling the base image."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                           }
                           "type" = "object"
@@ -25647,11 +25647,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                 "properties" = {
                                   "name" = {
                                     "description" = "The environment variable key."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The environment variable value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "valueFrom" = {
                                     "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -26360,7 +26360,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                             }
                             "enableServiceLinks" = {
                               "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "hostAliases" = {
                               "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -26400,25 +26400,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
                             }
                             "priorityClassName" = {
                               "description" = "The name of the priority class used to assign priority to the pods. "
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "schedulerName" = {
                               "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "securityContext" = {
                               "description" = "Configures pod-level security attributes and common container settings."
@@ -26519,13 +26519,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                             }
                             "terminationGracePeriodSeconds" = {
                               "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "tmpDirSizeLimit" = {
                               "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                              "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                              "type" = "string"
+                              "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                              "type"        = "string"
                             }
                             "tolerations" = {
                               "description" = "The pod's tolerations."
@@ -26621,11 +26621,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                 "oneOf" = [
                                   {
                                     "properties" = {
-                                      "configMap" = {}
-                                      "csi" = {}
-                                      "emptyDir" = {}
+                                      "configMap"             = {}
+                                      "csi"                   = {}
+                                      "emptyDir"              = {}
                                       "persistentVolumeClaim" = {}
-                                      "secret" = {}
+                                      "secret"                = {}
                                     }
                                   },
                                 ]
@@ -26713,7 +26713,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                   }
                                   "name" = {
                                     "description" = "Name to use for the volume. Required."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "persistentVolumeClaim" = {
                                     "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -26778,14 +26778,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -26804,14 +26804,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -26846,11 +26846,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                 "properties" = {
                                   "name" = {
                                     "description" = "The environment variable key."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The environment variable value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "valueFrom" = {
                                     "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -27063,14 +27063,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -27109,14 +27109,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -27151,11 +27151,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                 "properties" = {
                                   "name" = {
                                     "description" = "The environment variable key."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "value" = {
                                     "description" = "The environment variable value."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "valueFrom" = {
                                     "description" = "Reference to the secret or config map property to which the environment variable is set."
@@ -27360,14 +27360,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -27890,7 +27890,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                             }
                             "enableServiceLinks" = {
                               "description" = "Indicates whether information about services should be injected into Pod's environment variables."
-                              "type" = "boolean"
+                              "type"        = "boolean"
                             }
                             "hostAliases" = {
                               "description" = "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
@@ -27930,25 +27930,25 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
                             }
                             "priorityClassName" = {
                               "description" = "The name of the priority class used to assign priority to the pods. "
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "schedulerName" = {
                               "description" = "The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used."
-                              "type" = "string"
+                              "type"        = "string"
                             }
                             "securityContext" = {
                               "description" = "Configures pod-level security attributes and common container settings."
@@ -28049,13 +28049,13 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                             }
                             "terminationGracePeriodSeconds" = {
                               "description" = "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "tmpDirSizeLimit" = {
                               "description" = "Defines the total amount of pod memory allocated for the temporary `EmptyDir` volume `/tmp`. Specify the allocation in memory units, for example, `100Mi` for 100 mebibytes. Default value is `5Mi`. The `/tmp` volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources."
-                              "pattern" = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
-                              "type" = "string"
+                              "pattern"     = "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+                              "type"        = "string"
                             }
                             "tolerations" = {
                               "description" = "The pod's tolerations."
@@ -28151,11 +28151,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                 "oneOf" = [
                                   {
                                     "properties" = {
-                                      "configMap" = {}
-                                      "csi" = {}
-                                      "emptyDir" = {}
+                                      "configMap"             = {}
+                                      "csi"                   = {}
+                                      "emptyDir"              = {}
                                       "persistentVolumeClaim" = {}
-                                      "secret" = {}
+                                      "secret"                = {}
                                     }
                                   },
                                 ]
@@ -28243,7 +28243,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                   }
                                   "name" = {
                                     "description" = "Name to use for the volume. Required."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "persistentVolumeClaim" = {
                                     "description" = "PersistentVolumeClaim object to use to populate the volume."
@@ -28302,8 +28302,8 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                           "properties" = {
                             "maxUnavailable" = {
                               "description" = "Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the `maxUnavailable` number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1."
-                              "minimum" = 0
-                              "type" = "integer"
+                              "minimum"     = 0
+                              "type"        = "integer"
                             }
                             "metadata" = {
                               "description" = "Metadata to apply to the `PodDisruptionBudgetTemplate` resource."
@@ -28313,14 +28313,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -28339,14 +28339,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -28365,14 +28365,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -28410,15 +28410,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                             "properties" = {
                               "certificate" = {
                                 "description" = "The name of the file certificate in the secret."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "pattern" = {
                                 "description" = "Pattern for the certificate files in the secret. Use the link:https://en.wikipedia.org/wiki/Glob_(programming)[_glob syntax_] for the pattern. All files in the secret that match the pattern are used."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "secretName" = {
                                 "description" = "The name of the Secret containing the certificate."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                             }
                             "required" = [
@@ -28450,7 +28450,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                     }
                     "version" = {
                       "description" = "The Kafka Connect version. Defaults to the latest version. Consult the user documentation to understand the process required to upgrade or downgrade the version."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "required" = [
@@ -28467,23 +28467,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -28496,15 +28496,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                         "properties" = {
                           "class" = {
                             "description" = "The class of the connector plugin."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The type of the connector plugin. The available types are `sink` and `source`."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "version" = {
                             "description" = "The version of the connector plugin."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -28513,19 +28513,19 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
                     }
                     "labelSelector" = {
                       "description" = "Label selector for pods providing this resource."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "replicas" = {
                       "description" = "The current number of pods being used to provide this resource."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "url" = {
                       "description" = "The URL of the REST API endpoint for managing and monitoring Kafka Connect connectors."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -28534,12 +28534,12 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = true
           "subresources" = {
             "scale" = {
-              "labelSelectorPath" = ".status.labelSelector"
-              "specReplicasPath" = ".spec.replicas"
+              "labelSelectorPath"  = ".status.labelSelector"
+              "specReplicasPath"   = ".spec.replicas"
               "statusReplicasPath" = ".status.replicas"
             }
             "status" = {}
@@ -28553,7 +28553,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkaconnects_kafka_str
 resource "kubernetes_manifest" "clusterrolebinding_strimzi_cluster_operator_kafka_broker_delegation" {
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "ClusterRoleBinding"
+    "kind"       = "ClusterRoleBinding"
     "metadata" = {
       "labels" = {
         "app" = "strimzi"
@@ -28562,13 +28562,13 @@ resource "kubernetes_manifest" "clusterrolebinding_strimzi_cluster_operator_kafk
     }
     "roleRef" = {
       "apiGroup" = "rbac.authorization.k8s.io"
-      "kind" = "ClusterRole"
-      "name" = "strimzi-kafka-broker"
+      "kind"     = "ClusterRole"
+      "name"     = "strimzi-kafka-broker"
     }
     "subjects" = [
       {
-        "kind" = "ServiceAccount"
-        "name" = "strimzi-cluster-operator"
+        "kind"      = "ServiceAccount"
+        "name"      = "strimzi-cluster-operator"
         "namespace" = "kafka"
       },
     ]
@@ -28578,10 +28578,10 @@ resource "kubernetes_manifest" "clusterrolebinding_strimzi_cluster_operator_kafk
 resource "kubernetes_manifest" "customresourcedefinition_kafkarebalances_kafka_strimzi_io" {
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "labels" = {
-        "app" = "strimzi"
+        "app"                    = "strimzi"
         "strimzi.io/crd-install" = "true"
       }
       "name" = "kafkarebalances.kafka.strimzi.io"
@@ -28595,9 +28595,9 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkarebalances_kafka_s
         "categories" = [
           "strimzi",
         ]
-        "kind" = "KafkaRebalance"
+        "kind"     = "KafkaRebalance"
         "listKind" = "KafkaRebalanceList"
-        "plural" = "kafkarebalances"
+        "plural"   = "kafkarebalances"
         "shortNames" = [
           "kr",
         ]
@@ -28609,21 +28609,21 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkarebalances_kafka_s
           "additionalPrinterColumns" = [
             {
               "description" = "The name of the Kafka cluster this resource rebalances"
-              "jsonPath" = ".metadata.labels.strimzi\\.io/cluster"
-              "name" = "Cluster"
-              "type" = "string"
+              "jsonPath"    = ".metadata.labels.strimzi\\.io/cluster"
+              "name"        = "Cluster"
+              "type"        = "string"
             },
             {
               "description" = "If this rebalance resource is a template"
-              "jsonPath" = ".metadata.annotations.strimzi\\.io/rebalance-template"
-              "name" = "Template"
-              "type" = "string"
+              "jsonPath"    = ".metadata.annotations.strimzi\\.io/rebalance-template"
+              "name"        = "Template"
+              "type"        = "string"
             },
             {
               "description" = "Status of the current rebalancing operation"
-              "jsonPath" = ".status.conditions[*].type"
-              "name" = "Status"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[*].type"
+              "name"        = "Status"
+              "type"        = "string"
             },
           ]
           "name" = "v1beta2"
@@ -28632,11 +28632,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkarebalances_kafka_s
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -28653,22 +28653,22 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkarebalances_kafka_s
                     }
                     "concurrentIntraBrokerPartitionMovements" = {
                       "description" = "The upper bound of ongoing partition replica movements between disks within each broker. Default is 2."
-                      "minimum" = 0
-                      "type" = "integer"
+                      "minimum"     = 0
+                      "type"        = "integer"
                     }
                     "concurrentLeaderMovements" = {
                       "description" = "The upper bound of ongoing partition leadership movements. Default is 1000."
-                      "minimum" = 0
-                      "type" = "integer"
+                      "minimum"     = 0
+                      "type"        = "integer"
                     }
                     "concurrentPartitionMovementsPerBroker" = {
                       "description" = "The upper bound of ongoing partition replica movements going into/out of each broker. Default is 5."
-                      "minimum" = 0
-                      "type" = "integer"
+                      "minimum"     = 0
+                      "type"        = "integer"
                     }
                     "excludedTopics" = {
                       "description" = "A regular expression where any matching topics will be excluded from the calculation of optimization proposals. This expression will be parsed by the java.util.regex.Pattern class; for more information on the supported format consult the documentation for that class."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "goals" = {
                       "description" = "A list of goals, ordered by decreasing priority, to use for generating and executing the rebalance proposal. The supported goals are available at https://github.com/linkedin/cruise-control#goals. If an empty goals list is provided, the goals declared in the default.goals Cruise Control configuration parameter are used."
@@ -28702,7 +28702,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkarebalances_kafka_s
                         "properties" = {
                           "brokerId" = {
                             "description" = "ID of the broker that contains the disk from which you want to move the partition replicas."
-                            "type" = "integer"
+                            "type"        = "integer"
                           }
                           "volumeIds" = {
                             "description" = "IDs of the disks from which the partition replicas need to be moved."
@@ -28710,17 +28710,17 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkarebalances_kafka_s
                               "type" = "integer"
                             }
                             "minItems" = 1
-                            "type" = "array"
+                            "type"     = "array"
                           }
                         }
                         "type" = "object"
                       }
                       "minItems" = 1
-                      "type" = "array"
+                      "type"     = "array"
                     }
                     "rebalanceDisk" = {
                       "description" = "Enables intra-broker disk balancing, which balances disk space utilization between disks on the same broker. Only applies to Kafka deployments that use JBOD storage with multiple disks. When enabled, inter-broker balancing is disabled. Default is false."
-                      "type" = "boolean"
+                      "type"        = "boolean"
                     }
                     "replicaMovementStrategies" = {
                       "description" = "A list of strategy class names used to determine the execution order for the replica movements in the generated optimization proposal. By default BaseReplicaMovementStrategy is used, which will execute the replica movements in the order that they were generated."
@@ -28731,12 +28731,12 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkarebalances_kafka_s
                     }
                     "replicationThrottle" = {
                       "description" = "The upper bound, in bytes per second, on the bandwidth used to move replicas. There is no limit by default."
-                      "minimum" = 0
-                      "type" = "integer"
+                      "minimum"     = 0
+                      "type"        = "integer"
                     }
                     "skipHardGoalCheck" = {
                       "description" = "Whether to allow the hard goals specified in the Kafka CR to be skipped in optimization proposal generation. This can be useful when some of those hard goals are preventing a balance solution being found. Default is false."
-                      "type" = "boolean"
+                      "type"        = "boolean"
                     }
                   }
                   "type" = "object"
@@ -28750,23 +28750,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkarebalances_kafka_s
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -28775,16 +28775,16 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkarebalances_kafka_s
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "optimizationResult" = {
-                      "description" = "A JSON object describing the optimization result."
-                      "type" = "object"
+                      "description"                          = "A JSON object describing the optimization result."
+                      "type"                                 = "object"
                       "x-kubernetes-preserve-unknown-fields" = true
                     }
                     "sessionId" = {
                       "description" = "The session identifier for requests to Cruise Control pertaining to this KafkaRebalance resource. This is used by the Kafka Rebalance operator to track the status of ongoing rebalancing operations."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -28793,7 +28793,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkarebalances_kafka_s
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = true
           "subresources" = {
             "status" = {}
@@ -28807,10 +28807,10 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkarebalances_kafka_s
 resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strimzi_io" {
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "labels" = {
-        "app" = "strimzi"
+        "app"                    = "strimzi"
         "strimzi.io/crd-install" = "true"
       }
       "name" = "kafkatopics.kafka.strimzi.io"
@@ -28824,9 +28824,9 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
         "categories" = [
           "strimzi",
         ]
-        "kind" = "KafkaTopic"
+        "kind"     = "KafkaTopic"
         "listKind" = "KafkaTopicList"
-        "plural" = "kafkatopics"
+        "plural"   = "kafkatopics"
         "shortNames" = [
           "kt",
         ]
@@ -28838,27 +28838,27 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
           "additionalPrinterColumns" = [
             {
               "description" = "The name of the Kafka cluster this topic belongs to"
-              "jsonPath" = ".metadata.labels.strimzi\\.io/cluster"
-              "name" = "Cluster"
-              "type" = "string"
+              "jsonPath"    = ".metadata.labels.strimzi\\.io/cluster"
+              "name"        = "Cluster"
+              "type"        = "string"
             },
             {
               "description" = "The desired number of partitions in the topic"
-              "jsonPath" = ".spec.partitions"
-              "name" = "Partitions"
-              "type" = "integer"
+              "jsonPath"    = ".spec.partitions"
+              "name"        = "Partitions"
+              "type"        = "integer"
             },
             {
               "description" = "The desired number of replicas of each partition"
-              "jsonPath" = ".spec.replicas"
-              "name" = "Replication factor"
-              "type" = "integer"
+              "jsonPath"    = ".spec.replicas"
+              "name"        = "Replication factor"
+              "type"        = "integer"
             },
             {
               "description" = "The state of the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Ready\")].status"
-              "name" = "Ready"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Ready\")].status"
+              "name"        = "Ready"
+              "type"        = "string"
             },
           ]
           "name" = "v1beta2"
@@ -28867,11 +28867,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -28880,24 +28880,24 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
                   "description" = "The specification of the topic."
                   "properties" = {
                     "config" = {
-                      "description" = "The topic configuration."
-                      "type" = "object"
+                      "description"                          = "The topic configuration."
+                      "type"                                 = "object"
                       "x-kubernetes-preserve-unknown-fields" = true
                     }
                     "partitions" = {
                       "description" = "The number of partitions the topic should have. This cannot be decreased after topic creation. It can be increased after topic creation, but it is important to understand the consequences that has, especially for topics with semantic partitioning. When absent this will default to the broker configuration for `num.partitions`."
-                      "minimum" = 1
-                      "type" = "integer"
+                      "minimum"     = 1
+                      "type"        = "integer"
                     }
                     "replicas" = {
                       "description" = "The number of replicas the topic should have. When absent this will default to the broker configuration for `default.replication.factor`."
-                      "maximum" = 32767
-                      "minimum" = 1
-                      "type" = "integer"
+                      "maximum"     = 32767
+                      "minimum"     = 1
+                      "type"        = "integer"
                     }
                     "topicName" = {
                       "description" = "The name of the topic. When absent this will default to the metadata.name of the topic. It is recommended to not set this unless the topic name is not a valid Kubernetes resource name."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -28911,23 +28911,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -28936,18 +28936,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "replicasChange" = {
                       "description" = "Replication factor change status."
                       "properties" = {
                         "message" = {
                           "description" = "Message for the user related to the replicas change request. This may contain transient error messages that would disappear on periodic reconciliations."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "sessionId" = {
                           "description" = "The session identifier for replicas change requests pertaining to this KafkaTopic resource. This is used by the Topic Operator to track the status of `ongoing` replicas change operations."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "state" = {
                           "description" = "Current state of the replicas change operation. This can be `pending`, when the change has been requested, or `ongoing`, when the change has been successfully submitted to Cruise Control."
@@ -28959,18 +28959,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
                         }
                         "targetReplicas" = {
                           "description" = "The target replicas value requested by the user. This may be different from .spec.replicas when a change is ongoing."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
                     }
                     "topicId" = {
                       "description" = "The topic's id. For a KafkaTopic with the ready condition, this will change only if the topic gets deleted and recreated with the same name."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "topicName" = {
                       "description" = "Topic name."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -28979,7 +28979,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = true
           "subresources" = {
             "status" = {}
@@ -28989,27 +28989,27 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
           "additionalPrinterColumns" = [
             {
               "description" = "The name of the Kafka cluster this topic belongs to"
-              "jsonPath" = ".metadata.labels.strimzi\\.io/cluster"
-              "name" = "Cluster"
-              "type" = "string"
+              "jsonPath"    = ".metadata.labels.strimzi\\.io/cluster"
+              "name"        = "Cluster"
+              "type"        = "string"
             },
             {
               "description" = "The desired number of partitions in the topic"
-              "jsonPath" = ".spec.partitions"
-              "name" = "Partitions"
-              "type" = "integer"
+              "jsonPath"    = ".spec.partitions"
+              "name"        = "Partitions"
+              "type"        = "integer"
             },
             {
               "description" = "The desired number of replicas of each partition"
-              "jsonPath" = ".spec.replicas"
-              "name" = "Replication factor"
-              "type" = "integer"
+              "jsonPath"    = ".spec.replicas"
+              "name"        = "Replication factor"
+              "type"        = "integer"
             },
             {
               "description" = "The state of the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Ready\")].status"
-              "name" = "Ready"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Ready\")].status"
+              "name"        = "Ready"
+              "type"        = "string"
             },
           ]
           "name" = "v1beta1"
@@ -29018,11 +29018,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -29031,24 +29031,24 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
                   "description" = "The specification of the topic."
                   "properties" = {
                     "config" = {
-                      "description" = "The topic configuration."
-                      "type" = "object"
+                      "description"                          = "The topic configuration."
+                      "type"                                 = "object"
                       "x-kubernetes-preserve-unknown-fields" = true
                     }
                     "partitions" = {
                       "description" = "The number of partitions the topic should have. This cannot be decreased after topic creation. It can be increased after topic creation, but it is important to understand the consequences that has, especially for topics with semantic partitioning. When absent this will default to the broker configuration for `num.partitions`."
-                      "minimum" = 1
-                      "type" = "integer"
+                      "minimum"     = 1
+                      "type"        = "integer"
                     }
                     "replicas" = {
                       "description" = "The number of replicas the topic should have. When absent this will default to the broker configuration for `default.replication.factor`."
-                      "maximum" = 32767
-                      "minimum" = 1
-                      "type" = "integer"
+                      "maximum"     = 32767
+                      "minimum"     = 1
+                      "type"        = "integer"
                     }
                     "topicName" = {
                       "description" = "The name of the topic. When absent this will default to the metadata.name of the topic. It is recommended to not set this unless the topic name is not a valid Kubernetes resource name."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -29062,23 +29062,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -29087,18 +29087,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "replicasChange" = {
                       "description" = "Replication factor change status."
                       "properties" = {
                         "message" = {
                           "description" = "Message for the user related to the replicas change request. This may contain transient error messages that would disappear on periodic reconciliations."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "sessionId" = {
                           "description" = "The session identifier for replicas change requests pertaining to this KafkaTopic resource. This is used by the Topic Operator to track the status of `ongoing` replicas change operations."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "state" = {
                           "description" = "Current state of the replicas change operation. This can be `pending`, when the change has been requested, or `ongoing`, when the change has been successfully submitted to Cruise Control."
@@ -29110,18 +29110,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
                         }
                         "targetReplicas" = {
                           "description" = "The target replicas value requested by the user. This may be different from .spec.replicas when a change is ongoing."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
                     }
                     "topicId" = {
                       "description" = "The topic's id. For a KafkaTopic with the ready condition, this will change only if the topic gets deleted and recreated with the same name."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "topicName" = {
                       "description" = "Topic name."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -29130,7 +29130,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = false
           "subresources" = {
             "status" = {}
@@ -29140,27 +29140,27 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
           "additionalPrinterColumns" = [
             {
               "description" = "The name of the Kafka cluster this topic belongs to"
-              "jsonPath" = ".metadata.labels.strimzi\\.io/cluster"
-              "name" = "Cluster"
-              "type" = "string"
+              "jsonPath"    = ".metadata.labels.strimzi\\.io/cluster"
+              "name"        = "Cluster"
+              "type"        = "string"
             },
             {
               "description" = "The desired number of partitions in the topic"
-              "jsonPath" = ".spec.partitions"
-              "name" = "Partitions"
-              "type" = "integer"
+              "jsonPath"    = ".spec.partitions"
+              "name"        = "Partitions"
+              "type"        = "integer"
             },
             {
               "description" = "The desired number of replicas of each partition"
-              "jsonPath" = ".spec.replicas"
-              "name" = "Replication factor"
-              "type" = "integer"
+              "jsonPath"    = ".spec.replicas"
+              "name"        = "Replication factor"
+              "type"        = "integer"
             },
             {
               "description" = "The state of the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Ready\")].status"
-              "name" = "Ready"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Ready\")].status"
+              "name"        = "Ready"
+              "type"        = "string"
             },
           ]
           "name" = "v1alpha1"
@@ -29169,11 +29169,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -29182,24 +29182,24 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
                   "description" = "The specification of the topic."
                   "properties" = {
                     "config" = {
-                      "description" = "The topic configuration."
-                      "type" = "object"
+                      "description"                          = "The topic configuration."
+                      "type"                                 = "object"
                       "x-kubernetes-preserve-unknown-fields" = true
                     }
                     "partitions" = {
                       "description" = "The number of partitions the topic should have. This cannot be decreased after topic creation. It can be increased after topic creation, but it is important to understand the consequences that has, especially for topics with semantic partitioning. When absent this will default to the broker configuration for `num.partitions`."
-                      "minimum" = 1
-                      "type" = "integer"
+                      "minimum"     = 1
+                      "type"        = "integer"
                     }
                     "replicas" = {
                       "description" = "The number of replicas the topic should have. When absent this will default to the broker configuration for `default.replication.factor`."
-                      "maximum" = 32767
-                      "minimum" = 1
-                      "type" = "integer"
+                      "maximum"     = 32767
+                      "minimum"     = 1
+                      "type"        = "integer"
                     }
                     "topicName" = {
                       "description" = "The name of the topic. When absent this will default to the metadata.name of the topic. It is recommended to not set this unless the topic name is not a valid Kubernetes resource name."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -29213,23 +29213,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -29238,18 +29238,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "replicasChange" = {
                       "description" = "Replication factor change status."
                       "properties" = {
                         "message" = {
                           "description" = "Message for the user related to the replicas change request. This may contain transient error messages that would disappear on periodic reconciliations."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "sessionId" = {
                           "description" = "The session identifier for replicas change requests pertaining to this KafkaTopic resource. This is used by the Topic Operator to track the status of `ongoing` replicas change operations."
-                          "type" = "string"
+                          "type"        = "string"
                         }
                         "state" = {
                           "description" = "Current state of the replicas change operation. This can be `pending`, when the change has been requested, or `ongoing`, when the change has been successfully submitted to Cruise Control."
@@ -29261,18 +29261,18 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
                         }
                         "targetReplicas" = {
                           "description" = "The target replicas value requested by the user. This may be different from .spec.replicas when a change is ongoing."
-                          "type" = "integer"
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
                     }
                     "topicId" = {
                       "description" = "The topic's id. For a KafkaTopic with the ready condition, this will change only if the topic gets deleted and recreated with the same name."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "topicName" = {
                       "description" = "Topic name."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -29281,7 +29281,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = false
           "subresources" = {
             "status" = {}
@@ -29295,10 +29295,10 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkatopics_kafka_strim
 resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimzi_io" {
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "labels" = {
-        "app" = "strimzi"
+        "app"                    = "strimzi"
         "strimzi.io/crd-install" = "true"
       }
       "name" = "kafkausers.kafka.strimzi.io"
@@ -29312,9 +29312,9 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
         "categories" = [
           "strimzi",
         ]
-        "kind" = "KafkaUser"
+        "kind"     = "KafkaUser"
         "listKind" = "KafkaUserList"
-        "plural" = "kafkausers"
+        "plural"   = "kafkausers"
         "shortNames" = [
           "ku",
         ]
@@ -29326,27 +29326,27 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
           "additionalPrinterColumns" = [
             {
               "description" = "The name of the Kafka cluster this user belongs to"
-              "jsonPath" = ".metadata.labels.strimzi\\.io/cluster"
-              "name" = "Cluster"
-              "type" = "string"
+              "jsonPath"    = ".metadata.labels.strimzi\\.io/cluster"
+              "name"        = "Cluster"
+              "type"        = "string"
             },
             {
               "description" = "How the user is authenticated"
-              "jsonPath" = ".spec.authentication.type"
-              "name" = "Authentication"
-              "type" = "string"
+              "jsonPath"    = ".spec.authentication.type"
+              "name"        = "Authentication"
+              "type"        = "string"
             },
             {
               "description" = "How the user is authorised"
-              "jsonPath" = ".spec.authorization.type"
-              "name" = "Authorization"
-              "type" = "string"
+              "jsonPath"    = ".spec.authorization.type"
+              "name"        = "Authorization"
+              "type"        = "string"
             },
             {
               "description" = "The state of the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Ready\")].status"
-              "name" = "Ready"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Ready\")].status"
+              "name"        = "Ready"
+              "type"        = "string"
             },
           ]
           "name" = "v1beta2"
@@ -29355,11 +29355,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -29433,7 +29433,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                             "properties" = {
                               "host" = {
                                 "description" = "The host from which the action described in the ACL rule is allowed or denied. If not set, it defaults to `*`, allowing or denying the action from any host."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "operation" = {
                                 "description" = "Operation which will be allowed or denied. Supported operations are: Read, Write, Create, Delete, Alter, Describe, ClusterAction, AlterConfigs, DescribeConfigs, IdempotentWrite and All."
@@ -29477,7 +29477,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                                 "properties" = {
                                   "name" = {
                                     "description" = "Name of resource for which given ACL rule applies. Can be combined with `patternType` field to use prefix pattern."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "patternType" = {
                                     "description" = "Describes the pattern used in the resource field. The supported types are `literal` and `prefix`. With `literal` pattern type, the resource field will be used as a definition of a full name. With `prefix` pattern type, the resource name will be used only as a prefix. Default value is `literal`."
@@ -29538,23 +29538,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                       "properties" = {
                         "consumerByteRate" = {
                           "description" = "A quota on the maximum bytes per-second that each client group can fetch from a broker before the clients in the group are throttled. Defined on a per-broker basis."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "controllerMutationRate" = {
                           "description" = "A quota on the rate at which mutations are accepted for the create topics request, the create partitions request and the delete topics request. The rate is accumulated by the number of partitions created or deleted."
-                          "minimum" = 0
-                          "type" = "number"
+                          "minimum"     = 0
+                          "type"        = "number"
                         }
                         "producerByteRate" = {
                           "description" = "A quota on the maximum bytes per-second that each client group can publish to a broker before the clients in the group are throttled. Defined on a per-broker basis."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "requestPercentage" = {
                           "description" = "A quota on the maximum CPU utilization of each client group as a percentage of network and I/O threads."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
@@ -29573,14 +29573,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -29603,23 +29603,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -29628,15 +29628,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "secret" = {
                       "description" = "The name of `Secret` where the credentials are stored."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "username" = {
                       "description" = "Username."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -29645,7 +29645,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = true
           "subresources" = {
             "status" = {}
@@ -29655,27 +29655,27 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
           "additionalPrinterColumns" = [
             {
               "description" = "The name of the Kafka cluster this user belongs to"
-              "jsonPath" = ".metadata.labels.strimzi\\.io/cluster"
-              "name" = "Cluster"
-              "type" = "string"
+              "jsonPath"    = ".metadata.labels.strimzi\\.io/cluster"
+              "name"        = "Cluster"
+              "type"        = "string"
             },
             {
               "description" = "How the user is authenticated"
-              "jsonPath" = ".spec.authentication.type"
-              "name" = "Authentication"
-              "type" = "string"
+              "jsonPath"    = ".spec.authentication.type"
+              "name"        = "Authentication"
+              "type"        = "string"
             },
             {
               "description" = "How the user is authorised"
-              "jsonPath" = ".spec.authorization.type"
-              "name" = "Authorization"
-              "type" = "string"
+              "jsonPath"    = ".spec.authorization.type"
+              "name"        = "Authorization"
+              "type"        = "string"
             },
             {
               "description" = "The state of the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Ready\")].status"
-              "name" = "Ready"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Ready\")].status"
+              "name"        = "Ready"
+              "type"        = "string"
             },
           ]
           "name" = "v1beta1"
@@ -29684,11 +29684,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -29762,7 +29762,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                             "properties" = {
                               "host" = {
                                 "description" = "The host from which the action described in the ACL rule is allowed or denied. If not set, it defaults to `*`, allowing or denying the action from any host."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "operation" = {
                                 "description" = "Operation which will be allowed or denied. Supported operations are: Read, Write, Create, Delete, Alter, Describe, ClusterAction, AlterConfigs, DescribeConfigs, IdempotentWrite and All."
@@ -29806,7 +29806,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                                 "properties" = {
                                   "name" = {
                                     "description" = "Name of resource for which given ACL rule applies. Can be combined with `patternType` field to use prefix pattern."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "patternType" = {
                                     "description" = "Describes the pattern used in the resource field. The supported types are `literal` and `prefix`. With `literal` pattern type, the resource field will be used as a definition of a full name. With `prefix` pattern type, the resource name will be used only as a prefix. Default value is `literal`."
@@ -29867,23 +29867,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                       "properties" = {
                         "consumerByteRate" = {
                           "description" = "A quota on the maximum bytes per-second that each client group can fetch from a broker before the clients in the group are throttled. Defined on a per-broker basis."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "controllerMutationRate" = {
                           "description" = "A quota on the rate at which mutations are accepted for the create topics request, the create partitions request and the delete topics request. The rate is accumulated by the number of partitions created or deleted."
-                          "minimum" = 0
-                          "type" = "number"
+                          "minimum"     = 0
+                          "type"        = "number"
                         }
                         "producerByteRate" = {
                           "description" = "A quota on the maximum bytes per-second that each client group can publish to a broker before the clients in the group are throttled. Defined on a per-broker basis."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "requestPercentage" = {
                           "description" = "A quota on the maximum CPU utilization of each client group as a percentage of network and I/O threads."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
@@ -29902,14 +29902,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -29932,23 +29932,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -29957,15 +29957,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "secret" = {
                       "description" = "The name of `Secret` where the credentials are stored."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "username" = {
                       "description" = "Username."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -29974,7 +29974,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = false
           "subresources" = {
             "status" = {}
@@ -29984,27 +29984,27 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
           "additionalPrinterColumns" = [
             {
               "description" = "The name of the Kafka cluster this user belongs to"
-              "jsonPath" = ".metadata.labels.strimzi\\.io/cluster"
-              "name" = "Cluster"
-              "type" = "string"
+              "jsonPath"    = ".metadata.labels.strimzi\\.io/cluster"
+              "name"        = "Cluster"
+              "type"        = "string"
             },
             {
               "description" = "How the user is authenticated"
-              "jsonPath" = ".spec.authentication.type"
-              "name" = "Authentication"
-              "type" = "string"
+              "jsonPath"    = ".spec.authentication.type"
+              "name"        = "Authentication"
+              "type"        = "string"
             },
             {
               "description" = "How the user is authorised"
-              "jsonPath" = ".spec.authorization.type"
-              "name" = "Authorization"
-              "type" = "string"
+              "jsonPath"    = ".spec.authorization.type"
+              "name"        = "Authorization"
+              "type"        = "string"
             },
             {
               "description" = "The state of the custom resource"
-              "jsonPath" = ".status.conditions[?(@.type==\"Ready\")].status"
-              "name" = "Ready"
-              "type" = "string"
+              "jsonPath"    = ".status.conditions[?(@.type==\"Ready\")].status"
+              "name"        = "Ready"
+              "type"        = "string"
             },
           ]
           "name" = "v1alpha1"
@@ -30013,11 +30013,11 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
               "properties" = {
                 "apiVersion" = {
                   "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "kind" = {
                   "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "metadata" = {
                   "type" = "object"
@@ -30091,7 +30091,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                             "properties" = {
                               "host" = {
                                 "description" = "The host from which the action described in the ACL rule is allowed or denied. If not set, it defaults to `*`, allowing or denying the action from any host."
-                                "type" = "string"
+                                "type"        = "string"
                               }
                               "operation" = {
                                 "description" = "Operation which will be allowed or denied. Supported operations are: Read, Write, Create, Delete, Alter, Describe, ClusterAction, AlterConfigs, DescribeConfigs, IdempotentWrite and All."
@@ -30135,7 +30135,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                                 "properties" = {
                                   "name" = {
                                     "description" = "Name of resource for which given ACL rule applies. Can be combined with `patternType` field to use prefix pattern."
-                                    "type" = "string"
+                                    "type"        = "string"
                                   }
                                   "patternType" = {
                                     "description" = "Describes the pattern used in the resource field. The supported types are `literal` and `prefix`. With `literal` pattern type, the resource field will be used as a definition of a full name. With `prefix` pattern type, the resource name will be used only as a prefix. Default value is `literal`."
@@ -30196,23 +30196,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                       "properties" = {
                         "consumerByteRate" = {
                           "description" = "A quota on the maximum bytes per-second that each client group can fetch from a broker before the clients in the group are throttled. Defined on a per-broker basis."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "controllerMutationRate" = {
                           "description" = "A quota on the rate at which mutations are accepted for the create topics request, the create partitions request and the delete topics request. The rate is accumulated by the number of partitions created or deleted."
-                          "minimum" = 0
-                          "type" = "number"
+                          "minimum"     = 0
+                          "type"        = "number"
                         }
                         "producerByteRate" = {
                           "description" = "A quota on the maximum bytes per-second that each client group can publish to a broker before the clients in the group are throttled. Defined on a per-broker basis."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                         "requestPercentage" = {
                           "description" = "A quota on the maximum CPU utilization of each client group as a percentage of network and I/O threads."
-                          "minimum" = 0
-                          "type" = "integer"
+                          "minimum"     = 0
+                          "type"        = "integer"
                         }
                       }
                       "type" = "object"
@@ -30231,14 +30231,14 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                                     "type" = "string"
                                   }
                                   "description" = "Annotations added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                                 "labels" = {
                                   "additionalProperties" = {
                                     "type" = "string"
                                   }
                                   "description" = "Labels added to the Kubernetes resource."
-                                  "type" = "object"
+                                  "type"        = "object"
                                 }
                               }
                               "type" = "object"
@@ -30261,23 +30261,23 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                         "properties" = {
                           "lastTransitionTime" = {
                             "description" = "Last time the condition of a type changed from one status to another. The required format is 'yyyy-MM-ddTHH:mm:ssZ', in the UTC time zone."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "message" = {
                             "description" = "Human-readable message indicating details about the condition's last transition."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "reason" = {
                             "description" = "The reason for the condition's last transition (a single word in CamelCase)."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "status" = {
                             "description" = "The status of the condition, either True, False or Unknown."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "type" = {
                             "description" = "The unique identifier of a condition, used to distinguish between other conditions in the resource."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -30286,15 +30286,15 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
                     }
                     "observedGeneration" = {
                       "description" = "The generation of the CRD that was last reconciled by the operator."
-                      "type" = "integer"
+                      "type"        = "integer"
                     }
                     "secret" = {
                       "description" = "The name of `Secret` where the credentials are stored."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                     "username" = {
                       "description" = "Username."
-                      "type" = "string"
+                      "type"        = "string"
                     }
                   }
                   "type" = "object"
@@ -30303,7 +30303,7 @@ resource "kubernetes_manifest" "customresourcedefinition_kafkausers_kafka_strimz
               "type" = "object"
             }
           }
-          "served" = true
+          "served"  = true
           "storage" = false
           "subresources" = {
             "status" = {}
