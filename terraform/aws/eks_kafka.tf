@@ -1,9 +1,3 @@
-# resource "kubernetes_namespace" "kafka_debezium_cluster" {
-#   metadata {
-#     name = var.kafka_namespace
-#   }
-# }
-
 # resource "kubernetes_manifest" "kafka_debezium_cluster" {
 #   depends_on = [
 #     kubernetes_namespace.kafka_debezium_cluster,
