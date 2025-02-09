@@ -1,4 +1,5 @@
 resource "helm_release" "olm" {
-  name  = "olm"
-  chart = "https://github.com/operator-framework/operator-lifecycle-manager/tree/master/deploy/chart"
+  name       = "olm"
+  repository = "https://github.com/operator-framework/operator-lifecycle-manager.git"
+  chart      = "deploy/chart"
 }
