@@ -4,13 +4,16 @@ module "eks" {
 
   cluster_name    = var.cluster_name
   cluster_version = "1.31"
+  cluster_upgrade_policy = {
+    support_type = "STANDARD"
+  }
 
   bootstrap_self_managed_addons = false
   cluster_addons = { # run this command to get all the addons with their details -> aws eks describe-addon-versions
     coredns                = {}
     eks-pod-identity-agent = {}
     kube-proxy             = {}
-    vpc-cni = { # this plugin should be installed once nodes are provisioned
+    vpc-cni = { # this plugin should be installed before nodes are provisioned
       before_compute = true
     }
     aws-ebs-csi-driver = {
@@ -21,9 +24,7 @@ module "eks" {
         }
       ]
     }
-    metrics-server = { # this plugin should be installed once nodes are provisioned
-      before_compute = true
-    }
+    metrics-server = {}
   }
 
   # Optional
